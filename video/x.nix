@@ -6,7 +6,7 @@
 		libinput = {
 			enable = true;
 		};
-		displayManager.lightdm.enable = true;
+		displayManager.lightdm.enable = false;
 		desktopManager.plasma5.enable = true;
 		windowManager.awesome = {
 			enable = true;
@@ -17,7 +17,11 @@
 				ldbus
 			];
 		};
-		displayManager.defaultSession = "Polkit+LightLock+awesome"; #Polkit config thing in theming.nix (please don't question this)
+#		displayManager.defaultSession = "Polkit+LightLock+awesome"; #Polkit config thing in theming.nix (please don't question this)
     	};
 	hardware.opengl.enable = true;
+	services.greetd = {
+		enable = true; #lets see if this works ig
+		restart = true;
+	};
 }
