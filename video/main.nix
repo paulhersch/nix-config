@@ -2,7 +2,7 @@
 {
 	imports = [
 		./x.nix
-		./wayland.nix #it broki
+		./wayland.nix
 		./theming/main.nix
 	];
 }
