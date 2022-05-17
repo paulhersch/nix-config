@@ -48,6 +48,7 @@ in
 		sumneko-lua-language-server
 		python-language-server
 		luajit
+		wezterm-git
 
 	## stuff needed for university
 		yed
@@ -65,6 +66,7 @@ in
 		libreoffice-still
 		neovim
 		pdfarranger
+		discord
 		
 	## system utilities
 		at-spi2-core
@@ -84,7 +86,6 @@ in
 		kdeconnect
 		gammastep
 		bpytop
-		discord
 		glow
 
 	## awesomewm extra programs

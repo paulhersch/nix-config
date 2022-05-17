@@ -51,6 +51,17 @@ in
 			enable = true;
 			enableAliases = true;
 		};
+		zathura = {
+			enable = true;
+			extraConfig = with theme;''
+				set recolor
+				set recolor-lightcolor \"${bg}\"
+				set recolor-darkcolor \"${fg}\"
+				set default-bg \"${bg}\"
+				set guioptions vhs
+				set adjust-open width
+			'';
+		};
 	};
 	xresources.extraConfig = import ./xresources.nix { inherit theme; };
   };
