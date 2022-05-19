@@ -6,7 +6,6 @@
 		description = "Luise Haase";
 		isNormalUser = true;
 		extraGroups = [ "video" "networkmanager" "flatpak" "libvirtd" "messagebus" ];
-		};
 	};
 }
 
