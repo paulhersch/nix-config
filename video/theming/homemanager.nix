@@ -26,7 +26,7 @@ in
 					base00 = "${bg}";
 					base01 = "${lbg}";
 					base02 = "${lbg}";
-					base03 = "${c2}";
+					base03 = "${c10}";
 					base04 = "${c8}";
 					base05 = "${c15}";
 					base06 = "${c15}";
@@ -34,14 +34,14 @@ in
 					base08 = "${c7}";
 					base09 = "${c1}";
 					base0A = "${c11}";
-					base0B = "${c2}";
-					base0C = "${lbg}";
-					base0D = "${lbg}";
+					base0B = "${c1}";
+					base0C = "${c7}";
+					base0D = "${fg}";
 					base0E = "${c5}";
 					base0F = "${c9}";
 				};
 				primary = "${theme.c2}";
-			#	secondary = "${theme.lbg}";
+				secondary = "${theme.c10}";
 			};
 		};
 	};
