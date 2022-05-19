@@ -1,7 +1,8 @@
 { lib, ... }:
 {
 	imports = [
-		./userconf.nix
 		./manager.nix
+		./paul.nix
+		./luise.nix
 	];
 }
