@@ -40,6 +40,8 @@
 	'';
 
 	programs.dconf.enable = true;
+	programs.ssh.enableAskPassword = false;
+
 	boot.kernelPackages = pkgs.linuxPackages_latest;
 	boot.kernelParams = [ "pci=noaer" ];
 
@@ -145,10 +147,10 @@
   	};
   	}; #too lazy to properly indent this ready made config to the overall style in here
 
-	programs.gnupg.agent = {
-		enable = true;
-		enableSSHSupport = true;
-	};
+#	programs.gnupg.agent = {
+#		enable = true;
+#		enableSSHSupport = true;
+#	};
 
 	system.stateVersion = "21.05";
 } 
