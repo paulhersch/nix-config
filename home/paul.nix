@@ -12,7 +12,6 @@ in
 		packages = with pkgs;[
 			nodejs
 			nodePackages.yarn
-			vimPlugins.packer-nvim
 		];
   	};
 	home-manager.users.paul = {
