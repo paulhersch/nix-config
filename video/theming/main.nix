@@ -7,19 +7,12 @@ let
 	 gtk-cursor-theme-size=36
 	'';
 in {
-	imports = [
-		./homemanager.nix
-	];
 	services.xserver.displayManager = {
 		lightdm = {
 			enable = true;
 			greeters.enso = {
 				enable = true;
 				blur = true;
-				cursorTheme = {
-					name = "Phinger Cursors (light)";
-					package = pkgs.phinger-cursors;
-				};
 				iconTheme = {
 					name = "Papirus-Dark-Maia";
 					package = pkgs.papirus-maia-icon-theme;

@@ -19,17 +19,15 @@ in
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.overlays = [
 		(self: super: {
-			neovim = super.neovim.override {
+			neovim-nightly = super.neovim-nightly.override {
 				viAlias = true;
 				vimAlias = true;
      			};
    		})
 		(builtins.getFlake "github:fortuneteller2k/nixpkgs-f2k").overlay
-		(final: prev: {
-			awesome-git = prev.awesome-git.overrideAttrs (old: rec {
-				GI_TYPELIB_PATH = "${prev.networkmanager}/lib/girepository-1.0:" + old.GI_TYPELIB_PATH;
-			});
-		})
+		(import (builtins.fetchTarball {
+			url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+		}))
  	];
 	environment.systemPackages = with pkgs; [
 	## developement
@@ -38,7 +36,7 @@ in
 		wget 
 		jetbrains.idea-community
 		jetbrains.pycharm-community
-		jetbrains.jdk #jetbrains.jdk has an extra C dependency, so i can still install java with nix-env without problems but use the runtimes from code-with-me
+		jetbrains.jdk
 		ghc
 		rustup
 		gcc
@@ -48,6 +46,7 @@ in
 		sumneko-lua-language-server
 		python-language-server
 		luajit
+		neovim-nightly
 		wezterm-git
 
 	## stuff needed for university
@@ -58,13 +57,11 @@ in
 		teamviewer
 		openconnect
 		geckodriver
-
 	## day to day use
 		librewolf-wayland 
 		zathura
 		thunderbird-bin
 		libreoffice-still
-		neovim
 		pdfarranger
 		discord
 		
@@ -136,12 +133,17 @@ in
 		polymc
 	];
 
-	programs.zsh.enable = true;
+	programs = {
+		zsh.enable = true;
+		steam.enable = true;
+	};
 	services.gvfs.enable = true;
 
 	fonts.fonts = with pkgs; [
 		nerdfonts	
 		inter
+		weather-icons
+		material-icons
 		powerline-fonts
 	];
 

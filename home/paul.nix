@@ -9,6 +9,11 @@ in
 		isNormalUser = true;
    		extraGroups = [ "messagebus" "networkmanager" "flatpak" "libvirtd" "video" ];
 		shell = pkgs.zsh;
+		packages = with pkgs;[
+			nodejs
+			nodePackages.yarn
+			vimPlugins.packer-nvim
+		];
   	};
 	home-manager.users.paul = {
 		gtk = {
