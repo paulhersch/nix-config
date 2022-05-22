@@ -12,6 +12,8 @@ in
 		packages = with pkgs;[
 			nodejs
 			nodePackages.yarn
+			dotnet-sdk
+			dotnet-runtime
 		];
   	};
 	home-manager.users.paul = {

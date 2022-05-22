@@ -6,11 +6,7 @@ let
     pandas
     selenium
     seaborn
-  ];
-  luaPkgs = lua-pkgs: with lua-pkgs; [
-    lgi
-    lgdbus
-    lua
+    python-lsp-server
   ];
   python-with-my-packages = python39.withPackages my-python-packages;
 
@@ -42,9 +38,9 @@ in
 		gcc
 		cargo
 
-		haskell-language-server #for nvim coc modules
+		haskell-language-server
 		sumneko-lua-language-server
-		python-language-server
+		omnisharp-roslyn
 		luajit
 		neovim-nightly
 		wezterm-git
