@@ -7,6 +7,10 @@ let
     selenium
     seaborn
     python-lsp-server
+    keyring
+    tornado
+    requests
+    pynvim
   ];
   python-with-my-packages = python39.withPackages my-python-packages;
 
