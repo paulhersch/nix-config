@@ -34,17 +34,6 @@ in
 		python-with-my-packages
 		git
 		wget 
-		jetbrains.idea-community
-		jetbrains.pycharm-community
-		jetbrains.jdk
-		ghc
-		rustup
-		gcc
-		cargo
-
-		haskell-language-server
-		sumneko-lua-language-server
-		omnisharp-roslyn
 		luajit
 		neovim-nightly
 		wezterm-git

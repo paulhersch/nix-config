@@ -14,6 +14,17 @@ in
 			nodePackages.yarn
 			dotnet-sdk
 			dotnet-runtime
+			jetbrains.idea-community
+			jetbrains.pycharm-community
+			jetbrains.jdk
+			jetbrains.rider
+			ghc
+			rustup
+			gcc
+			cargo
+			haskell-language-server
+			sumneko-lua-language-server
+			omnisharp-roslyn
 		];
   	};
 	home-manager.users.paul = {
