@@ -16,19 +16,17 @@ in
 	  hyprland.nixosModules.default
 	];
 
-	nixpkgs.overlays = [ waylandOverlay ];
+#	nixpkgs.overlays = [ waylandOverlay ];
 	environment.systemPackages = with pkgs; [
 		wl-clipboard
 		wlroots
-		wlay
 		oguri
-		lavalauncher
 		mako
 		waybar
 		clipman
 		grim
 		obs-studio
-		obs-wlrobs
+		obs-studio-plugins.wlrobs
 		wofi
 		swayidle
 		swaylock
