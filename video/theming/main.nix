@@ -8,21 +8,24 @@ let
 	'';
 in {
 	services.xserver.displayManager = {
-		lightdm = {
+#		lightdm = {
+#			enable = true;
+#			greeters.enso = {
+#				enable = true;
+#				blur = true;
+#				iconTheme = {
+#					name = "Papirus-Dark-Maia";
+#					package = pkgs.papirus-maia-icon-theme;
+#				};
+#				theme = {
+#					name = "Orchis-Green-Dark";
+#					package = pkgs.orchis-theme; 
+#				};
+#			};
+#		};
+		sddm = {
 			enable = true;
-			greeters.enso = {
-				enable = true;
-				blur = true;
-				iconTheme = {
-					name = "Papirus-Dark-Maia";
-					package = pkgs.papirus-maia-icon-theme;
-				};
-				theme = {
-					name = "Orchis-Green-Dark";
-					package = pkgs.orchis-theme; 
-				};
-			};
-		};
+		}
 		session = [
 			{
 				manage = "desktop";
