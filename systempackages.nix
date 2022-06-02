@@ -41,6 +41,7 @@ in
 		rustup
 		gcc
 		cargo
+		vscodium-fhs
 
 		haskell-language-server
 		sumneko-lua-language-server
