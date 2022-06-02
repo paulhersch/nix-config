@@ -23,21 +23,19 @@ stdenv.mkDerivation {
 	nativeBuildInputs = with pkgs; [mono5 gmp unzip makeWrapper];
 	depsBuildTarget = with pkgs; [mono5 gmp];
 
-	buildPhase = "
+	buildPhase = ''
 		cd src
 		echo 'building the satk binary...'
 		make
 		cd ..
 		echo 'build completed'
-	"; #need to use " so the ${version} thing works
+	'';
 
 	installPhase = ''
 		mkdir -p $out/bin $out/lib/satk ##so /run/sw/current-system/sw/lib on NixOS systems isn't getting cluttered
-		cp bin/satk $out/bin
+		cp bin/satk $out/bin/satk
 		cp -r lib/* $out/lib/satk/
-	'';
-	
-	postInstall = ''
-		wrapProgram "$out/bin/satk" --set SAKCILCOMP "${pkgs.mono5}/bin/ilasm" --set SAKLIBPATH "$out/lib/satk"
+		echo 'wrapping satk in its env vars'
+		wrapProgram $out/bin/satk --set SAKCILCOMP "${pkgs.mono5}/bin/ilasm" --set SAKLIBPATH "$out/lib/satk"
 	'';
 }

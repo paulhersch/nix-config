@@ -34,18 +34,6 @@ in
 		python-with-my-packages
 		git
 		wget 
-		jetbrains.idea-community
-		jetbrains.pycharm-community
-		jetbrains.jdk
-		ghc
-		rustup
-		gcc
-		cargo
-		vscodium-fhs
-
-		haskell-language-server
-		sumneko-lua-language-server
-		omnisharp-roslyn
 		luajit
 		neovim-nightly
 		wezterm-git
@@ -128,7 +116,7 @@ in
 		exa
 		xorg.xev
 		neofetch
-		steam-run #has Ubuntu libraries, enables compatability for some programs
+		steam-run
 		cowsay
 		fortune
 		polymc
