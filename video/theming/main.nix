@@ -25,7 +25,7 @@ in {
 #		};
 		sddm = {
 			enable = true;
-		}
+		};
 		session = [
 			{
 				manage = "desktop";
