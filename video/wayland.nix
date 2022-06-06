@@ -13,10 +13,9 @@ let
 in
 {
 	imports = [
-	  hyprland.nixosModules.default
+		hyprland.nixosModules.default
 	];
 
-#	nixpkgs.overlays = [ waylandOverlay ];
 	environment.systemPackages = with pkgs; [
 		wl-clipboard
 		wlroots

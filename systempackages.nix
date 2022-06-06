@@ -66,7 +66,7 @@ in
 		smartmontools
 		gparted
 		xarchiver
-		zip
+		unzip
 		virt-manager
 		patchelf
 		kdeconnect
