@@ -116,7 +116,7 @@ in
 		exa
 		xorg.xev
 		neofetch
-		steam-run #has Ubuntu libraries, enables compatability for some programs
+		steam-run
 		cowsay
 		fortune
 		polymc

@@ -25,6 +25,7 @@ in
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
+			vscodium-fhs
 		];
   	};
 	home-manager.users.paul = {
