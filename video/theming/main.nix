@@ -4,7 +4,7 @@ let
 	 [Settings]
 	 gtk-icon-theme-name=Papirus
 	 gtk-theme-name=Orchis-green-dark
-	 gtk-cursor-theme-size=36
+	 gtk-cursor-theme-size=16
 	'';
 in {
 	services.xserver.displayManager = {
@@ -23,15 +23,14 @@ in {
 #				};
 #			};
 #		};
-		sddm = {
+		gdm = {
 			enable = true;
 		};
 		session = [
 			{
 				manage = "desktop";
-				name = "Polkit+LightLock";
+				name = "Polkit";
 				start = ''
-				exec dbus-launch --exit-with-session ${pkgs.lightlocker}/bin/light-locker &
 				exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
 				'';
 			}

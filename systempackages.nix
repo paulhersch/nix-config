@@ -52,7 +52,7 @@ in
 		thunderbird-bin
 		libreoffice-still
 		pdfarranger
-		discord
+		discord-canary
 		
 	## system utilities
 		at-spi2-core

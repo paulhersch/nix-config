@@ -40,7 +40,8 @@ in
 	programs.hyprland.enable = true;
 	xdg = {
 		portal = {
-			enable = true;
+			wlr.enable = true;
+#			enable = true;
 			extraPortals = with pkgs; [
 				xdg-desktop-portal-wlr
 			];
