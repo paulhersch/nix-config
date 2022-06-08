@@ -23,7 +23,7 @@
 
 	# minimalistic gnome with good extensions as backup (no k-bloat)
 	services.gnome.core-utilities.enable = false;
-	environment.systemPackages = with pkgs.gnomeExtensions [
+	environment.systemPackages = with pkgs.gnomeExtensions; [
 		dash-to-panel
 		blur-my-shell
 		arcmenu
