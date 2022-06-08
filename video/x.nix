@@ -17,7 +17,6 @@
 				ldbus
 			];
 		};
-		displayManager.defaultSession = "Polkit+LightLock+awesome"; #Polkit config thing in theming.nix (please don't question this)
     	};
 	hardware.opengl.enable = true;
 
@@ -27,5 +26,6 @@
 		dash-to-panel
 		blur-my-shell
 		arcmenu
+		tray-icons-reloaded
 	];
 }

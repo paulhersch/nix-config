@@ -25,6 +25,7 @@ in {
 #		};
 		gdm = {
 			enable = true;
+			wayland = true;
 		};
 		session = [
 			{
