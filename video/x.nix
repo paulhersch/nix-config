@@ -1,4 +1,15 @@
 { config, pkgs, ...}:
+let
+	extensions = with pkgs.gnomeExtensions; [
+		dock-from-dash
+		blur-my-shell
+		tray-icons-reloaded
+	];
+	extrapkgs = with pkgs; [
+		gnome.nautilus
+		gnome3.gnome-tweaks
+	];
+in
 {
 	services.xserver = {
 		layout = "de";
@@ -6,7 +17,6 @@
 		libinput = {
 			enable = true;
 		};
-	#	desktopManager.plasma5.enable = true;
 		desktopManager.gnome.enable = true;
 		windowManager.awesome = {
 			enable = true;
@@ -22,10 +32,5 @@
 
 	# minimalistic gnome with good extensions as backup (no k-bloat)
 	services.gnome.core-utilities.enable = false;
-	environment.systemPackages = with pkgs.gnomeExtensions; [
-		dash-to-panel
-		blur-my-shell
-		arcmenu
-		tray-icons-reloaded
-	];
+	environment.systemPackages = extensions ++ extrapkgs;
 }

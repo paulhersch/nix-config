@@ -45,7 +45,7 @@ in
 	## extra stuff for work
 		teamviewer
 		openconnect
-		geckodriver
+
 	## day to day use
 		librewolf-wayland 
 		zathura
@@ -55,6 +55,7 @@ in
 		discord-canary
 		
 	## system utilities
+		pamixer
 		at-spi2-core
 		syncthing
 		blueman
@@ -82,7 +83,6 @@ in
 		gnome.gvfs
 		maim
 		brightnessctl
-		pamixer
 		playerctl
 		xfce.xfce4-clipman-plugin
 		mate.mate-polkit
@@ -113,7 +113,6 @@ in
 		xournalpp
 
 	## miscellaneous
-		exa
 		xorg.xev
 		neofetch
 		steam-run
@@ -148,7 +147,7 @@ in
 				# startlimitintervalsec = 60;
 				# StartLimitBurst = 4;
 				serviceConfig = {
-				 ExecStart = "/run/current-system/sw/bin/syncthing serve --no-browser --no-restart --logflags=0";
+				 ExecStart = "${pkgs.syncthing}/bin/syncthing serve --no-browser --no-restart --logflags=0";
 				 Restart = "on-failure";
 				 RestartSec = 1;
 				 SuccessExitStatus = "3 4";

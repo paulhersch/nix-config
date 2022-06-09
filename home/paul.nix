@@ -7,13 +7,14 @@ in
   		createHome = true;
   		description = "Paul Schneider";
 		isNormalUser = true;
-   		extraGroups = [ "messagebus" "networkmanager" "flatpak" "libvirtd" "video" ];
+   		extraGroups = [ "messagebus" "networkmanager" "flatpak" "libvirtd" "video" "input" ];
 		shell = pkgs.zsh;
 		packages = with pkgs;[
 			nodejs
 			nodePackages.yarn
 			dotnet-sdk
 			dotnet-runtime
+			geckodriver
 			jetbrains.idea-community
 			jetbrains.pycharm-community
 			jetbrains.jdk
@@ -31,7 +32,10 @@ in
 	home-manager.users.paul = {
 		gtk = {
 			enable = true;
-			font.name = "Inter";
+			font = {
+				name = "Inter";
+				size = 12;	
+			};
 			iconTheme = {
 				name = "Papirus-Dark-Maia";
 				package = pkgs.papirus-maia-icon-theme;
@@ -42,29 +46,31 @@ in
 				size = 24;
 			};
 			theme = {
-				name = "phocus";
-				package = pkgs.phocus.override {
-					colors = with theme; {
-						base00 = "${bg}";
-						base01 = "${lbg}";
-						base02 = "${lbg}";
-						base03 = "${c10}";
-						base04 = "${c8}";
-						base05 = "${c15}";
-						base06 = "${c15}";
-						base07 = "${c7}";
-						base08 = "${c7}";
-						base09 = "${c1}";
-						base0A = "${c11}";
-						base0B = "${c1}";
-						base0C = "${c7}";
-						base0D = "${fg}";
-						base0E = "${c5}";
-						base0F = "${c9}";
-					};
-					primary = "${theme.c2}";
-					secondary = "${theme.c10}";
-				};
+				name = "Orchis-Green-Dark";
+				package = pkgs.orchis-theme;
+			#	name = "phocus";
+			#	package = pkgs.phocus.override {
+			#		colors = with theme; {
+			#			base00 = "${bg}";
+			#			base01 = "${lbg}";
+			#			base02 = "${lbg}";
+			#			base03 = "${c10}";
+			#			base04 = "${c8}";
+			#			base05 = "${c15}";
+			#			base06 = "${c15}";
+			#			base07 = "${c7}";
+			#			base08 = "${c7}";
+			##			base09 = "${c1}";
+			#			base0A = "${c11}";
+			#			base0B = "${c1}";
+			#			base0C = "${c7}";
+			#			base0D = "${fg}";
+			#			base0E = "${c5}";
+			#			base0F = "${c9}";
+			#		};
+			#		primary = "${theme.c2}";
+			#		secondary = "${theme.c10}";
+			#	};
 			};
 		};
 		programs = {
