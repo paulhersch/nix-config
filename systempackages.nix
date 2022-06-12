@@ -18,12 +18,6 @@ in
 {
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.overlays = [
-		(self: super: {
-			neovim-nightly = super.neovim-nightly.override {
-				viAlias = true;
-				vimAlias = true;
-     			};
-   		})
 		(builtins.getFlake "github:fortuneteller2k/nixpkgs-f2k").overlay
 		(import (builtins.fetchTarball {
 			url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
@@ -52,7 +46,7 @@ in
 		thunderbird-bin
 		libreoffice-still
 		pdfarranger
-		discord-canary
+		discord
 		
 	## system utilities
 		pamixer
@@ -119,6 +113,8 @@ in
 		cowsay
 		fortune
 		polymc
+	## for greeter theme
+		libsForQt5.qt5.qtgraphicaleffects
 	];
 
 	programs = {

@@ -23,10 +23,15 @@ in {
 #				};
 #			};
 #		};
-		gdm = {
+#		gdm = {
+#			enable = true;
+#			wayland = true;
+#		};
+		sddm = {
 			enable = true;
-			wayland = true;
+			theme = "sugar-dark";
 		};
+		defaultSession = "hyprland";
 		session = [
 			{
 				manage = "desktop";
@@ -57,10 +62,10 @@ in {
 	#	platformTheme = "gtk2";
 	#	style = "gtk2";
 	#};
-	#environment.etc = {
-	#	"xdg/gtk-3.0/settings.ini" = {
-	#		text = "${gtkconfig}";
-	#		mode = "444";
-	#	};
-	#};
+	environment.etc = {
+		"xdg/gtk-3.0/settings.ini" = {
+			text = "${gtkconfig}";
+			mode = "444";
+		};
+	};
 }

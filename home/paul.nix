@@ -46,31 +46,29 @@ in
 				size = 24;
 			};
 			theme = {
-				name = "Orchis-Green-Dark";
-				package = pkgs.orchis-theme;
-			#	name = "phocus";
-			#	package = pkgs.phocus.override {
-			#		colors = with theme; {
-			#			base00 = "${bg}";
-			#			base01 = "${lbg}";
-			#			base02 = "${lbg}";
-			#			base03 = "${c10}";
-			#			base04 = "${c8}";
-			#			base05 = "${c15}";
-			#			base06 = "${c15}";
-			#			base07 = "${c7}";
-			#			base08 = "${c7}";
-			##			base09 = "${c1}";
-			#			base0A = "${c11}";
-			#			base0B = "${c1}";
-			#			base0C = "${c7}";
-			#			base0D = "${fg}";
-			#			base0E = "${c5}";
-			#			base0F = "${c9}";
-			#		};
-			#		primary = "${theme.c2}";
-			#		secondary = "${theme.c10}";
-			#	};
+				name = "phocus";
+				package = pkgs.phocus.override {
+					colors = with theme; {
+						base00 = "${bg}";
+						base01 = "${lbg}";
+						base02 = "${lbg}"; #why does mozilla use this for fonts behind bg men
+						base03 = "${c10}";
+						base04 = "${c8}";
+						base05 = "${c15}";
+						base06 = "${c15}";
+						base07 = "${c7}";
+						base08 = "${c7}";
+						base09 = "${c1}";
+						base0A = "${c11}";
+						base0B = "${c1}";
+						base0C = "${c7}";
+						base0D = "${fg}";
+						base0E = "${c5}";
+						base0F = "${c9}";
+					};
+					primary = "${theme.c2}";
+					secondary = "${theme.c10}";
+				};
 			};
 		};
 		programs = {
@@ -82,13 +80,25 @@ in
 			zathura = {
 				enable = true;
 				extraConfig = with theme;''
-set recolor
-set recolor-lightcolor "#${bg}"
-set recolor-darkcolor "#${fg}"
-set default-bg "#${bg}"
-set guioptions vhs
-set adjust-open width
-				''; # this has to do until i find a way to properly use strings lol
+					set recolor
+					set recolor-lightcolor "#${bg}"
+					set recolor-darkcolor "#${fg}"
+					set default-bg "#${bg}"
+					set guioptions vhs
+					set adjust-open width
+				'';
+			};
+			mako = {
+				enable = true;
+				anchor = "top-center";
+				font = "Inter Regular 11";
+				borderRadius = 5;
+				defaultTimeout = 10;
+
+				backgroundColor = "#${theme.bg}";
+				textColor = "#${theme.fg}";
+				borderColor = "#${theme.lbg}";
+				progressColor = with theme; "over #${c2}";
 			};
 		};
 		xresources.extraConfig = import ../video/theming/xresources.nix { inherit theme; };
