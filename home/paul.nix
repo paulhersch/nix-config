@@ -90,7 +90,7 @@ in
 			};
 			mako = {
 				enable = true;
-				anchor = "top-center";
+				anchor = "bottom-right";
 				font = "Inter Regular 11";
 				borderRadius = 5;
 				defaultTimeout = 5000;
@@ -99,6 +99,40 @@ in
 				textColor = "#${theme.fg}";
 				borderColor = "#${theme.lbg}";
 				progressColor = with theme; "over #${c2}";
+			};
+			foot = {
+				enable = true;
+				server.enable = true;
+				settings = {
+					main = {
+						font = "CaskaydiaCove Nerd Font:size=8";
+					};
+					cursor = {
+						blink = "yes";
+						style = "beam";
+					};
+					colors = with theme; {
+						foreground = "${fg}";
+						background = "${bg}";
+						regular0 = "${c0}";
+						regular1 = "${c1}";
+						regular2 = "${c2}";
+						regular3 = "${c3}";
+						regular4 = "${c4}";
+						regular5 = "${c5}";
+						regular6 = "${c6}";
+						regular7 = "${c7}";
+						bright0 = "${c0}";
+						bright1 = "${c1}";
+						bright2 = "${c2}";
+						bright3 = "${c3}";
+						bright4 = "${c4}";
+						bright5 = "${c5}";
+						bright6 = "${c6}";
+						bright7 = "${c7}";
+						selection-background = "${c7}";
+					};
+				};
 			};
 		};
 		xresources.extraConfig = import ../video/theming/xresources.nix { inherit theme; };
