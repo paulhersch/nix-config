@@ -93,7 +93,7 @@ in
 				anchor = "top-center";
 				font = "Inter Regular 11";
 				borderRadius = 5;
-				defaultTimeout = 10;
+				defaultTimeout = 5000;
 
 				backgroundColor = "#${theme.bg}";
 				textColor = "#${theme.fg}";
