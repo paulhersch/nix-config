@@ -12,11 +12,7 @@ let
 in
 {
 	services.xserver = {
-		layout = "de";
 		enable = true;
-		libinput = {
-			enable = true;
-		};
 		desktopManager.gnome.enable = true;
 		windowManager = {
 			session = pkgs.lib.singleton {

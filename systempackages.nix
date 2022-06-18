@@ -67,11 +67,7 @@ in
 		gammastep
 		bpytop
 		glow
-		xfce.thunar
-		xfce.thunar-volman
-		xfce.thunar-archive-plugin
-		xfce.thunar-media-tags-plugin
-		gnome.gvfs
+		pcmanfm
 		kitty
 		pavucontrol
 		playerctl

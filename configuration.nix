@@ -31,7 +31,7 @@
   
 	virtualisation = {
 		libvirtd.enable = true;
-		docker.enable	= true;
+		docker.rootless.enable = true;
 	};
 
 	nix = {
@@ -67,16 +67,15 @@
 		teamviewer.enable = true;
 		printing = {
 			enable = true;
-#			drivers = with pkgs; [ gutenprint gutenprintBin hplip samsung-unified-linux-driver splix brlaser ];
+			drivers = with pkgs; [ gutenprint gutenprintBin hplip samsung-unified-linux-driver splix brlaser ];
 		};
 		pipewire = {
 			enable = true;
 			alsa.enable = true;
-			jack.enable = true;
 			pulse.enable = true;
 		};
 	};
-
+	security.rtkit.enable = true;
 	networking = {
 		networkmanager.enable = true;
 		firewall = { #needed for kdeconnect
@@ -177,5 +176,5 @@
 	environment.extraInit = ''
 		export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
 	'';
-	system.stateVersion = "21.05";
+	system.stateVersion = "22.05";
 } 
