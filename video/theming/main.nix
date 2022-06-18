@@ -7,47 +7,23 @@ let
 	 gtk-cursor-theme-size=16
 	'';
 in {
-	services.xserver.displayManager = {
-#		lightdm = {
-#			enable = true;
-#			greeters.enso = {
-#				enable = true;
-#				blur = true;
-#				iconTheme = {
-#					name = "Papirus-Dark-Maia";
-#					package = pkgs.papirus-maia-icon-theme;
-#				};
-#				theme = {
-#					name = "Orchis-Green-Dark";
-#					package = pkgs.orchis-theme; 
-#				};
-#			};
-#		};
-#		gdm = {
-#			enable = true;
-#			wayland = true;
-#		};
-		sddm = {
-			enable = true;
-			theme = "sugar-dark";
-		};
-		defaultSession = "hyprland";
-		session = [
-			{
-				manage = "desktop";
-				name = "Polkit";
-				start = ''
-				exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-				'';
-			}
-		];
-	};
-	services.xserver.windowManager = {
-		session = pkgs.lib.singleton {
-			name = "awesomeDEBUG";
-			start = ''
-				exec dbus-run-session -- ${pkgs.awesome-git}/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
-			'';
+	services.xserver = {
+		enable = true;
+		displayManager = {
+			sddm = {
+				enable = true;
+				theme = "sugar-dark";
+			};
+			defaultSession = "hyprland";
+			#session = [
+			#	{
+			#		manage = "desktop";
+			#		name = "Polkit";
+			#		start = ''
+			#		exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+			#		'';
+			#	}
+			#];
 		};
 	};
 
@@ -56,6 +32,7 @@ in {
 		phinger-cursors
 		orchis-theme
 		libsForQt5.qtstyleplugins
+		libsForQt5.qt5.qtgraphicaleffects
 	];
 	#qt5 = {
 	#	enable = true;

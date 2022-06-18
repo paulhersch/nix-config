@@ -1,7 +1,7 @@
 { lib, ... }:
 {
 	imports = [
-		./x.nix
+#		./x.nix
 		./wayland.nix
 		./theming/main.nix
 	];

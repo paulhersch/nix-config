@@ -11,6 +11,7 @@ let
     tornado
     requests
     pynvim
+    pygobject3
   ];
   python-with-my-packages = python39.withPackages my-python-packages;
 
@@ -30,7 +31,7 @@ in
 		wget 
 		luajit
 		neovim-nightly
-		wezterm-git
+		gobject-introspection
 
 	## stuff needed for university
 		yed
@@ -50,8 +51,6 @@ in
 		
 	## system utilities
 		pamixer
-		at-spi2-core
-		syncthing
 		blueman
 		keepassxc
 		efibootmgr
@@ -68,27 +67,15 @@ in
 		gammastep
 		bpytop
 		glow
-
-	## awesomewm extra programs
 		xfce.thunar
 		xfce.thunar-volman
 		xfce.thunar-archive-plugin
 		xfce.thunar-media-tags-plugin
 		gnome.gvfs
-		maim
-		brightnessctl
-		playerctl
-		xfce.xfce4-clipman-plugin
-		mate.mate-polkit
-		networkmanagerapplet
-		rofi
-		picom
 		kitty
-		libnotify
-		lxappearance
 		pavucontrol
-		lxrandr
-		redshift
+		playerctl
+		brightnessctl
 
 	## communication
 		signal-desktop
@@ -113,8 +100,6 @@ in
 		cowsay
 		fortune
 		polymc
-	## for greeter theme
-		libsForQt5.qt5.qtgraphicaleffects
 	];
 
 	programs = {
