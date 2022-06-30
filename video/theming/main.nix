@@ -7,41 +7,44 @@ let
 	 gtk-cursor-theme-size=16
 	'';
 in {
-#	services.xserver = {
-#		enable = true;
-#		layout = "de";
-#		libinput = {
-#			enable = true;
-#		};
-#		displayManager = {
-#			sddm = {
-#				enable = true;
-#				theme = "sugar-dark";
-#			};
-#			defaultSession = "hyprland";
-#			#session = [
-#			#	{
-#			#		manage = "desktop";
-#			#		name = "Polkit";
-#			#		start = ''
-#			#		exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-#			#		'';
-#			#	}
-#			#];
-#		};
-#	};
-	services.greetd = {
+	services.xserver = {
 		enable = true;
-		settings = {
-			default_session = {
-				command = ''${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland'';
+		layout = "de";
+		libinput = {
+			enable = true;
+		};
+		displayManager = {
+			sddm = {
+				enable = true;
+				theme = "sugar-dark";
 			};
+			defaultSession = "hyprland";
+			#session = [
+			#	{
+			#		manage = "desktop";
+			#		name = "Polkit";
+			#		start = ''
+			#		exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+			#		'';
+			#	}
+			#];
 		};
 	};
-	environment.etc."greetd/environments".text = ''
-sway
-Hyprland
-	'';
+#	services.greetd = {
+#		enable = true;
+#		settings = {
+#			default_session = {
+#				command = ''
+#				${pkgs.greetd.tuigreet}/bin/tuigreet -r --remember-session --time --cmd Hyprland \
+#					--sessions ${pkgs.river-git}/share/wayland-sessions
+#				'';
+#			};
+#		};
+#	};
+#	environment.etc."greetd/environments".text = ''
+#sway
+#Hyprland
+#	'';
 
 	environment.systemPackages = with pkgs; [
 		papirus-maia-icon-theme

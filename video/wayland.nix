@@ -15,20 +15,19 @@ in
 		hyprland.nixosModules.default
 	];
 	nixpkgs.overlays = [
-	#	(final: prev: {
-	#		river = prev.river.overrideAttrs (old: rec {
-	#			postInstall = ''
-	#				mkdir -p $out/share/wayland-sessions/
-	#				cp contrib/river.desktop $out/share/wayland-sessions/river.desktop
-	#			'';
-	#			passthru.providedSessions = [ "river" ];
-	#		});
-	#	})
+#		(final: prev: {
+#			river = prev.river.overrideAttrs (old: rec {
+#				postInstall = ''
+#					mkdir -p $out/share/wayland-sessions/
+#					cp contrib/river.desktop $out/share/wayland-sessions/river.desktop
+#				'';
+#				passthru.providedSessions = [ "river" ];
+#			});
+#		})
 		waylandOverlay
 	];
 	environment.systemPackages = with pkgs; [
 		wl-clipboard
-		wlroots
 		oguri
 		mako
 		waybar
@@ -46,10 +45,11 @@ in
 		fusuma
 		kanshi
 		eww-wayland
-	#	river
-	#	kile-wl
+		wf-recorder
+		river-git
+		kile-wl
 	];
-	#services.xserver.displayManager.sessionPackages = [ pkgs.river ];
+#	services.xserver.displayManager.sessionPackages = [ pkgs.river ];
 
 	programs = {
 		xwayland.enable = true;

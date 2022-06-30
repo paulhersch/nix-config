@@ -32,20 +32,20 @@ in
 			};
     		};
 	};
-	
+
+	#for awesomewm
 	environment.systemPackages = with pkgs; [
 		maim
 		xfce.xfce4-clipman-plugin
 		networkmanagerapplet
 		rofi
-		picom
+		picom-git
 		libnotify
 		lxappearance
 		lxrandr
 		redshift
-	]
+	] ++ extensions ++ extrapkgs;
 
 	# minimalistic gnome with good extensions as backup (no k-bloat)
 	services.gnome.core-utilities.enable = false;
-	environment.systemPackages = extensions ++ extrapkgs;
 }

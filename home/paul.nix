@@ -7,7 +7,7 @@ in
   		createHome = true;
   		description = "Paul Schneider";
 		isNormalUser = true;
-   		extraGroups = [ "messagebus" "networkmanager" "flatpak" "libvirtd" "video" "input" ];
+   		extraGroups = [ "messagebus" "networkmanager" "flatpak" "libvirtd" "video" "input" "docker" ];
 		shell = pkgs.zsh;
 		packages = with pkgs;[
 			nodejs
@@ -27,6 +27,7 @@ in
 			sumneko-lua-language-server
 			omnisharp-roslyn
 			vscodium-fhs
+			docker-compose
 		];
   	};
 	home-manager.users.paul = {
@@ -105,7 +106,7 @@ in
 				server.enable = true;
 				settings = {
 					main = {
-						font = "CaskaydiaCove Nerd Font:size=8";
+						font = "CaskaydiaCove Nerd Font:size=10";
 					};
 					cursor = {
 						blink = "yes";
@@ -114,7 +115,7 @@ in
 					colors = with theme; {
 						foreground = "${fg}";
 						background = "${bg}";
-						regular0 = "${c0}";
+						regular0 = "${bg}";
 						regular1 = "${c1}";
 						regular2 = "${c2}";
 						regular3 = "${c3}";
@@ -133,6 +134,55 @@ in
 						selection-background = "${c7}";
 					};
 				};
+			};
+			kitty = {
+				enable = true;
+				settings.extraConfig = with theme; ''
+					font_family		CaskaydiaCove Nerd Font
+					bold_font		auto
+					italic_font		auto
+					bold_italic_font	auto
+
+					font_size		10
+
+					disable_ligatures	never
+					enable_audio_bell 	no
+					focus_follows_mouse	yes	
+
+					cursor_blink_interval	0
+					cursor_shape		beam
+					cursor_beam_thickness	0.8
+
+					scrollback_lines	4000
+
+					enabled_layouts		Splits
+					map alt+v		launch --location=hsplit
+					map alt+h		launch --location=vsplit
+					map super+up 		neighboring_window up
+					map super+down		neighboring_window down
+					map super+left		neighboring_window left
+					map super+right		neighboring_window right
+					background		#${bg}
+					foreground		#${fg}
+					cursor			#${fg}
+					selection_background	#${lbg}
+					color0			#${bg}
+					color1			#${c1}
+					color2			#${c2}
+					color3			#${c3}
+					color4			#${c4}
+					color5			#${c5}
+					color6			#${c6}
+					color7			#${c7}
+					color8			#${c8}
+					color9			#${c9}
+					color10			#${c10}
+					color11			#${c11}
+					color12			#${c12}
+					color13			#${c13}
+					color14			#${c14}
+					color15			#${c15}
+				'';
 			};
 		};
 		xresources.extraConfig = import ../video/theming/xresources.nix { inherit theme; };

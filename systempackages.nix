@@ -14,7 +14,6 @@ let
     pygobject3
   ];
   python-with-my-packages = python39.withPackages my-python-packages;
-
 in
 {
 	nixpkgs.config.allowUnfree = true;
