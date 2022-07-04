@@ -46,8 +46,8 @@ in
 		kanshi
 		eww-wayland
 		wf-recorder
-		river-git
-		kile-wl
+#		river-git
+#		kile-wl
 	];
 #	services.xserver.displayManager.sessionPackages = [ pkgs.river ];
 
