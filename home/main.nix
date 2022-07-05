@@ -2,7 +2,7 @@
 {
 	imports = [
 		./manager.nix
-		./paul.nix
+		./paul
 		./luise.nix
 	];
 }
