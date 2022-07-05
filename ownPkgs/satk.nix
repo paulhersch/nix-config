@@ -35,7 +35,11 @@ stdenv.mkDerivation {
 		mkdir -p $out/bin $out/lib/satk ##so /run/sw/current-system/sw/lib on NixOS systems isn't getting cluttered
 		cp bin/satk $out/bin/satk
 		cp -r lib/* $out/lib/satk/
-		echo 'wrapping satk in its env vars'
+		runHook postInstall
+	'';
+
+	postInstall = ''
 		wrapProgram $out/bin/satk --set SAKCILCOMP "${pkgs.mono5}/bin/ilasm" --set SAKLIBPATH "$out/lib/satk"
+
 	'';
 }
