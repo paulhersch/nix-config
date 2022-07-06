@@ -5,15 +5,15 @@ let
    waylandOverlay = (import "${builtins.fetchTarball "https://github.com/nix-community/nixpkgs-wayland/archive/master.tar.gz" }/overlay.nix");
 
    #hyprland
-   flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
-   hyprland = (import flake-compat {
-     src = builtins.fetchTarball "https://github.com/vaxerski/Hyprland/archive/master.tar.gz";
-   }).defaultNix;
+#   flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
+#   hyprland = (import flake-compat {
+#     src = builtins.fetchTarball "https://github.com/vaxerski/Hyprland/archive/master.tar.gz";
+#   }).defaultNix;
 in
 {
-	imports = [
-		hyprland.nixosModules.default
-	];
+#	imports = [
+#		hyprland.nixosModules.default
+#	];
 	nixpkgs.overlays = [
 #		(final: prev: {
 #			river = prev.river.overrideAttrs (old: rec {
@@ -60,7 +60,7 @@ in
 			enable = true;
 			wrapperFeatures.gtk = true;
 		};
-		hyprland.enable = true;
+#		hyprland.enable = true;
 	};
 	xdg = {
 		portal = {

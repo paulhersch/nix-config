@@ -18,7 +18,6 @@ in {
 				enable = true;
 				theme = "sugar-dark";
 			};
-			defaultSession = "hyprland";
 			#session = [
 			#	{
 			#		manage = "desktop";

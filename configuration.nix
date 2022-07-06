@@ -4,9 +4,9 @@
 	imports = [ 
 		./hardware-configuration.nix
 		./systempackages.nix
-		./ownPkgs/main.nix
-		./home/main.nix
-		./video/main.nix
+		./ownPkgs
+		./home
+		./video
 	];
 
 	boot = {
@@ -31,8 +31,8 @@
   
 	virtualisation = {
 		libvirtd.enable = true;
-#		docker.rootless.enable = true;
-		docker.enable = true;
+		docker.rootless.enable = true;
+#		docker.enable = true;
 	};
 
 	nix = {
