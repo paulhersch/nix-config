@@ -44,6 +44,8 @@ in
 		librewolf-wayland 
 		zathura
 		thunderbird-bin
+		gnome.geary #(i actually like that a lot)
+		epiphany #testing
 		libreoffice-still
 		pdfarranger
 		discord

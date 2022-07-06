@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, discocss, ... }:
 let
 	theme = import ../video/theming/colors.nix { };
 	spicetify = fetchTarball https://github.com/pietdevries94/spicetify-nix/archive/master.tar.gz;
@@ -40,8 +40,8 @@ in
 				size = 12;	
 			};
 			iconTheme = {
-				name = "Papirus-Dark-Maia";
-				package = pkgs.papirus-maia-icon-theme;
+				name = "Papirus-Dark";
+				package = pkgs.papirus-icon-theme;
 			};
 			cursorTheme = {
 				name = "Phinger Cursors (light)";
@@ -83,6 +83,7 @@ in
 #				theme = "Dribbblish";
 #				colorScheme = "Nord-Dark";
 #			};
+#			discocss
 			exa = {
 				enable = true;
 				enableAliases = true;
