@@ -1,6 +1,6 @@
 { config, lib, pkgs, discocss, ... }:
 let
-	theme = import ../video/theming/colors.nix { };
+	theme = import ../../video/theming/colors.nix { };
 	spicetify = fetchTarball https://github.com/pietdevries94/spicetify-nix/archive/master.tar.gz;
 in
 {
@@ -32,7 +32,10 @@ in
 		];
   	};
 	home-manager.users.paul = {
-		imports = [ (import "${spicetify}/module.nix") ];
+		imports = [ 
+			(import "${spicetify}/module.nix")
+			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
+		];
 		gtk = {
 			enable = true;
 			font = {
@@ -50,7 +53,7 @@ in
 			};
 			theme = {
 				name = "Everblush-gtk";
-				package = (pkgs.callPackage ../ownPkgs/everblushgtk.nix {});
+				package = (pkgs.callPackage ../../ownPkgs/everblushgtk.nix {});
 			#	name = "phocus";
 			#	package = pkgs.phocus.override {
 			#		colors = with theme; {
@@ -83,7 +86,10 @@ in
 #				theme = "Dribbblish";
 #				colorScheme = "Nord-Dark";
 #			};
-#			discocss
+			discocss = {
+				enable = true;
+				css = import ./discord_css.nix { inherit theme; };
+			};
 			exa = {
 				enable = true;
 				enableAliases = true;
@@ -195,6 +201,6 @@ in
 				'';
 			};
 		};
-		xresources.extraConfig = import ../video/theming/xresources.nix { inherit theme; };
+		xresources.extraConfig = import ../../video/theming/xresources.nix { inherit theme; };
   	};
 }

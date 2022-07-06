@@ -33,6 +33,7 @@ in
 		waybar
 		clipman
 		grim
+		slurp
 		obs-studio
 		obs-wlrobs
 		wofi
@@ -47,12 +48,14 @@ in
 		eww-wayland
 		wf-recorder
 #		river-git
+#		wayfire-unstable
 #		kile-wl
 	];
 #	services.xserver.displayManager.sessionPackages = [ pkgs.river ];
 
 	programs = {
 		xwayland.enable = true;
+
 		sway = {
 			enable = true;
 			wrapperFeatures.gtk = true;

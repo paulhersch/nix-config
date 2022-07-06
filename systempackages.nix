@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with pkgs;
 let
@@ -105,7 +105,7 @@ in
 	services.gvfs.enable = true;
 
 	fonts.fonts = with pkgs; [
-		nerdfonts	
+		( nerdfonts.override { fonts = [ "CascadiaCode" "FiraCode" ];} )
 		inter
 		weather-icons
 		material-icons
