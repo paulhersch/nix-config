@@ -29,7 +29,7 @@ in
 		git
 		wget 
 		luajit
-		neovim-nightly
+		neovim
 		gobject-introspection
 
 	## stuff needed for university
@@ -40,12 +40,17 @@ in
 		teamviewer
 		openconnect
 
+	## thunar 👍
+		xfce.thunar
+		xfce.thunar-volman
+		xfce.thunar-archive-plugin
+		xfce.xfconf #fixes problem where thunar doesnt save user settings
+
 	## day to day use
 		librewolf-wayland 
 		zathura
 		thunderbird-bin
 		gnome.geary #(i actually like that a lot)
-		epiphany #testing
 		libreoffice-still
 		pdfarranger
 		discord
@@ -102,10 +107,12 @@ in
 		zsh.enable = true;
 		steam.enable = true;
 	};
+
+	# for file managers
 	services.gvfs.enable = true;
 
 	fonts.fonts = with pkgs; [
-		( nerdfonts.override { fonts = [ "CascadiaCode" "FiraCode" ];} )
+		( nerdfonts.override { fonts = [ "CascadiaCode" "FiraCode" "FantasqueSansMono" ];} )
 		inter
 		weather-icons
 		material-icons

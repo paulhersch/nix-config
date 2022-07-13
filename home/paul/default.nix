@@ -1,7 +1,7 @@
 { config, lib, pkgs, discocss, ... }:
 let
 	theme = import ../../video/theming/colors.nix { };
-	spicetify = fetchTarball https://github.com/pietdevries94/spicetify-nix/archive/master.tar.gz;
+#	spicetify = fetchTarball https://github.com/pietdevries94/spicetify-nix/archive/master.tar.gz;
 in
 {
 	users.users.paul = {
@@ -20,20 +20,26 @@ in
 			jetbrains.pycharm-community
 			jetbrains.jdk
 			jetbrains.rider
+			
 			ghc
 			rustup
 			gcc
 			cargo
+			tectonic
+
+			## lsps for neovim
+			texlab
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
-			vscodium-fhs
+			#vscodium-fhs #vim surpremacy
 			docker-compose
+			neovim-nightly
 		];
   	};
 	home-manager.users.paul = {
 		imports = [ 
-			(import "${spicetify}/module.nix")
+#			(import "${spicetify}/module.nix")
 			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
 		];
 		home.stateVersion = "22.05";
@@ -101,7 +107,7 @@ in
 				server.enable = true;
 				settings = {
 					main = {
-						font = "CaskaydiaCove Nerd Font:size=10";
+						font = "Fantasque Sans Mono Nerd Font:size=10";
 					};
 					cursor = {
 						blink = "yes";
@@ -132,10 +138,11 @@ in
 			};
 			kitty = {
 				enable = true;
-				settings.extraConfig = with theme; ''
+				settings.extraConfig = with theme; 
+				''
 					font_family		CaskaydiaCove Nerd Font
 					bold_font		auto
-					italic_font		auto
+					italic_font		Fantasque Sans Mono Nerd Font
 					bold_italic_font	auto
 
 					font_size		10
