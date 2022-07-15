@@ -27,14 +27,15 @@ in
 			cargo
 			texlive.combined.scheme-full
 
-			## lsps for neovim
+			## extras for neovim
 			texlab
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
-			#vscodium-fhs #vim surpremacy
 			docker-compose
 			neovim-nightly
+			ripgrep
+			fd
 		];
   	};
 	home-manager.users.paul = {
