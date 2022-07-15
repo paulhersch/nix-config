@@ -25,7 +25,7 @@ in
 			rustup
 			gcc
 			cargo
-			tectonic
+			texlive.combined.scheme-full
 
 			## lsps for neovim
 			texlab
