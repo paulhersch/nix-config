@@ -32,10 +32,10 @@ in
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
-			#vscodium-fhs #vim surpremacy
 			docker-compose
 			neovim-nightly
-			fd #telescope
+			ripgrep
+			fd
 		];
   	};
 	home-manager.users.paul = {
