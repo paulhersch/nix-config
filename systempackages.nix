@@ -28,7 +28,6 @@ in
 		python-with-my-packages
 		git
 		wget 
-		luajit
 		neovim
 		gobject-introspection
 
@@ -90,7 +89,7 @@ in
 		spotify
 		handbrake
 		vlc
-		kdenlive
+#		kdenlive
 		audacity
 		xournalpp
 

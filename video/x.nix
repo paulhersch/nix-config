@@ -13,7 +13,7 @@ in
 {
 	services.xserver = {
 		enable = true;
-		desktopManager.gnome.enable = true;
+#		desktopManager.gnome.enable = true;
 		windowManager = {
 			session = pkgs.lib.singleton {
 				name = "awesomeDEBUG";
@@ -24,7 +24,7 @@ in
 			awesome = {
 				enable = true;
 				package = pkgs.awesome-git;
-				luaModules = with pkgs.luajitPackages; [
+				luaModules = with pkgs.luaPackages; [
 					lua
 					lgi
 					ldbus
@@ -44,8 +44,8 @@ in
 		lxappearance
 		lxrandr
 		redshift
-	] ++ extensions ++ extrapkgs;
+	]; # ++ extensions ++ extrapkgs;
 
 	# minimalistic gnome with good extensions as backup (no k-bloat)
-	services.gnome.core-utilities.enable = false;
+#	services.gnome.core-utilities.enable = false;
 }

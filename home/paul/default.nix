@@ -27,7 +27,7 @@ in
 			cargo
 			texlive.combined.scheme-full
 
-			## lsps for neovim
+			## neovim deps
 			texlab
 			haskell-language-server
 			sumneko-lua-language-server
@@ -35,6 +35,7 @@ in
 			#vscodium-fhs #vim surpremacy
 			docker-compose
 			neovim-nightly
+			fd #telescope
 		];
   	};
 	home-manager.users.paul = {
