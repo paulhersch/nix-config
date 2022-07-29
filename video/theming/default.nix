@@ -18,15 +18,15 @@ in {
 				enable = true;
 				theme = "sugar-dark";
 			};
-			#session = [
-			#	{
-			#		manage = "desktop";
-			#		name = "Polkit";
-			#		start = ''
-			#		exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-			#		'';
-			#	}
-			#];
+			session = [
+				{
+					manage = "desktop";
+					name = "Polkit";
+					start = ''
+					exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+					'';
+				}
+			];
 		};
 	};
 #	services.greetd = {
@@ -52,11 +52,6 @@ in {
 		libsForQt5.qtstyleplugins
 		libsForQt5.qt5.qtgraphicaleffects
 	];
-	#qt5 = {
-	#	enable = true;
-	#	platformTheme = "gtk2";
-	#	style = "gtk2";
-	#};
 	environment.etc = {
 		"xdg/gtk-3.0/settings.ini" = {
 			text = "${gtkconfig}";

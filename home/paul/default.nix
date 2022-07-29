@@ -21,6 +21,7 @@ in
 			jetbrains.jdk
 			jetbrains.rider
 			
+			luaPackages.lua
 			ghc
 			rustup
 			gcc
@@ -36,6 +37,8 @@ in
 			neovim-nightly
 			ripgrep
 			fd
+
+			heroic
 		];
   	};
 	home-manager.users.paul = {
@@ -117,7 +120,7 @@ in
 					colors = with theme; {
 						foreground = "${fg}";
 						background = "${bg}";
-						regular0 = "${bg}";
+						regular0 = "${c0}";
 						regular1 = "${c1}";
 						regular2 = "${c2}";
 						regular3 = "${c3}";
@@ -125,14 +128,15 @@ in
 						regular5 = "${c5}";
 						regular6 = "${c6}";
 						regular7 = "${c7}";
-						bright0 = "${c0}";
-						bright1 = "${c1}";
-						bright2 = "${c2}";
-						bright3 = "${c3}";
-						bright4 = "${c4}";
-						bright5 = "${c5}";
-						bright6 = "${c6}";
-						bright7 = "${c7}";
+						
+						bright0 = "${c8}";
+						bright1 = "${c9}";
+						bright2 = "${c10}";
+						bright3 = "${c11}";
+						bright4 = "${c12}";
+						bright5 = "${c13}";
+						bright6 = "${c14}";
+						bright7 = "${c15}";
 						selection-background = "${c7}";
 					};
 				};
@@ -169,7 +173,7 @@ in
 					foreground		#${fg}
 					cursor			#${fg}
 					selection_background	#${lbg}
-					color0			#${bg}
+					color0			#${c0}
 					color1			#${c1}
 					color2			#${c2}
 					color3			#${c3}

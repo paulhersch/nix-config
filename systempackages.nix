@@ -92,6 +92,7 @@ in
 #		kdenlive
 		audacity
 		xournalpp
+		obs-studio
 
 	## miscellaneous
 		xorg.xev

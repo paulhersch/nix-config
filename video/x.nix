@@ -13,7 +13,6 @@ in
 {
 	services.xserver = {
 		enable = true;
-#		desktopManager.gnome.enable = true;
 		windowManager = {
 			session = pkgs.lib.singleton {
 				name = "awesomeDEBUG";
@@ -44,8 +43,6 @@ in
 		lxappearance
 		lxrandr
 		redshift
-	]; # ++ extensions ++ extrapkgs;
-
-	# minimalistic gnome with good extensions as backup (no k-bloat)
-#	services.gnome.core-utilities.enable = false;
+		i3lock-color
+	];
 }
