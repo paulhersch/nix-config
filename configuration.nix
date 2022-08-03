@@ -60,9 +60,7 @@
 	services = {
 		upower.enable = true;
 		openssh.enable = true;
-#		pcscd.enable = true;
 		blueman.enable = true;
-#		teamviewer.enable = true;
 		gnome = {
 			gnome-keyring.enable = pkgs.lib.mkForce false;
 		};

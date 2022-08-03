@@ -37,8 +37,6 @@ in
 			neovim-nightly
 			ripgrep
 			fd
-
-			heroic
 		];
   	};
 	home-manager.users.paul = {

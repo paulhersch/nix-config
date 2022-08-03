@@ -36,7 +36,7 @@ in
 		gnuplot
 
 	## extra stuff for work
-		teamviewer
+		rustdesk
 		openconnect
 
 	## thunar 👍
@@ -100,12 +100,10 @@ in
 		steam-run
 		cowsay
 		fortune
-		polymc
 	];
 
 	programs = {
 		zsh.enable = true;
-		steam.enable = true;
 	};
 
 	# for file managers
