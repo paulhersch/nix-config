@@ -9,7 +9,7 @@ stdenv.mkDerivation {
 		owner = "Everblush";
 		repo = "gtk";
 		rev = "main";
-		sha256 = "1fmjv898j10j64jrj1ddpp4xpf76awnvakjwmahqhs9wd114x3xs";
+		hash = "sha256-dZ3zgp5uEfYlav8xmiObNkIXQ6jB7KUkRoRH5rbTf8Q=";
 	};
 	dontBuild = true;
 	preInstall = ''
