@@ -24,7 +24,6 @@ in
 				enable = true;
 				package = pkgs.awesome-git;
 				luaModules = with pkgs.luaPackages; [
-					lua
 					lgi
 					ldbus
 				];

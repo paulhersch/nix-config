@@ -34,27 +34,18 @@ in
 	## stuff needed for university
 		yed
 		gnuplot
-
-	## extra stuff for work
-		rustdesk
 		openconnect
 
-	## thunar 👍
-		xfce.thunar
-		xfce.thunar-volman
-		xfce.thunar-archive-plugin
-		xfce.xfconf #fixes problem where thunar doesnt save user settings
-
 	## day to day use
-		librewolf-wayland 
+		librewolf-wayland
 		zathura
 		thunderbird-bin
 		gnome.geary #(i actually like that a lot)
-		libreoffice-still
 		pdfarranger
 		discord
 		
 	## system utilities
+		galculator
 		pamixer
 		blueman
 		keepassxc
@@ -77,6 +68,7 @@ in
 		pavucontrol
 		playerctl
 		brightnessctl
+		tree
 
 	## communication
 		signal-desktop
@@ -90,13 +82,12 @@ in
 		handbrake
 		vlc
 #		kdenlive
-		audacity
 		xournalpp
 		obs-studio
 
 	## miscellaneous
 		xorg.xev
-		neofetch
+		pfetch
 		steam-run
 		cowsay
 		fortune

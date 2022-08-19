@@ -1,7 +1,6 @@
 { config, lib, pkgs, discocss, ... }:
 let
 	theme = import ../../video/theming/colors.nix { };
-#	spicetify = fetchTarball https://github.com/pietdevries94/spicetify-nix/archive/master.tar.gz;
 in
 {
 	users.users.paul = {
@@ -16,10 +15,14 @@ in
 			dotnet-sdk
 			dotnet-runtime
 			geckodriver
+			chromedriver
+			chromium
 			jetbrains.idea-community
 			jetbrains.pycharm-community
 			jetbrains.jdk
 			jetbrains.rider
+
+			ncspot
 			
 			luaPackages.lua
 			ghc
@@ -41,7 +44,6 @@ in
   	};
 	home-manager.users.paul = {
 		imports = [ 
-#			(import "${spicetify}/module.nix")
 			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
 		];
 		home.stateVersion = "22.05";
@@ -68,11 +70,6 @@ in
 		};
 		programs = {
 			home-manager.enable = true;
-#			spicetify = {
-#				enable = true;
-#				theme = "Dribbblish";
-#				colorScheme = "Nord-Dark";
-#			};
 			discocss = {
 				enable = true;
 				css = import ./discord_css.nix { inherit theme; };
