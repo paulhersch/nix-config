@@ -1,6 +1,7 @@
 { config, lib, pkgs, discocss, ... }:
 let
 	theme = import ../../video/theming/colors.nix { };
+	unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
 	users.users.paul = {
@@ -37,7 +38,7 @@ in
 			sumneko-lua-language-server
 			omnisharp-roslyn
 			docker-compose
-			neovim-nightly
+			unstable.neovim
 			ripgrep
 			fd
 		];
@@ -106,7 +107,7 @@ in
 				server.enable = true;
 				settings = {
 					main = {
-						font = "Fantasque Sans Mono Nerd Font:size=10";
+						font = "Fantasque Sans Mono Nerd Font Mono:size=9";
 					};
 					cursor = {
 						blink = "yes";
@@ -138,14 +139,15 @@ in
 			};
 			kitty = {
 				enable = true;
+					#font_family		CaskaydiaCove Nerd Font
+					#bold_font		auto
+					#italic_font		Fantasque Sans Mono Nerd Font
+					#bold_italic_font	auto
 				settings.extraConfig = with theme; 
 				''
-					font_family		CaskaydiaCove Nerd Font
-					bold_font		auto
-					italic_font		Fantasque Sans Mono Nerd Font
-					bold_italic_font	auto
 
-					font_size		10
+					font_family		FantasqueSansMono Nerd Font
+					font_size		11
 
 					disable_ligatures	never
 					enable_audio_bell 	no
