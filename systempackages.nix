@@ -19,9 +19,9 @@ in
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.overlays = [
 		(builtins.getFlake "github:fortuneteller2k/nixpkgs-f2k").overlays.default
-		(import (builtins.fetchTarball {
-			url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-		}))
+		#(import (builtins.fetchTarball {
+		#	url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+		#}))
  	];
 	environment.systemPackages = with pkgs; [
 	## developement
@@ -102,8 +102,8 @@ in
 	services.gvfs.enable = true;
 
 	fonts.fonts = with pkgs; [
-		( nerdfonts.override { fonts = [ "CascadiaCode" "FantasqueSansMono" ];} )
-		inter
+		( nerdfonts.override { fonts = [ "CascadiaCode" "FantasqueSansMono" "RobotoMono" ];} )
+		lato
 		twitter-color-emoji
 	];
 
@@ -129,6 +129,15 @@ in
 				 NoNewPriviliges = "true";
 				};
 			};
+#			"mpdmpris" = {
+#				description = "mpd-mpris bridge";
+#				after = [ "mpd.service" ];
+#				serviceConfig = {
+#					ExecStart = "${pkgs.mpd-mpris}/bin/mpd-mpris";
+#					Restart = "on-failure";
+#					RestartSec = 5;
+#				};
+#			};
 		};
 	};
 }

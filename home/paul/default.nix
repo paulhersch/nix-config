@@ -23,7 +23,7 @@ in
 			jetbrains.jdk
 			jetbrains.rider
 
-			ncspot
+			#ncspot
 			
 			luaPackages.lua
 			ghc
@@ -52,8 +52,8 @@ in
 		gtk = {
 			enable = true;
 			font = {
-				name = "Inter";
-				size = 12;	
+				name = "Lato";
+				size = 12;
 			};
 			iconTheme = {
 				name = "Papirus-Dark";
@@ -67,6 +67,50 @@ in
 			theme = {
 				name = "Everblush-gtk";
 				package = (pkgs.callPackage ../../ownPkgs/everblushgtk.nix {});
+			};
+		};
+		services = {
+			mopidy = {
+				enable = true;
+				extensionPackages = with pkgs; [
+						mopidy-mpd
+						mopidy-mpris
+						mopidy-local
+					];
+				settings = {
+					audio = {
+						mixer_volume = 30;
+					};
+					
+					mpd = {
+						enabled = true;
+						hostname = "127.0.0.1";
+						port = 6600;
+						max_connections = 20;
+						connection_timeout = 60;
+					};
+			
+					local = {
+						enabled = true;
+						media_dir = "/home/paul/Musik/Files/";
+					};
+					
+					file = {
+						media_dirs = [
+							"/home/paul/Musik/Files/|Music"
+						];
+					};
+					m3u = {
+						enabled = true;
+						playlists_dir = "/home/paul/Musik/Playlists/";
+						base_dir = "/home/paul/Musik/Playlists/";
+					};
+			
+					mpris = {
+						enabled = true;
+						bus_type = "system";
+					};
+				};
 			};
 		};
 		programs = {
@@ -89,6 +133,9 @@ in
 					set guioptions vhs
 					set adjust-open width
 				'';
+			};
+			ncmpcpp = {
+				enable = true;
 			};
 			mako = {
 				enable = true;
@@ -145,9 +192,10 @@ in
 					#bold_italic_font	auto
 				settings.extraConfig = with theme; 
 				''
-
-					font_family		FantasqueSansMono Nerd Font
-					font_size		11
+					
+					font_family		CaskaydiaCove Nerd Font
+					italic_font		FantasqueSansMono Nerd Font
+					font_size		10
 
 					disable_ligatures	never
 					enable_audio_bell 	no

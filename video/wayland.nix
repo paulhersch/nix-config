@@ -20,7 +20,7 @@ in
 	environment.systemPackages = with pkgs; [
 		wl-clipboard
 		oguri
-#		mako
+#		mako #already provided by home manager unit
 		grim
 		slurp
 #		obs-wlrobs

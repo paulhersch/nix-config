@@ -18,15 +18,16 @@ in {
 				enable = true;
 				theme = "sugar-dark";
 			};
-			session = [
-				{
-					manage = "desktop";
-					name = "Polkit";
-					start = ''
-					exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-					'';
-				}
-			];
+		# shit doesnt fucking work
+		#	session = [
+		#		{
+		#			manage = "desktop";
+		#			name = "Polkit";
+		#			start = ''
+		#			exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+		#			'';
+		#		}
+		#	];
 		};
 	};
 #	services.greetd = {
