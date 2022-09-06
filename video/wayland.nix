@@ -20,17 +20,17 @@ in
 	environment.systemPackages = with pkgs; [
 		wl-clipboard
 		oguri
-		mako
+#		mako
 		grim
 		slurp
-		obs-wlrobs
+#		obs-wlrobs
 		wofi
 		alacritty
 		foot
 		wlogout
 		wev
 		fusuma
-		kanshi
+#		kanshi
 		eww-wayland
 		wf-recorder
 	];

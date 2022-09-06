@@ -37,6 +37,7 @@ in
 		openconnect
 
 	## day to day use
+		libreoffice-still
 		librewolf-wayland
 		zathura
 		thunderbird-bin
@@ -101,11 +102,9 @@ in
 	services.gvfs.enable = true;
 
 	fonts.fonts = with pkgs; [
-		( nerdfonts.override { fonts = [ "CascadiaCode" "FiraCode" "FantasqueSansMono" ];} )
+		( nerdfonts.override { fonts = [ "CascadiaCode" "FantasqueSansMono" ];} )
 		inter
-		weather-icons
-		material-icons
-		powerline-fonts
+		twitter-color-emoji
 	];
 
 	
