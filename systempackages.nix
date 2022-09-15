@@ -2,18 +2,19 @@
 
 with pkgs;
 let
-  my-python-packages = python-packages: with python-packages; [
-    pandas
-    selenium
-    seaborn
-    python-lsp-server
-    keyring
-    tornado
-    requests
-    pynvim
-    pygobject3
-  ];
-  python-with-my-packages = python39.withPackages my-python-packages;
+  	my-python-packages = python-packages: with python-packages; [
+    		pandas
+    		selenium
+    		seaborn
+    		python-lsp-server
+    		keyring
+    		tornado
+    		requests
+    		pynvim
+    		pygobject3
+    	];
+	python-with-my-packages = python39.withPackages my-python-packages;
+	unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
 	nixpkgs.config.allowUnfree = true;
@@ -40,7 +41,7 @@ in
 		libreoffice-still
 		librewolf-wayland
 		zathura
-		thunderbird-bin
+		unstable.thunderbird-bin
 		gnome.geary #(i actually like that a lot)
 		pdfarranger
 		discord
@@ -102,8 +103,10 @@ in
 	services.gvfs.enable = true;
 
 	fonts.fonts = with pkgs; [
-		( nerdfonts.override { fonts = [ "CascadiaCode" "FantasqueSansMono" "RobotoMono" ];} )
+		( nerdfonts.override { fonts = [ "CascadiaCode" ];} )
 		lato
+		cascadia-code
+		victor-mono #used as fallback for italic stuff
 		twitter-color-emoji
 	];
 
