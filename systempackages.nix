@@ -44,13 +44,13 @@ in
 		unstable.thunderbird-bin
 		gnome.geary #(i actually like that a lot)
 		pdfarranger
-		discord
+		unstable.discord
+		keepassxc
 		
 	## system utilities
 		galculator
 		pamixer
 		blueman
-		keepassxc
 		efibootmgr
 		efitools
 		pciutils
@@ -83,7 +83,6 @@ in
 		spotify
 		handbrake
 		vlc
-#		kdenlive
 		xournalpp
 		obs-studio
 
@@ -105,6 +104,7 @@ in
 	fonts.fonts = with pkgs; [
 		( nerdfonts.override { fonts = [ "CascadiaCode" ];} )
 		lato
+		inter
 		cascadia-code
 		victor-mono #used as fallback for italic stuff
 		twitter-color-emoji
@@ -132,15 +132,6 @@ in
 				 NoNewPriviliges = "true";
 				};
 			};
-#			"mpdmpris" = {
-#				description = "mpd-mpris bridge";
-#				after = [ "mpd.service" ];
-#				serviceConfig = {
-#					ExecStart = "${pkgs.mpd-mpris}/bin/mpd-mpris";
-#					Restart = "on-failure";
-#					RestartSec = 5;
-#				};
-#			};
 		};
 	};
 }

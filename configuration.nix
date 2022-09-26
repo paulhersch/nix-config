@@ -118,9 +118,12 @@
 	time.timeZone = "Europe/Berlin";
 
 	i18n.defaultLocale = "de_DE.UTF-8";
-	console = {
-		keyMap = "de-latin1";
-	};
+	
+	services.xserver.xkbOptions = "caps:escape";
+	console.useXkbConfig = true;
+		#= {
+		#keyMap = "de-latin1";
+		#};
 
 	programs.gnupg.agent = {
 		enable = true;
