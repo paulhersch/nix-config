@@ -7,7 +7,7 @@ stdenv.mkDerivation {
 	name = "${pname}-${ver}";
 	src = fetchurl {
 		url = "https://github.com/MarianArlt/sddm-sugar-dark/archive/master.tar.gz";
-		sha256 = "103c18aebd3109c897f5f6e5b8814ab4887468c487a8b2f7a17cf8b33c06b38e";
+		hash = "sha256-1j7zPBJzW4S/RiPYdU7F7bSTKMK8dMV9j3jIWS2MzKI=";
 	};
 
 	dontBuild = true;

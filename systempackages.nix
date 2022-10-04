@@ -20,9 +20,6 @@ in
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.overlays = [
 		(builtins.getFlake "github:fortuneteller2k/nixpkgs-f2k").overlays.default
-		#(import (builtins.fetchTarball {
-		#	url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-		#}))
  	];
 	environment.systemPackages = with pkgs; [
 	## developement

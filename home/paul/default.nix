@@ -70,8 +70,10 @@ in
 				size = 24;
 			};
 			theme = {
-				name = "Everblush-gtk";
-				package = (pkgs.callPackage ../../ownPkgs/everblushgtk.nix {});
+				#name = "Everblush-gtk";
+				#package = (pkgs.callPackage ../../ownPkgs/everblushgtk.nix {});
+				name = "Materia-dark";
+				package = pkgs.materia-theme;
 			};
 		};
 		services = {
