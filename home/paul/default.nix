@@ -161,7 +161,7 @@ in
 				server.enable = true;
 				settings = {
 					main = {
-						font = "CaskaydiaCove Nerd Font Mono:size=10";
+						font = "CaskaydiaCove Nerd Font Mono:size=8";
 					};
 					cursor = {
 						blink = "yes";
