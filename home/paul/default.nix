@@ -25,6 +25,7 @@ in
 
 			#ncspot
 			
+			docker-compose
 			luaPackages.lua
 			ghc
 			rustup
@@ -35,12 +36,12 @@ in
 			unstable.wezterm
 
 			## neovim deps
+			unstable.neovim
 			texlab
+			jdt-language-server
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
-			docker-compose
-			unstable.neovim
 			ripgrep
 			fd
 		];
@@ -161,7 +162,7 @@ in
 				server.enable = true;
 				settings = {
 					main = {
-						font = "CaskaydiaCove Nerd Font Mono:size=8";
+						font = "Cascadia Code:size=8, CaskaydiaCove Nerd Font Mono:size=8";
 					};
 					cursor = {
 						blink = "yes";
