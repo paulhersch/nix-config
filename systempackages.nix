@@ -103,7 +103,8 @@ in
 		lato
 		inter
 		cascadia-code
-		victor-mono #used as fallback for italic stuff
+		material-design-icons
+		#victor-mono #used as fallback for italic stuff
 		twitter-color-emoji
 	];
 

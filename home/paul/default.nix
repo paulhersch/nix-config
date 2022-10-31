@@ -1,4 +1,4 @@
-{ config, lib, pkgs, discocss, ... }:
+{ config, lib, pkgs, discocss, stdenv, ... }:
 let
 	theme = import ../../video/theming/colors.nix { };
 	unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
@@ -23,9 +23,32 @@ in
 			jetbrains.jdk
 			jetbrains.rider
 
-			#ncspot
-			
-			docker-compose
+			(pkgs.callPackage ../../ownPkgs/st-flex.nix {
+				addPatches = [
+					"anysize simple"
+					"xresources"
+					"boxdraw"
+					"bold is not bright"
+					"blinking cursor"
+					"csi 22 23"
+					"columns"
+					"delkey"
+					"font2"
+					"hidecursor"
+					"netwmicon"
+					"scrollback"
+					"scrollback mouse"
+					"scrollback mouse altscreen"
+					"sync"
+					"undercurl"
+					"wide glyphs"
+					#"ligatures"
+				];
+				conf = import ./config.def.h {};
+				#ligatures = true;
+			})
+
+			#docker-compose
 			luaPackages.lua
 			ghc
 			rustup
@@ -33,9 +56,10 @@ in
 			cargo
 			texlive.combined.scheme-full
 
-			unstable.wezterm
+			#unstable.wezterm
 
 			## neovim deps
+			xsel
 			unstable.neovim
 			texlab
 			jdt-language-server
@@ -53,7 +77,7 @@ in
 			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
 		];
 		
-		home.file.".config/wezterm/wezterm.lua".text = import ./wez.nix { inherit theme; };
+		#home.file.".config/wezterm/wezterm.lua".text = import ./wez.nix { inherit theme; };
 		xresources.extraConfig = import ../../video/theming/xresources.nix { inherit theme; };
 		gtk = {
 			enable = true;
@@ -77,50 +101,50 @@ in
 				package = pkgs.materia-theme;
 			};
 		};
-		services = {
-			mopidy = {
-				enable = true;
-				extensionPackages = with pkgs; [
-						mopidy-mpd
-						mopidy-mpris
-						mopidy-local
-					];
-				settings = {
-					audio = {
-						mixer_volume = 30;
-					};
-					
-					mpd = {
-						enabled = true;
-						hostname = "127.0.0.1";
-						port = 6600;
-						max_connections = 20;
-						connection_timeout = 60;
-					};
-			
-					local = {
-						enabled = true;
-						media_dir = "/home/paul/Musik/Files/";
-					};
-					
-					file = {
-						media_dirs = [
-							"/home/paul/Musik/Files/|Music"
-						];
-					};
-					m3u = {
-						enabled = true;
-						playlists_dir = "/home/paul/Musik/Playlists/";
-						base_dir = "/home/paul/Musik/Playlists/";
-					};
-			
-					mpris = {
-						enabled = true;
-						bus_type = "session";
-					};
-				};
-			};
-		};
+		#services = {
+		#	mopidy = {
+		#		enable = true;
+		#		extensionPackages = with pkgs; [
+		#				mopidy-mpd
+		#				mopidy-mpris
+		#				mopidy-local
+		#			];
+		#		settings = {
+		#			audio = {
+		#				mixer_volume = 30;
+		#			};
+		#			
+		#			mpd = {
+		#				enabled = true;
+		#				hostname = "127.0.0.1";
+		#				port = 6600;
+		#				max_connections = 20;
+		#				connection_timeout = 60;
+		#			};
+		#	
+		#			local = {
+		#				enabled = true;
+		#				media_dir = "/home/paul/Musik/Files/";
+		#			};
+		#			
+		#			file = {
+		#				media_dirs = [
+		#					"/home/paul/Musik/Files/|Music"
+		#				];
+		#			};
+		#			m3u = {
+		#				enabled = true;
+		#				playlists_dir = "/home/paul/Musik/Playlists/";
+		#				base_dir = "/home/paul/Musik/Playlists/";
+		#			};
+		#	
+		#			mpris = {
+		#				enabled = true;
+		#				bus_type = "session";
+		#			};
+		#		};
+		#	};
+		#};
 		programs = {
 			home-manager.enable = true;
 			discocss = {
@@ -142,9 +166,9 @@ in
 					set adjust-open width
 				'';
 			};
-			ncmpcpp = {
-				enable = true;
-			};
+		#	ncmpcpp = {
+		#		enable = true;
+		#	};
 			mako = {
 				enable = true;
 				anchor = "bottom-right";
@@ -192,58 +216,58 @@ in
 					};
 				};
 			};
-			kitty = {
-				enable = true;
-					#font_family		CaskaydiaCove Nerd Font
-					#bold_font		auto
-					#italic_font		Fantasque Sans Mono Nerd Font
-					#bold_italic_font	auto
-				settings.extraConfig = with theme; 
-				''
-					
-					font_family		Cascadia Code
-					italic_font		Victor Mono
-					font_size		10
-
-					disable_ligatures	never
-					enable_audio_bell 	no
-					focus_follows_mouse	yes	
-
-					cursor_blink_interval	0
-					cursor_shape		beam
-					cursor_beam_thickness	0.8
-
-					scrollback_lines	4000
-
-					enabled_layouts		Splits
-					map alt+v		launch --location=hsplit
-					map alt+h		launch --location=vsplit
-					map super+up 		neighboring_window up
-					map super+down		neighboring_window down
-					map super+left		neighboring_window left
-					map super+right		neighboring_window right
-					background		#${bg}
-					foreground		#${fg}
-					cursor			#${fg}
-					selection_background	#${lbg}
-					color0			#${c0}
-					color1			#${c1}
-					color2			#${c2}
-					color3			#${c3}
-					color4			#${c4}
-					color5			#${c5}
-					color6			#${c6}
-					color7			#${c7}
-					color8			#${c8}
-					color9			#${c9}
-					color10			#${c10}
-					color11			#${c11}
-					color12			#${c12}
-					color13			#${c13}
-					color14			#${c14}
-					color15			#${c15}
-				'';
-			};
+		#	kitty = {
+		#		enable = true;
+		#			#font_family		CaskaydiaCove Nerd Font
+		#			#bold_font		auto
+		#			#italic_font		Fantasque Sans Mono Nerd Font
+		#			#bold_italic_font	auto
+		#		settings.extraConfig = with theme; 
+		#		''
+		#			
+		#			font_family		Cascadia Code
+		#			italic_font		Victor Mono
+		#			font_size		10
+		#
+		#			disable_ligatures	never
+		#			enable_audio_bell 	no
+		#			focus_follows_mouse	yes	
+		#
+		#			cursor_blink_interval	0
+		#			cursor_shape		beam
+		#			cursor_beam_thickness	0.8
+		#
+		#			scrollback_lines	4000
+		#
+		#			enabled_layouts		Splits
+		#			map alt+v		launch --location=hsplit
+		#			map alt+h		launch --location=vsplit
+		#			map super+up 		neighboring_window up
+		#			map super+down		neighboring_window down
+		#			map super+left		neighboring_window left
+		#			map super+right		neighboring_window right
+		#			background		#${bg}
+		#			foreground		#${fg}
+		#			cursor			#${fg}
+		#			selection_background	#${lbg}
+		#			color0			#${c0}
+		#			color1			#${c1}
+		#			color2			#${c2}
+		#			color3			#${c3}
+		#			color4			#${c4}
+		#			color5			#${c5}
+		#			color6			#${c6}
+		#			color7			#${c7}
+		#			color8			#${c8}
+		#			color9			#${c9}
+		#			color10			#${c10}
+		#			color11			#${c11}
+		#			color12			#${c12}
+		#			color13			#${c13}
+		#			color14			#${c14}
+		#			color15			#${c15}
+		#		'';
+		#	};
 		};
   	};
 }
