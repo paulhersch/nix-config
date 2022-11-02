@@ -29,23 +29,23 @@ in
 					"xresources"
 					"boxdraw"
 					"bold is not bright"
-					"blinking cursor"
 					"csi 22 23"
 					"columns"
 					"delkey"
+					"dynamic cursor color"
 					"font2"
 					"hidecursor"
 					"netwmicon"
 					"scrollback"
 					"scrollback mouse"
 					"scrollback mouse altscreen"
-					"sync"
+					#"sync"
 					"undercurl"
 					"wide glyphs"
-					#"ligatures"
 				];
 				conf = import ./config.def.h {};
-				#ligatures = true;
+				ligatures = true;
+				#harfbuzzFeatures = [ "ss01" "ss02" ];
 			})
 
 			#docker-compose
@@ -77,7 +77,7 @@ in
 			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
 		];
 		
-		#home.file.".config/wezterm/wezterm.lua".text = import ./wez.nix { inherit theme; };
+		home.file.".config/wezterm/wezterm.lua".text = import ./wez.nix { inherit theme; };
 		xresources.extraConfig = import ../../video/theming/xresources.nix { inherit theme; };
 		gtk = {
 			enable = true;

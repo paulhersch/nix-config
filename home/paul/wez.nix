@@ -4,16 +4,15 @@ with theme; ''
 local wezterm = require "wezterm"
 return {
     font_shaper = "Harfbuzz",
-    harfbuzz_features = { "kern", "liga", "clig", "calt" },
+    harfbuzz_features = { "liga", "clig", "calt", "ss01", "ss02" },
     font_size = 10.0,
     dpi = 96.0,
-    default_cursor_style = 'BlinkingBar',
-    animation_fps = 30,
+    default_cursor_style = 'SteadyBar',
     front_end = 'OpenGL',
     font = wezterm.font_with_fallback {
     	{ family = "Cascadia Code" }
     },
-    font_rules = {
+    --[[font_rules = {
 	{
             italic = true,
             intensity = "Half",
@@ -47,7 +46,7 @@ return {
                 }
             }
         }
-    },
+    },]]
     hide_tab_bar_if_only_one_tab = true,
     check_for_updates = false,
     colors = {

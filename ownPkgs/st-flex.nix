@@ -13,9 +13,17 @@
 , conf ? null
 , extraLibs ? []
 , ligatures ? false
+, harfbuzzFeatures ? []
+, harfbuzz ? null
 }:
 
 #warning: ligatures dont build for some godforsaken reason
+assert ligatures -> harfbuzz != null;
+
+let
+	str = lib.strings;
+	lst = lib.lists;
+in
 
 stdenv.mkDerivation rec {
 	pname = "st-flexipatch";
@@ -30,16 +38,31 @@ stdenv.mkDerivation rec {
 	configFile = lib.optionalString (conf != null)
 		(writeText "config.def.h" conf);
 	
+	# creates the patches.h file, replaces spaces with underlines, capitalizes letters and adds "_PATCH"
 	patchFile = writeText "patches.def.h" (
 		lib.concatStrings (
-			lib.concatMap (x: [ "#define ${lib.strings.toUpper x}_PATCH 1\n" ]) (
-				map (y: lib.strings.stringAsChars (z: if z==" " then "_" else z) y) addPatches
+			lib.concatMap (x: [ "#define ${str.toUpper x}_PATCH 1\n" ]) (
+				map (y: str.stringAsChars (z: if z==" " then "_" else z) y)
+					(addPatches ++ (if ligatures then [ "ligatures" ] else []))
 	)));
+
+	# builds the features array for hb.c
+	hbFeatures = "hb_feature_t features[] = { " + (str.concatStringsSep ", " (lst.map (
+		x: "FEATURE(" + (
+			str.concatStringsSep ", " (
+				# needs to be escaped for sed
+				lst.map (y: "\'${y}\'") (str.stringToCharacters x)
+		)) + ")"
+	) harfbuzzFeatures)) + " };";
 
 	postPatch = lib.optionalString (conf != null) "cp ${configFile} config.h \n"
 		+ lib.optionalString (addPatches != []) "cp ${patchFile} patches.h \n"
 		#uncomment lines for ligature support if enabled
-		+ (if ligatures then "sed 's/#LIGATURES_/LIGATURES/' \n" else "")
+		+ (if ligatures then ''
+			sed -i 's/#LIGATURES_/LIGATURES_/' config.mk
+			sed -i "30s/.*/${hbFeatures}/" hb.c
+			''
+		  else "")
 		+ lib.optionalString stdenv.isDarwin ''
 		substituteInPlace config.mk --replace "-lrt" ""
 	'';
@@ -49,9 +72,13 @@ stdenv.mkDerivation rec {
 		"PKG_CONFIG=${stdenv.cc.targetPrefix}pkg-config"
 	];
 
-	nativeBuildInputs = [ pkg-config ncurses fontconfig freetype ];
-	buildInputs = [ libX11 libXft ]
-		++ (if ligatures then [ pkgs.harfbuzz.dev ] else [])
+	# offset before -1 -> 0 "packaging deps"
+	depsBuildBuild = [ ncurses fontconfig freetype pkg-config ]
+		++ (if ligatures then [ harfbuzz ] else []);
+	
+	# offset before 0 -> 1 "building deps"
+	depsHostHost = [ libX11 libXft ]
+		++ (if ligatures then [ harfbuzz ] else [])
 		++ extraLibs;
 	
 	preInstall = ''

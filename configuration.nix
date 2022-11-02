@@ -4,7 +4,6 @@
 	imports = [ 
 		./hardware-configuration.nix
 		./systempackages.nix
-		./ownPkgs
 		./home
 		./video
 	];

@@ -30,21 +30,6 @@ in {
 		#	];
 		};
 	};
-#	services.greetd = {
-#		enable = true;
-#		settings = {
-#			default_session = {
-#				command = ''
-#				${pkgs.greetd.tuigreet}/bin/tuigreet -r --remember-session --time --cmd Hyprland \
-#					--sessions ${pkgs.river-git}/share/wayland-sessions
-#				'';
-#			};
-#		};
-#	};
-#	environment.etc."greetd/environments".text = ''
-#sway
-#Hyprland
-#	'';
 
 	environment.systemPackages = with pkgs; [
 		papirus-maia-icon-theme
@@ -52,6 +37,7 @@ in {
 		orchis-theme
 		libsForQt5.qtstyleplugins
 		libsForQt5.qt5.qtgraphicaleffects
+		(pkgs.callPackage ../../ownPkgs/sddm-sugar-dark.nix {})
 	];
 	environment.etc = {
 		"xdg/gtk-3.0/settings.ini" = {
