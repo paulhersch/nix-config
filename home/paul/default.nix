@@ -62,7 +62,7 @@ in
 			xsel
 			unstable.neovim
 			texlab
-			jdt-language-server
+			java-language-server
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
