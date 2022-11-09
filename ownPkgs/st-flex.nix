@@ -15,10 +15,12 @@
 , ligatures ? false
 , harfbuzzFeatures ? []
 , harfbuzz ? null
+, themedCursor ? false
+, libXcursor ? null
 }:
 
-#warning: ligatures dont build for some godforsaken reason
 assert ligatures -> harfbuzz != null;
+assert themedCursor -> libXcursor != null;
 
 let
 	str = lib.strings;
@@ -43,8 +45,10 @@ stdenv.mkDerivation rec {
 		lib.concatStrings (
 			lib.concatMap (x: [ "#define ${str.toUpper x}_PATCH 1\n" ]) (
 				map (y: str.stringAsChars (z: if z==" " then "_" else z) y)
-					(addPatches ++ (if ligatures then [ "ligatures" ] else []))
-	)));
+					(addPatches
+						++ (if ligatures then [ "ligatures" ] else [])
+						++ (if themedCursor then [ "themed cursor" ] else [])				
+	))));
 
 	# builds the features array for hb.c
 	hbFeatures = "hb_feature_t features[] = { " + (str.concatStringsSep ", " (lst.map (
@@ -57,10 +61,17 @@ stdenv.mkDerivation rec {
 
 	postPatch = lib.optionalString (conf != null) "cp ${configFile} config.h \n"
 		+ lib.optionalString (addPatches != []) "cp ${patchFile} patches.h \n"
+		
 		#uncomment lines for ligature support if enabled
 		+ (if ligatures then ''
 			sed -i 's/#LIGATURES_/LIGATURES_/' config.mk
 			sed -i "30s/.*/${hbFeatures}/" hb.c
+			''
+		  else "")
+
+		# uncomment line for themed cursor if enabled
+		+ (if themedCursor then ''
+			sed -i "19s/.//" config.mk
 			''
 		  else "")
 		+ lib.optionalString stdenv.isDarwin ''
@@ -79,6 +90,7 @@ stdenv.mkDerivation rec {
 	# offset before 0 -> 1 "building deps"
 	depsHostHost = [ libX11 libXft ]
 		++ (if ligatures then [ harfbuzz ] else [])
+		++ (if themedCursor then [ libXcursor ] else [])
 		++ extraLibs;
 	
 	preInstall = ''

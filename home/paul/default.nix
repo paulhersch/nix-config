@@ -45,6 +45,7 @@ in
 				];
 				conf = import ./config.def.h {};
 				ligatures = true;
+				themedCursor = true;
 				#harfbuzzFeatures = [ "ss01" "ss02" ];
 			})
 
