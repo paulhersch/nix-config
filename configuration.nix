@@ -120,9 +120,6 @@
 	
 	services.xserver.xkbOptions = "caps:escape";
 	console.useXkbConfig = true;
-		#= {
-		#keyMap = "de-latin1";
-		#};
 
 	programs.gnupg.agent = {
 		enable = true;

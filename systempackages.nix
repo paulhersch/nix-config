@@ -12,8 +12,9 @@ let
     		requests
     		pynvim
     		pygobject3
+		beautifulsoup4
     	];
-	python-with-my-packages = python39.withPackages my-python-packages;
+	python-with-my-packages = python310.withPackages my-python-packages;
 	unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {

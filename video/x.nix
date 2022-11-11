@@ -43,5 +43,7 @@ in
 		lxrandr
 		redshift
 		i3lock-color
+		autorandr
+		sox
 	];
 }

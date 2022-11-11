@@ -78,6 +78,10 @@
   services.xserver = {
   	exportConfiguration = true;
   	videoDrivers = [ "amdgpu" ];
+	# this appends as opposed to what docs say
+	deviceSection = ''
+  Option "VariableRefresh" "true"
+	'';
   };
   networking.hostName = "snowstorm"; # Define your hostname.
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
