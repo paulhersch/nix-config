@@ -33,6 +33,8 @@ in
 
 	#for awesomewm
 	environment.systemPackages = with pkgs; [
+		feh
+		xsel
 		maim
 		xfce.xfce4-clipman-plugin
 		networkmanagerapplet

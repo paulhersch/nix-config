@@ -35,17 +35,17 @@ in
 					"dynamic cursor color"
 					"font2"
 					"hidecursor"
+					"ligatures"
 					"netwmicon"
+					"sixel"
 					"scrollback"
 					"scrollback mouse"
 					"scrollback mouse altscreen"
-					#"sync"
+					"themed cursor"
 					"undercurl"
 					"wide glyphs"
 				];
 				conf = import ./config.def.h {};
-				ligatures = true;
-				themedCursor = true;
 				#harfbuzzFeatures = [ "ss01" "ss02" ];
 			})
 
@@ -60,7 +60,6 @@ in
 			#unstable.wezterm
 
 			## neovim deps
-			xsel
 			unstable.neovim
 			texlab
 			jdt-language-server
