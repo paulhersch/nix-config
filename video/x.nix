@@ -12,7 +12,6 @@ let
 in
 {
 	services.xserver = {
-		enable = true;
 		windowManager = {
 			session = pkgs.lib.singleton {
 				name = "awesomeDEBUG";

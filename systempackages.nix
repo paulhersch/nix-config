@@ -30,17 +30,11 @@ in
 		neovim
 		gobject-introspection
 
-	## stuff needed for university
-		yed
-		gnuplot
-		openconnect
-
 	## day to day use
 		libreoffice-still
-		librewolf-wayland
+		librewolf
 		zathura
 		unstable.thunderbird-bin
-		gnome.geary #(i actually like that a lot)
 		pdfarranger
 		unstable.discord
 		keepassxc
@@ -59,7 +53,6 @@ in
 		unzip
 		virt-manager
 		patchelf
-		kdeconnect
 		gammastep
 		bpytop
 		glow
@@ -79,13 +72,11 @@ in
 		gimp
 		inkscape
 		spotify
-		handbrake
 		vlc
 		xournalpp
 		obs-studio
 
 	## miscellaneous
-		xorg.xev
 		pfetch
 		steam-run
 		cowsay
@@ -111,26 +102,19 @@ in
 
 	
 # systemd services for some stuff
-	systemd = {
-		user.services = {
-			# basically copied the standard syncthing service file from Arch
-			"syncthing" = {
-				description = "Syncthing daemon";
-				documentation = [ "man:syncthing" ];
-				wantedBy = [ "default.target" ];
-				# startlimitintervalsec = 60;
-				# StartLimitBurst = 4;
-				serviceConfig = {
-				 ExecStart = "${pkgs.syncthing}/bin/syncthing serve --no-browser --no-restart --logflags=0";
-				 Restart = "on-failure";
-				 RestartSec = 1;
-				 SuccessExitStatus = "3 4";
-				 RestartForceExitStatus = "3 4";
-				 SystemCallArchitecture = "native";
-				 MemoryDenyWriteExecute = "true";
-				 NoNewPriviliges = "true";
-				};
-			};
+	systemd.user.services."syncthing" = {
+		description = "Syncthing daemon";
+		documentation = [ "man:syncthing" ];
+		# wantedBy = [ "default.target" ];
+		serviceConfig = {
+			ExecStart = "${pkgs.syncthing}/bin/syncthing serve --no-browser --no-restart --logflags=0";
+			Restart = "on-failure";
+			RestartSec = 1;
+			SuccessExitStatus = "3 4";
+			RestartForceExitStatus = "3 4";
+			SystemCallArchitecture = "native";
+			MemoryDenyWriteExecute = "true";
+			NoNewPriviliges = "true";
 		};
 	};
 }

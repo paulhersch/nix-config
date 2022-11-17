@@ -29,7 +29,7 @@
 	};
   
 	virtualisation = {
-		libvirtd.enable = true;
+#		libvirtd.enable = true;
 		docker.rootless.enable = true;
 	};
 
@@ -131,14 +131,8 @@
 		export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
 		export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
 		export DEFAULT_BROWSER="${pkgs.librewolf}/bin/librewolf"
+		export BROWSER="${pkgs.librewolf}/bin/librewolf"
 	'';
-
-	xdg.mime = {
-		enable = true;
-#		defaultApplications = {
-#			"text/html" = 
-#		};
-	};
 
 	system.stateVersion = "22.05";
 } 

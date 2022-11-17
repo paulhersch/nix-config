@@ -14,30 +14,28 @@ in {
 			enable = true;
 		};
 		displayManager = {
-			sddm = {
+			lightdm = {
 				enable = true;
-				theme = "sugar-dark";
+				background = ./ldmbg.png;
+				greeters.gtk = {
+					enable = true;
+					theme = { package = pkgs.orchis-theme; name="Orchis-Dark"; };
+					cursorTheme = { package = pkgs.phinger-cursors; name = "Phinger Cursors (light)"; };
+					iconTheme = { package = pkgs.papirus-maia-icon-theme; name = "Papirus-Dark"; };
+					indicators = [ "~session" "~spacer" ];
+				};
 			};
-		# shit doesnt fucking work
-		#	session = [
-		#		{
-		#			manage = "desktop";
-		#			name = "Polkit";
-		#			start = ''
-		#			exec dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-		#			'';
-		#		}
-		#	];
 		};
+#			sddm = {
+#				enable = true;
+#				theme = "sugar-dark";
+#			};
 	};
 
 	environment.systemPackages = with pkgs; [
 		papirus-maia-icon-theme
 		phinger-cursors
 		orchis-theme
-		libsForQt5.qtstyleplugins
-		libsForQt5.qt5.qtgraphicaleffects
-		(pkgs.callPackage ../../ownPkgs/sddm-sugar-dark.nix {})
 	];
 	environment.etc = {
 		"xdg/gtk-3.0/settings.ini" = {
