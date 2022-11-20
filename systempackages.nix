@@ -55,8 +55,8 @@ in
 		patchelf
 		gammastep
 		bpytop
-		glow
 		pcmanfm
+		cinnamon.nemo
 		kitty
 		pavucontrol
 		playerctl

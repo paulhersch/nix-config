@@ -12,6 +12,7 @@ static char *font = "Cascadia Code:pixelsize=12:antialias=true:autohint=true";
 #if FONT2_PATCH
 /* Spare fonts */
 static char *font2[] = {
+	"CaskaydiaCove Nerd Font Mono:pixelsize=12:antialias=true:autohint=true",
 	"Material Design Icons:pixelsize=12:antialias=true:autohint=true",
 	"Twitter Color Emoji:pixelsize=12:antialias=true:autohint=true",
 };

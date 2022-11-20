@@ -59,8 +59,9 @@ in
 
 			#unstable.wezterm
 
-			## neovim deps
+			## neovim + deps
 			unstable.neovim
+			xsel
 			texlab
 			jdt-language-server
 			java-language-server
