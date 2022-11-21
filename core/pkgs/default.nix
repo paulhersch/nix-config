@@ -26,5 +26,10 @@ in
 		pfetch
 		cowsay
 		fortune
-	] ++ pythonpackages ++ media ++ guiutils ++ cliutils;
+	]
+	++ pythonpackages
+	++ basic
+	++ media
+	++ guiutils
+	++ cliutils;
 }
