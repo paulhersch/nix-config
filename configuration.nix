@@ -28,11 +28,6 @@
   			};
 		};
 	};
-  
-	virtualisation = {
-		libvirtd.enable = true;
-		docker.rootless.enable = true;
-	};
 
 	nix = {
 		autoOptimiseStore = true;

@@ -21,4 +21,8 @@
 
 	programs.dconf.enable = true;
 	programs.ssh.enableAskPassword = false;
+	virtualisation = {
+		libvirtd.enable = true;
+		docker.enable = true;
+	};
 }
