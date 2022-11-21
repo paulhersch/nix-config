@@ -6,7 +6,6 @@
 		grim
 		slurp
 		wofi
-		alacritty
 		foot
 		wlogout
 		wev

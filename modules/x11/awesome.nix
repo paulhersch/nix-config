@@ -1,15 +1,5 @@
 { config, pkgs, ...}:
-let
-	extensions = with pkgs.gnomeExtensions; [
-		dock-from-dash
-		blur-my-shell
-		tray-icons-reloaded
-	];
-	extrapkgs = with pkgs; [
-		gnome.nautilus
-		gnome3.gnome-tweaks
-	];
-in
+
 {
 	services.xserver = {
 		windowManager = {
@@ -29,10 +19,7 @@ in
 			};
     		};
 	};
-
-	#for awesomewm
 	environment.systemPackages = with pkgs; [
-		feh
 		xsel
 		maim
 		xfce.xfce4-clipman-plugin
@@ -46,5 +33,8 @@ in
 		i3lock-color
 		autorandr
 		sox
+		st
+		cinnamon.nemo
+		pamixer
 	];
 }

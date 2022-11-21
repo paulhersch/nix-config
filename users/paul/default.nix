@@ -1,16 +1,20 @@
 { config, lib, pkgs, discocss, stdenv, ... }:
 let
-	theme = import ../../video/theming/colors.nix { };
+	theme = import ./confs/colors.nix { };
 	unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
+	imports = [
+		#./services/mopidy.nix
+	];
 	users.users.paul = {
   		createHome = true;
   		description = "Paul Schneider";
 		isNormalUser = true;
-   		extraGroups = [ "messagebus" "networkmanager" "flatpak" "libvirtd" "video" "input" "docker" ];
+   		extraGroups = [ "messagebus" "networkmanager" "libvirtd" "video" "input" "docker" ];
 		shell = pkgs.zsh;
 		packages = with pkgs;[
+			steam-run
 			nodejs
 			nodePackages.yarn
 			dotnet-sdk
@@ -23,7 +27,7 @@ in
 			jetbrains.jdk
 			jetbrains.rider
 
-			(pkgs.callPackage ../../ownPkgs/st-flex.nix {
+			(pkgs.callPackage ../../pkgs/st-flex.nix {
 				addPatches = [
 					"anysize simple"
 					"xresources"
@@ -41,12 +45,13 @@ in
 					"scrollback"
 					"scrollback mouse"
 					"scrollback mouse altscreen"
+					"sync"
 					"themed cursor"
 					"undercurl"
 					"wide glyphs"
 				];
-				conf = import ./config.def.h {};
-				#harfbuzzFeatures = [ "ss01" "ss02" ];
+				conf = import ./confs/config.def.h.nix {};
+				harfbuzzFeatures = [ "ss01" "ss02" ];
 			})
 
 			#docker-compose
@@ -73,16 +78,18 @@ in
 		];
   	};
 	home-manager.users.paul = {
-		home = {
-			stateVersion = "22.05";
-		};
-		nixpkgs.config.allowUnfree = true;
 		imports = [ 
 			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
 		];
+
+		home = {
+			stateVersion = "22.05";
+		};
+
+		nixpkgs.config.allowUnfree = true;
 		
-		home.file.".config/wezterm/wezterm.lua".text = import ./wez.nix { inherit theme; };
-		xresources.extraConfig = import ../../video/theming/xresources.nix { inherit theme; };
+		home.file.".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
+		xresources.extraConfig = import ./confs/xresources.nix { inherit theme; };
 		
 		gtk = {
 			enable = true;
@@ -113,8 +120,8 @@ in
 					gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
 					gtk-button-images=0
 					gtk-menu-images=0
-					gtk-enable-event-sounds=1
-					gtk-enable-input-feedback-sounds=1
+					gtk-enable-event-sounds=0
+					gtk-enable-input-feedback-sounds=0
 					gtk-xft-antialias=1
 					gtk-xft-hinting=1
 					gtk-xft-hintstyle="hintslight"
@@ -122,54 +129,10 @@ in
 				'';
 			};
 		};
-		#services = {
-		#	mopidy = {
-		#		enable = true;
-		#		extensionPackages = with pkgs; [
-		#				mopidy-mpd
-		#				mopidy-mpris
-		#				mopidy-local
-		#			];
-		#		settings = {
-		#			audio = {
-		#				mixer_volume = 30;
-		#			};
-		#			
-		#			mpd = {
-		#				enabled = true;
-		#				hostname = "127.0.0.1";
-		#				port = 6600;
-		#				max_connections = 20;
-		#				connection_timeout = 60;
-		#			};
-		#	
-		#			local = {
-		#				enabled = true;
-		#				media_dir = "/home/paul/Musik/Files/";
-		#			};
-		#			
-		#			file = {
-		#				media_dirs = [
-		#					"/home/paul/Musik/Files/|Music"
-		#				];
-		#			};
-		#			m3u = {
-		#				enabled = true;
-		#				playlists_dir = "/home/paul/Musik/Playlists/";
-		#				base_dir = "/home/paul/Musik/Playlists/";
-		#			};
-		#	
-		#			mpris = {
-		#				enabled = true;
-		#				bus_type = "session";
-		#			};
-		#		};
-		#	};
-		#};
 		programs = {
 			discocss = {
 				enable = true;
-				css = import ./discord_css.nix { inherit theme; };
+				css = import ./confs/discord_css.nix { inherit theme; };
 			};
 			exa = {
 				enable = true;

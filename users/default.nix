@@ -1,8 +1,8 @@
 { lib, ... }:
 {
 	imports = [
-		./manager.nix
 		./paul
-		./luise.nix
+		./luise
+		<home-manager/nixos>
 	];
 }

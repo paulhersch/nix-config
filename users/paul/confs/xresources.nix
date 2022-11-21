@@ -31,6 +31,4 @@ with theme; ''
 
 	!st settings
 	st.borderpx:	10
-	st.font:	Cascadia Code:pixelsize=13:antialias=true:autohint=true
-	st.font2:	Material Design Icons:pixelsize=13:antialias=true:autohint=true
 ''
