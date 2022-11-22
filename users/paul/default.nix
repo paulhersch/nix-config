@@ -11,7 +11,7 @@ in
   		createHome = true;
   		description = "Paul Schneider";
 		isNormalUser = true;
-   		extraGroups = [ "messagebus" "networkmanager" "libvirtd" "video" "input" "docker" ];
+   		extraGroups = [ "messagebus" "networkmanager" "libvirtd" "video" "input" "docker" "plugdev" ];
 		shell = pkgs.zsh;
 		packages = with pkgs;[
 			steam-run
@@ -35,7 +35,6 @@ in
 					"bold is not bright"
 					"csi 22 23"
 					"columns"
-					"delkey"
 					"dynamic cursor color"
 					"font2"
 					"hidecursor"

@@ -5,7 +5,9 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+    	(modulesPath + "/installer/scan/not-detected.nix")
+	#../modules/gaming
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
@@ -71,29 +73,29 @@
       fsType = "vfat";
     };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.kernelParams = [ "pci=noaer" ];
   swapDevices = [ ];
   services.xserver = {
-  	exportConfiguration = true;
   	videoDrivers = [ "amdgpu" ];
 	# this appends as opposed to what docs say
 	deviceSection = ''
   Option "VariableRefresh" "true"
 	'';
   };
-  networking.hostName = "snowstorm";
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware = {
+	bluetooth = {
+		enable = true;
+		package = pkgs.bluezFull;
+	};
   	cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   	opengl = {
+		enable = true;
   		driSupport = true;
-		driSupport32Bit = true;
 	};
   };
-  home-manager.users.paul.programs.autorandr = {
+  services.autorandr = {
 	enable = true;
 	profiles = {
 		"single" = {
@@ -116,4 +118,5 @@
 		};
 	};
   };
+  networking.hostName = "snowstorm";
 }

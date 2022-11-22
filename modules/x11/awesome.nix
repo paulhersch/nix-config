@@ -1,6 +1,9 @@
 { config, pkgs, ...}:
 
 {
+	imports = [
+		./x11defaults.nix
+	];
 	services.xserver = {
 		windowManager = {
 			session = pkgs.lib.singleton {

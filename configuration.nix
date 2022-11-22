@@ -6,7 +6,8 @@
 		./users
 		./core
 		./modules/x11/awesome.nix
-		./modules/display-manager/lightdm.nix
+		./modules/display-manager/greetd
+		#./modules/display-manager/lightdm
 	];
 
 	boot = {
@@ -47,27 +48,15 @@
 			];
 		};
 	};
-
-	hardware = {
-		bluetooth = {
-			enable = true;
-			package = pkgs.bluezFull;
-		};
-		opengl.enable = true;
-	};
+	
 	time.timeZone = "Europe/Berlin";
 
 	i18n.defaultLocale = "de_DE.UTF-8";
 	
 	services.xserver.xkbOptions = "caps:escape";
 	console.useXkbConfig = true;
-
-	programs.gnupg.agent = {
-		enable = true;
-		enableSSHSupport = true;
-		pinentryFlavor = "curses";
-	};
-
+	
+	# TODO: this should be done in mime settings
 	environment.extraInit = ''
 		export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
 		export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"

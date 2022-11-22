@@ -41,4 +41,15 @@
 	device = "/dev/disk/by-uuid/9dc22222-57ab-4519-aca6-4bfc9a1e90c7";
 	preLVM = true;
     };
+  hardware = {
+	bluetooth = {
+		enable = true;
+		package = pkgs.bluezFull;
+	};
+  	cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  	opengl = {
+		enable = true;
+  		driSupport = true;
+	};
+  };
 }
