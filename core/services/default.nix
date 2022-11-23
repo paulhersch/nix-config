@@ -10,6 +10,7 @@
 		openssh.enable = true;
 		blueman.enable = true;
 		gvfs.enable = true;
+		teamviewer.enable = true;
 		gnome = {
 			gnome-keyring.enable = pkgs.lib.mkForce false;
 		};

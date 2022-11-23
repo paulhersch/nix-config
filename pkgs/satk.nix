@@ -25,21 +25,20 @@ stdenv.mkDerivation {
 
 	buildPhase = ''
 		cd src
-		echo 'building the satk binary...'
 		make
 		cd ..
-		echo 'build completed'
 	'';
 
 	installPhase = ''
-		mkdir -p $out/bin $out/lib/satk ##so /run/sw/current-system/sw/lib on NixOS systems isn't getting cluttered
+		mkdir -p $out/bin $out/lib/satk
 		cp bin/satk $out/bin/satk
 		cp -r lib/* $out/lib/satk/
 		runHook postInstall
 	'';
 
 	postInstall = ''
-		wrapProgram $out/bin/satk --set SAKCILCOMP "${pkgs.mono5}/bin/ilasm" --set SAKLIBPATH "$out/lib/satk"
-
+		wrapProgram $out/bin/satk \
+			--set SAKCILCOMP "${pkgs.mono5}/bin/ilasm" \
+			--set SAKLIBPATH "$out/lib/satk"
 	'';
 }
