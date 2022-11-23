@@ -63,6 +63,8 @@
 		export DEFAULT_BROWSER="${pkgs.librewolf}/bin/librewolf"
 		export BROWSER="${pkgs.librewolf}/bin/librewolf"
 	'';
+	
+	powerManagement.enable = true;
 
 	system.stateVersion = "22.05";
 } 

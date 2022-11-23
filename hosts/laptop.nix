@@ -52,4 +52,7 @@
   		driSupport = true;
 	};
   };
+  powerManagement = {
+  	cpuFreqGovernor = "powersave";
+  };
 }

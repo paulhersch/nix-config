@@ -5,5 +5,6 @@
 		enable = true;
 		exportConfiguration = true;
 		layout = "de";
+		libinput.enable = true;
 	};
 }
