@@ -2,7 +2,6 @@
 
 {
 	imports = [
-		./overlays
 		./services
 		./security
 		./pkgs

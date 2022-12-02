@@ -6,9 +6,22 @@
 		./users
 		./core
 		./modules/x11/awesome.nix
+		#./modules/wayland/hyprland.nix
 		./modules/display-manager/greetd
-		#./modules/display-manager/lightdm
 	];
+	
+	services.xserver.displayManager.gtkgreet = {
+		enable = true;
+		entries = [
+			{
+				entryName= "awesome";
+				isXWM = true;
+				preCmd = "xrdb -load .Xresources";
+				cmd = "${pkgs.awesome-git}/bin/awesome";
+				postCmd = "dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+			}
+		];
+	};
 
 	boot = {
 		plymouth = {

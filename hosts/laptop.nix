@@ -53,6 +53,6 @@
 	};
   };
   powerManagement = {
-  	cpuFreqGovernor = "powersave";
+  	cpuFreqGovernor = "ondemand";
   };
 }

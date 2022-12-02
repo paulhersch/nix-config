@@ -10,7 +10,6 @@
 		openssh.enable = true;
 		blueman.enable = true;
 		gvfs.enable = true;
-		teamviewer.enable = true;
 		gnome = {
 			gnome-keyring.enable = pkgs.lib.mkForce false;
 		};
@@ -24,6 +23,6 @@
 	programs.ssh.enableAskPassword = false;
 	virtualisation = {
 		libvirtd.enable = true;
-		docker.enable = true;
+		docker.rootless.enable = true;
 	};
 }

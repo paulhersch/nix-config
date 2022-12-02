@@ -1,26 +1,18 @@
 { config, pkgs, ...}:
-
 {
+	nixpkgs.overlays = [
+		(builtins.getFlake "github:fortuneteller2k/nixpkgs-f2k").overlays.default
+	];
 	imports = [
 		./x11defaults.nix
 	];
-	services.xserver = {
-		windowManager = {
-			session = pkgs.lib.singleton {
-				name = "awesomeDEBUG";
-				start = ''
-					exec dbus-run-session -- ${pkgs.awesome-git}/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
-				'';
-			};
-			awesome = {
-				enable = true;
-				package = pkgs.awesome-git;
-				luaModules = with pkgs.luaPackages; [
-					lgi
-					ldbus
-				];
-			};
-    		};
+	services.xserver.windowManager.awesome = {
+		enable = true;
+		package = pkgs.awesome-git;
+		luaModules = with pkgs.luaPackages; [
+			lgi
+			ldbus
+		];
 	};
 	environment.systemPackages = with pkgs; [
 		xsel
@@ -28,7 +20,7 @@
 		xfce.xfce4-clipman-plugin
 		networkmanagerapplet
 		rofi
-		picom-git
+		picom
 		libnotify
 		lxappearance
 		lxrandr
