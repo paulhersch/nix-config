@@ -14,7 +14,7 @@ in
 		pfetch
 		cowsay
 		fortune
-		(pkgs.callPackage ../../pkgs/satk.nix {})
+		#(pkgs.callPackage ../../pkgs/satk.nix {})
 	]
 	++ pythonpackages
 	++ basic

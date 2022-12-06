@@ -7,6 +7,7 @@
   imports =
     [
     	(modulesPath + "/installer/scan/not-detected.nix")
+	### Arch better for gaming
 	#../modules/gaming
     ];
 

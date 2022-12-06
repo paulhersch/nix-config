@@ -67,6 +67,7 @@ in
 			unstable.neovim
 			xsel
 			texlab
+			ltex-ls
 			jdt-language-server
 			java-language-server
 			haskell-language-server
