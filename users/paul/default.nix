@@ -17,8 +17,8 @@ in
 			steam-run
 			nodejs
 			nodePackages.yarn
-			dotnet-sdk
-			dotnet-runtime
+			dotnet-sdk_7
+			dotnet-runtime_7
 			geckodriver
 			chromedriver
 			chromium
