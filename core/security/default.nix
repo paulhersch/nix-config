@@ -6,7 +6,6 @@
 	];
 	security = {
 		sudo.enable = false;
-		lockKernelModules = true;
 		protectKernelImage = true;
 		apparmor = {
 			enable = true;

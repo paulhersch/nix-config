@@ -41,6 +41,7 @@
 				enableCryptodisk = true;
   			};
 		};
+		supportedFilesystems = [ "ntfs" ];
 	};
 
 	nix = {
