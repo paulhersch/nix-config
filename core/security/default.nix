@@ -6,6 +6,8 @@
 	];
 	security = {
 		sudo.enable = false;
+		# caused weird issues with docker, so its disabled
+		#lockKernelModules = true;
 		protectKernelImage = true;
 		apparmor = {
 			enable = true;

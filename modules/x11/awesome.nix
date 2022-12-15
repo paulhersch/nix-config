@@ -1,8 +1,5 @@
 { config, pkgs, ...}:
 {
-	nixpkgs.overlays = [
-		(builtins.getFlake "github:fortuneteller2k/nixpkgs-f2k").overlays.default
-	];
 	imports = [
 		./x11defaults.nix
 	];

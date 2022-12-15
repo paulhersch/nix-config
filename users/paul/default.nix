@@ -1,7 +1,6 @@
-{ config, lib, pkgs, discocss, stdenv, ... }:
+{ config, lib, pkgs, stdenv, ... }:
 let
 	theme = import ./confs/colors.nix { };
-	unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 in
 {
 	imports = [
@@ -17,8 +16,6 @@ in
 			steam-run
 			nodejs
 			nodePackages.yarn
-			dotnet-sdk
-			dotnet-runtime
 			geckodriver
 			chromedriver
 			chromium
@@ -35,6 +32,7 @@ in
 					"bold is not bright"
 					"csi 22 23"
 					"columns"
+					"delkey"
 					"dynamic cursor color"
 					"font2"
 					"hidecursor"
@@ -79,7 +77,7 @@ in
   	};
 	home-manager.users.paul = {
 		imports = [ 
-			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
+#			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
 		];
 
 		home = {
@@ -90,7 +88,7 @@ in
 		
 		home.file.".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
 		xresources.extraConfig = import ./confs/xresources.nix { inherit theme; };
-		
+
 		gtk = {
 			enable = true;
 			font = {
@@ -107,8 +105,6 @@ in
 				size = 24;
 			};
 			theme = {
-				#name = "Everblush-gtk";
-				#package = (pkgs.callPackage ../../ownPkgs/everblushgtk.nix {});
 				name = "Materia-dark";
 				package = pkgs.materia-theme;
 			};
@@ -129,11 +125,16 @@ in
 				'';
 			};
 		};
+		# for direnv
+		home.file.".zshrc".text = "eval \"$(direnv hook zsh)\"";
 		programs = {
-			discocss = {
+			direnv = {
 				enable = true;
-				css = import ./confs/discord_css.nix { inherit theme; };
+				nix-direnv.enable = true;
 			};
+#			discocss = {
+#				css = import ./confs/discord_css.nix { inherit theme; };
+#			};
 			exa = {
 				enable = true;
 			};
@@ -148,53 +149,53 @@ in
 					set adjust-open width
 				'';
 			};
-			mako = {
-				enable = true;
-				anchor = "bottom-right";
-				font = "Inter Regular 11";
-				borderRadius = 5;
-				defaultTimeout = 5000;
-
-				backgroundColor = "#${theme.bg}";
-				textColor = "#${theme.fg}";
-				borderColor = "#${theme.lbg}";
-				progressColor = with theme; "over #${c2}";
-			};
-			foot = {
-				enable = true;
-				server.enable = true;
-				settings = {
-					main = {
-						font = "Cascadia Code PL:size=6, CaskaydiaCove Nerd Font Mono:size=6";
-					};
-					cursor = {
-						blink = "yes";
-						style = "beam";
-					};
-					colors = with theme; {
-						foreground = "${fg}";
-						background = "${bg}";
-						regular0 = "${c0}";
-						regular1 = "${c1}";
-						regular2 = "${c2}";
-						regular3 = "${c3}";
-						regular4 = "${c4}";
-						regular5 = "${c5}";
-						regular6 = "${c6}";
-						regular7 = "${c7}";
-						
-						bright0 = "${c8}";
-						bright1 = "${c9}";
-						bright2 = "${c10}";
-						bright3 = "${c11}";
-						bright4 = "${c12}";
-						bright5 = "${c13}";
-						bright6 = "${c14}";
-						bright7 = "${c15}";
-						selection-background = "${c7}";
-					};
-				};
-			};
+#			mako = {
+#				enable = true;
+#				anchor = "bottom-right";
+#				font = "Inter Regular 11";
+#				borderRadius = 5;
+#				defaultTimeout = 5000;
+#
+#				backgroundColor = "#${theme.bg}";
+#				textColor = "#${theme.fg}";
+#				borderColor = "#${theme.lbg}";
+#				progressColor = with theme; "over #${c2}";
+#			};
+#			foot = {
+#				enable = true;
+#				server.enable = true;
+#				settings = {
+#					main = {
+#						font = "Cascadia Code PL:size=6, CaskaydiaCove Nerd Font Mono:size=6";
+#					};
+#					cursor = {
+#						blink = "yes";
+#						style = "beam";
+#					};
+#					colors = with theme; {
+#						foreground = "${fg}";
+#						background = "${bg}";
+#						regular0 = "${c0}";
+#						regular1 = "${c1}";
+#						regular2 = "${c2}";
+#						regular3 = "${c3}";
+#						regular4 = "${c4}";
+#						regular5 = "${c5}";
+#						regular6 = "${c6}";
+#						regular7 = "${c7}";
+#						
+#						bright0 = "${c8}";
+#						bright1 = "${c9}";
+#						bright2 = "${c10}";
+#						bright3 = "${c11}";
+#						bright4 = "${c12}";
+#						bright5 = "${c13}";
+#						bright6 = "${c14}";
+#						bright7 = "${c15}";
+#						selection-background = "${c7}";
+#					};
+#				};
+#			};
 		};
   	};
 }

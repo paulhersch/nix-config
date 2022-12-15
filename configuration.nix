@@ -2,14 +2,14 @@
 
 {
 	imports = [ 
-		./hardware-configuration.nix
+		#./hardware-configuration.nix
 		./users
 		./core
 		./modules/x11/awesome.nix
 		#./modules/wayland/hyprland.nix
+		#./modules/display-manager/lightdm
 		./modules/display-manager/greetd
 	];
-	
 	services.xserver.displayManager.gtkgreet = {
 		enable = true;
 		entries = [
@@ -45,11 +45,7 @@
 	};
 
 	nix = {
-		autoOptimiseStore = true;
-		package = pkgs.nixFlakes; #enables flakes
-		extraOptions = ''
-   			experimental-features = nix-command flakes 
-		'';
+		package = pkgs.nixFlakes;
 		settings = { #cachix 👍
 			substituters = [
 				"https://cache.nixos.org?priority=10"
@@ -60,6 +56,8 @@
 				"fortuneteller2k.cachix.org-1:kXXNkMV5yheEQwT0I4XYh1MaCSz+qg72k8XAi2PthJI="
 				"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 			];
+			auto-optimise-store = true;
+			experimental-features = [ "nix-command" "flakes" ];
 		};
 	};
 	
@@ -80,5 +78,5 @@
 	
 	powerManagement.enable = true;
 
-	system.stateVersion = "22.05";
+	system.stateVersion = "22.11";
 } 
