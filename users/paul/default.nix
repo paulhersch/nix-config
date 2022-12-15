@@ -1,4 +1,4 @@
-{ config, lib, pkgs, discocss, stdenv, ... }:
+{ config, lib, pkgs, stdenv, ... }:
 let
 	theme = import ./confs/colors.nix { };
 	unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
@@ -17,8 +17,6 @@ in
 			steam-run
 			nodejs
 			nodePackages.yarn
-			dotnet-sdk_7
-			dotnet-runtime_7
 			geckodriver
 			chromedriver
 			chromium
@@ -35,6 +33,7 @@ in
 					"bold is not bright"
 					"csi 22 23"
 					"columns"
+					"delkey"
 					"dynamic cursor color"
 					"font2"
 					"hidecursor"
@@ -79,18 +78,18 @@ in
   	};
 	home-manager.users.paul = {
 		imports = [ 
-			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
+#			(builtins.getFlake "github:mlvzk/discocss/flake").hmModule
 		];
 
 		home = {
-			stateVersion = "22.05";
+			stateVersion = "22.11";
 		};
 
 		nixpkgs.config.allowUnfree = true;
 		
 		home.file.".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
 		xresources.extraConfig = import ./confs/xresources.nix { inherit theme; };
-		
+
 		gtk = {
 			enable = true;
 			font = {
@@ -107,8 +106,6 @@ in
 				size = 24;
 			};
 			theme = {
-				#name = "Everblush-gtk";
-				#package = (pkgs.callPackage ../../ownPkgs/everblushgtk.nix {});
 				name = "Materia-dark";
 				package = pkgs.materia-theme;
 			};
@@ -129,11 +126,16 @@ in
 				'';
 			};
 		};
+		# for direnv
+		home.file.".zshrc".text = "eval \"$(direnv hook zsh)\"";
 		programs = {
-			discocss = {
+			direnv = {
 				enable = true;
-				css = import ./confs/discord_css.nix { inherit theme; };
+				nix-direnv.enable = true;
 			};
+#			discocss = {
+#				css = import ./confs/discord_css.nix { inherit theme; };
+#			};
 			exa = {
 				enable = true;
 			};

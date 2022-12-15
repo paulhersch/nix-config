@@ -1,5 +1,4 @@
 { pkgs, unstable, ... }:
-
 with pkgs; [
 	libreoffice-still
 	signal-desktop

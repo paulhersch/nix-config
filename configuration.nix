@@ -9,7 +9,9 @@
 		#./modules/wayland/hyprland.nix
 		./modules/display-manager/greetd
 	];
-	
+	nixpkgs.overlays = [
+    (builtins.getFlake "github:fortuneteller2k/nixpkgs-f2k").overlays.default
+  ];
 	services.xserver.displayManager.gtkgreet = {
 		enable = true;
 		entries = [
@@ -44,10 +46,7 @@
 	};
 
 	nix = {
-		package = pkgs.nixFlakes; #enables flakes
-		extraOptions = ''
-   			experimental-features = nix-command flakes 
-		'';
+		package = pkgs.nixFlakes;
 		settings = { #cachix 👍
 			substituters = [
 				"https://cache.nixos.org?priority=10"
@@ -59,6 +58,7 @@
 				"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 			];
 			auto-optimise-store = true;
+			experimental-features = [ "nix-command" "flakes" ];
 		};
 	};
 	
