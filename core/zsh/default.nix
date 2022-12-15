@@ -95,8 +95,13 @@ fortune -s | cowsay -f eyes
 			continuation_prompt = "[󱞩 ](bright-black)";
 			format = ''
 $status$directory$git_branch$git_state $git_status$fill$cmd_duration
-''${custom.isroot}[❯ ](purple)'';
-
+''${custom.isroot}$hostname$nix_shell[❯ ](purple)'';
+			nix_shell = {
+				format = "in [$symbol$state]($style) ";
+			};
+			hostname = {
+				format = "[at ](italic white)[$ssh_symbol$hostname]($style) ";
+			};
 			cmd_duration = {
 				format = "[$duration]($style)";
 				style = "bold italic yellow";

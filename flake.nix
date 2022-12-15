@@ -23,9 +23,8 @@
 			};
 
 			overlays = with inputs; [
-				(final: _:
-				let inherit (final) system; in
-				{
+				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
+				(final: _: let inherit (final) system; in {
 					unstable = import unstable { inherit config system; };
 				})
 				inputs.nixpkgs-f2k.overlays.default
@@ -44,13 +43,13 @@
 				snowstorm = nixosSystem {
 					system = "x86_64-linux";
 					modules = shared-modules ++ [
-						./hosts/desktop.nix
+						./hosts/snowstorm.nix
 					];
 				};
 				snowflake = nixosSystem {
 					system = "x86_64-linux";
 					modules = shared-modules ++ [
-						./hosts/laptop.nix
+						./hosts/snowflake.nix
 					];
 				};
 			};
