@@ -1,12 +1,23 @@
-{stdenv, lib, pkgs, fetchurl, ... }:
-
-let	
+{
+stdenv
+, stdenvAdapters
+, lib
+, pkgs
+, fetchurl
+, mono5
+, gmp
+, unzip
+, makeWrapper
+, ...
+}:
+let
+	# ld breaks on binutils 2.39
+	util_2_38_stdenv = stdenv:
+		stdenvAdapters.overrideInStdenv stdenv [ pkgs.binutils-unwrapped_2_38 ];
+in
+(util_2_38_stdenv stdenv).mkDerivation rec {
   	pname = "satk";
 	version = "0.3.5-347";
-	majorver = "0.3";
-in
-stdenv.mkDerivation {
-	name = "${pname}-${version}";
 	meta = with lib; {
 		description = "Compiler for SatherK (version from MLU Halle)";
 		longDescription = "SatherK is a sublanguage of Sather. This compiler has been made at the MLU Halle, Department for Computer Science.";
@@ -20,8 +31,8 @@ stdenv.mkDerivation {
 		sha256 = "d887d5bd5967eb3ee1156159af5b2a552c8f23e50ce3de7877ef5d3cc5add9b1";
 	};
 
-	nativeBuildInputs = with pkgs; [mono5 gmp unzip makeWrapper];
-	depsBuildTarget = with pkgs; [mono5 gmp];
+	depsBuildBuild = with pkgs; [gmp unzip makeWrapper];
+	depsTargetTarget = with pkgs; [mono5 gmp];
 
 	buildPhase = ''
 		cd src
