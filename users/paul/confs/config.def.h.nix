@@ -8,13 +8,13 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Cascadia Code PL:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Cascadia Code PL:size=10:antialias=true";
 #if FONT2_PATCH
 /* Spare fonts */
 static char *font2[] = {
-	"CaskaydiaCove Nerd Font Mono:pixelsize=12:antialias=true:autohint=true",
-	"Material Design Icons:pixelsize=12:antialias=true:autohint=true",
-	"Twitter Color Emoji:pixelsize=12:antialias=true:autohint=true",
+	"CaskaydiaCove Nerd Font:size=10:antialias=true:autohint=true",
+	"Material Design Icons:size=10:antialias=true:autohint=true",
+	"Twitter Color Emoji:size=10:antialias=true:autohint=true",
 };
 #endif // FONT2_PATCH
 

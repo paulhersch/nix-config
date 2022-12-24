@@ -2,13 +2,15 @@
 	description = "Flake for my Systems";
 	
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
-		unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-		nixpkgs-f2k.url = "github:fortuneteller2k/nixpkgs-f2k";
+		nixpkgs.url = github:nixos/nixpkgs/nixos-22.11;
+		unstable.url = github:nixos/nixpkgs/nixpkgs-unstable;
+		nixpkgs-f2k.url = github:fortuneteller2k/nixpkgs-f2k;
 		home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		helix.url = github:SoraTenshi/helix/experimental;
+		nix-gaming.url = github:fufexan/nix-gaming;
 	};
 
 	outputs =
@@ -26,8 +28,9 @@
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
 				(final: _: let inherit (final) system; in {
 					unstable = import unstable { inherit config system; };
+					helix-git = inputs.helix.packages.${system}.default;
 				})
-				inputs.nixpkgs-f2k.overlays.default
+				nixpkgs-f2k.overlays.default
 			];
 
 			shared-modules = [
@@ -44,6 +47,7 @@
 					system = "x86_64-linux";
 					modules = shared-modules ++ [
 						./hosts/snowstorm.nix
+						inputs.nix-gaming.nixosModules.pipewireLowLatency
 					];
 				};
 				snowflake = nixosSystem {
@@ -53,5 +57,7 @@
 					];
 				};
 			};
+			snowstorm = self.nixosConfigurations.snowstorm.config.system.build.toplevel;
+			snowflake = self.nixosConfigurations.snowflake.config.system.build.toplevel;
 		};
 }

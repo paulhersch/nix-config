@@ -4,7 +4,7 @@ with theme; ''
 local wezterm = require "wezterm"
 return {
     font_shaper = "Harfbuzz",
-    harfbuzz_features = { "liga", "clig", "calt", "ss01", "ss02" },
+    harfbuzz_features = { "liga", "clig", "ss01", "ss02", "ss19" },
     font_size = 10.0,
     dpi = 96.0,
     default_cursor_style = 'SteadyBar',

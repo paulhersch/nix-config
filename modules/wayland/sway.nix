@@ -6,8 +6,8 @@
 		grim
 		slurp
 		wofi
-		foot
 		wlogout
+		wezterm
 		wev
 		fusuma
 		eww-wayland

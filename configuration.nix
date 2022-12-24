@@ -7,6 +7,7 @@
 		./core
 		./modules/x11/awesome.nix
 		#./modules/wayland/hyprland.nix
+		./modules/wayland/sway.nix
 		#./modules/display-manager/lightdm
 		./modules/display-manager/greetd
 	];
@@ -14,11 +15,17 @@
 		enable = true;
 		entries = [
 			{
-				entryName= "awesome";
+				entryName="awesome";
 				isXWM = true;
 				preCmd = "xrdb -load .Xresources";
 				cmd = "${pkgs.awesome-git}/bin/awesome";
 				postCmd = "dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+			}
+			{
+				entryName = "sway";
+				isXWM = false;
+				cmd = "${pkgs.sway}/bin/sway";
+				postCmd = "dbus-launch ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
 			}
 		];
 	};
@@ -50,15 +57,21 @@
 			substituters = [
 				"https://cache.nixos.org?priority=10"
 				"https://fortuneteller2k.cachix.org"
+				"https://nix-gaming.cachix.org"
 			];
 			trusted-public-keys = [
 				"cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
 				"fortuneteller2k.cachix.org-1:kXXNkMV5yheEQwT0I4XYh1MaCSz+qg72k8XAi2PthJI="
 				"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+				"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
 			];
 			auto-optimise-store = true;
 			experimental-features = [ "nix-command" "flakes" ];
 		};
+		extraOptions = ''
+			keep-outputs = true
+			keep-derivations = true
+    		'';
 	};
 	
 	time.timeZone = "Europe/Berlin";

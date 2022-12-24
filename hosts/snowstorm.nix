@@ -5,9 +5,10 @@
     [
     	(modulesPath + "/installer/scan/not-detected.nix")
 	### Arch better for gaming
-	#../modules/gaming
+	../modules/gaming
     ];
 
+  #services.pipewire.lowLatency.enable = true;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-intel" ];
@@ -81,7 +82,7 @@
 	'';
   };
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   hardware = {
 	bluetooth = {
 		enable = true;

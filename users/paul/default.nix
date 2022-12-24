@@ -149,18 +149,18 @@ in
 					set adjust-open width
 				'';
 			};
-#			mako = {
-#				enable = true;
-#				anchor = "bottom-right";
-#				font = "Inter Regular 11";
-#				borderRadius = 5;
-#				defaultTimeout = 5000;
-#
-#				backgroundColor = "#${theme.bg}";
-#				textColor = "#${theme.fg}";
-#				borderColor = "#${theme.lbg}";
-#				progressColor = with theme; "over #${c2}";
-#			};
+			mako = {
+				enable = true;
+				anchor = "bottom-right";
+				font = "Inter Regular 11";
+				borderRadius = 5;
+				defaultTimeout = 5000;
+
+				backgroundColor = "#${theme.bg}";
+				textColor = "#${theme.fg}";
+				borderColor = "#${theme.lbg}";
+				progressColor = with theme; "over #${c2}";
+			};
 #			foot = {
 #				enable = true;
 #				server.enable = true;
