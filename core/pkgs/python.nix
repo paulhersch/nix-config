@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-[(pkgs.python310.withPackages (p: with p; [
+[(pkgs.python311.withPackages (p: with p; [
 	pandas
 	selenium
 	seaborn

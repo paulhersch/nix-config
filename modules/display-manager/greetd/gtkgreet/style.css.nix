@@ -1,12 +1,15 @@
+{ colors }:
+
+''
 * {
 	all: unset;
 }
 
-@define-color dbg #1c2121;
-@define-color bg #232727;
-@define-color lbg #293131;
-@define-color llbg #353939;
-@define-color fg #acacac;
+@define-color dbg #${colors.dbg};
+@define-color bg #${colors.bg};
+@define-color lbg #${colors.lbg};
+@define-color llbg #${colors.llbg};
+@define-color fg #${colors.fg};
 
 window {
         background-image: url("file:///etc/nixos/modules/display-manager/greetd/gtkgreet/bg.jpg");
@@ -89,3 +92,4 @@ window.popup menuitem {
 	border-radius: 5px;
 }
 window.popup menuitem:hover { background-color: @lbg; }
+''

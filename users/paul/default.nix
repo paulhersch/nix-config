@@ -1,6 +1,6 @@
 { config, lib, pkgs, stdenv, ... }:
 let
-	theme = import ./confs/colors.nix { };
+	theme = import ../../globals/colors.nix { };
 in
 {
 	imports = [

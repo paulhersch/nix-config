@@ -10,9 +10,13 @@ let
 	lst = lib.lists;
 	str = lib.strings;
 
+	colors = import ../../../globals/colors.nix {};
+	css = pkgs.writeText "style.css" (
+		import ./gtkgreet/style.css.nix { inherit colors; });
+	
 	gtkgreet-wrap = pkgs.writeShellScriptBin "gtkgreet-styled" ''
 		${pkgs.greetd.gtkgreet}/bin/gtkgreet \
-			-s /etc/nixos/modules/display-manager/greetd/gtkgreet/style.css
+			-s ${css}
 	'';
 	
 	# cage needs this stupid wrapper so i can set ENV vars in the default_command of greetd
