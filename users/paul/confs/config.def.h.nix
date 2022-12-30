@@ -8,7 +8,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Cascadia Code PL:size=10:antialias=true";
+static char *font = "Rec Mono Casual:size=10:antialias=true";
 #if FONT2_PATCH
 /* Spare fonts */
 static char *font2[] = {

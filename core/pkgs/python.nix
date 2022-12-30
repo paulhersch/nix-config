@@ -1,16 +1,8 @@
 { pkgs, ... }:
 
-[(pkgs.python311.withPackages (p: with p; [
-	pandas
-	selenium
-	seaborn
+[(pkgs.old.python3.withPackages (p: with p; [
 	python-lsp-server
-	keyring
-	tornado
-	requests
-	pynvim
 	pygobject3
-	beautifulsoup4
 ]))]
-++ [ pkgs.gobject-introspection ]
+++ [ pkgs.gobject-introspection pkgs.pipenv ]
 

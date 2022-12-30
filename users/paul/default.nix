@@ -71,6 +71,7 @@ in
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
+			rnix-lsp
 			ripgrep
 			fd
 		];
@@ -92,8 +93,8 @@ in
 		gtk = {
 			enable = true;
 			font = {
-				name = "Lato";
-				size = 12;
+				name = "Recursive Sn Lnr St";
+				size = 11;
 			};
 			iconTheme = {
 				name = "Papirus-Dark";
