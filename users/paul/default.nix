@@ -72,6 +72,7 @@ in
 			sumneko-lua-language-server
 			omnisharp-roslyn
 			rnix-lsp
+			#rubyPackages_3_1.solargraph
 			ripgrep
 			fd
 		];

@@ -396,22 +396,6 @@
         "type": "github"
       }
     },
-    "old_nix": {
-      "locked": {
-        "lastModified": 1672335022,
-        "narHash": "sha256-417aTRDZpob/UNsA4A0ilBUBQ0H8u+Wx9+OJAAygufQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "88eaf4a29b5b87a5f83fab413caba24cb13633f0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-22.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "river-src": {
       "flake": false,
       "locked": {
@@ -437,7 +421,6 @@
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-f2k": "nixpkgs-f2k",
-        "old_nix": "old_nix",
         "unstable": "unstable"
       }
     },
