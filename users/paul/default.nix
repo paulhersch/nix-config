@@ -24,32 +24,33 @@ in
 			jetbrains.jdk
 			jetbrains.rider
 
-			(pkgs.callPackage ../../pkgs/st-flex.nix {
-				addPatches = [
-					"anysize simple"
-					"xresources"
-					"boxdraw"
-					"bold is not bright"
-					"csi 22 23"
-					"columns"
-					"delkey"
-					"dynamic cursor color"
-					"font2"
-					"hidecursor"
-					"ligatures"
-					"netwmicon"
-					"sixel"
-					"scrollback"
-					"scrollback mouse"
-					"scrollback mouse altscreen"
-					"sync"
-					"themed cursor"
-					"undercurl"
-					"wide glyphs"
-				];
-				conf = import ./confs/config.def.h.nix {};
-				harfbuzzFeatures = [ "ss01" "ss02" "calt" "ss19" ];
-			})
+			#(pkgs.callPackage ../../pkgs/st-flex.nix {
+			#	addPatches = [
+			#		"anysize simple"
+			#		"xresources"
+			#		"boxdraw"
+			#		"bold is not bright"
+			#		"csi 22 23"
+			#		"columns"
+			#		"delkey"
+			#		"dynamic cursor color"
+			#		"font2"
+			#		"hidecursor"
+			#		"ligatures"
+			#		"netwmicon"
+			#		"sixel"
+			#		"scrollback"
+			#		"scrollback mouse"
+			#		"scrollback mouse altscreen"
+			#		"sync"
+			#		"themed cursor"
+			#		"undercurl"
+			#		"wide glyphs"
+			#	];
+			#	conf = import ./confs/config.def.h.nix {};
+			#	harfbuzzFeatures = [ "ss01" "ss02" "calt" "ss19" ];
+			#})
+			wezterm-git
 
 			#docker-compose
 			luaPackages.lua

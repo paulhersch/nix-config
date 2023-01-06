@@ -60,4 +60,14 @@
 			snowstorm = self.nixosConfigurations.snowstorm.config.system.build.toplevel;
 			snowflake = self.nixosConfigurations.snowflake.config.system.build.toplevel;
 		};
+	nixConfig = {
+		substituters = [
+			"https://cache.nixos.org?priority=10"
+			"https://cache.ngi0.nixos.org/"
+			"https://nix-community.cachix.org?priority=5"
+			"https://nixpkgs-wayland.cachix.org"
+			"https://fortuneteller2k.cachix.org"
+			"https://nix-gaming.cachix.org"
+		];
+  	};
 }

@@ -1,52 +1,18 @@
 { theme }:
 
-with theme; ''
+with theme;
+''
 local wezterm = require "wezterm"
 return {
     font_shaper = "Harfbuzz",
-    harfbuzz_features = { "liga", "clig", "ss01", "ss02", "ss19" },
+    harfbuzz_features = { "dlig" }, --, "liga", "clig", "ss01", "ss02", "ss19" },
     font_size = 10.0,
     dpi = 96.0,
     default_cursor_style = 'SteadyBar',
     front_end = 'OpenGL',
     font = wezterm.font_with_fallback {
-    	{ family = "Cascadia Code" }
+    	{ family = "Rec Mono Casual" }
     },
-    --[[font_rules = {
-	{
-            italic = true,
-            intensity = "Half",
-            font = wezterm.font_with_fallback {
-                {
-                    family = "Victor Mono",
-                    italic = true,
-                    weight = 'Regular'
-                }
-            }
-        },
-        {
-            italic = true,
-            intensity = "Normal",
-            font = wezterm.font_with_fallback {
-                {
-                    family = "Victor Mono",
-                    italic = true,
-                    weight = 'Bold'
-                }
-            }
-        },
-	{
-            italic = true,
-	    intensity = "Bold",
-            font = wezterm.font_with_fallback {
-                {
-                    family = "Victor Mono",
-                    italic = true,
-                    weight = 'Bold'
-                }
-            }
-        }
-    },]]
     hide_tab_bar_if_only_one_tab = true,
     check_for_updates = false,
     colors = {
