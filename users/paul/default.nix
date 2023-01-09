@@ -24,47 +24,44 @@ in
 			jetbrains.jdk
 			jetbrains.rider
 
-			#(pkgs.callPackage ../../pkgs/st-flex.nix {
-			#	addPatches = [
-			#		"anysize simple"
-			#		"xresources"
-			#		"boxdraw"
-			#		"bold is not bright"
-			#		"csi 22 23"
-			#		"columns"
-			#		"delkey"
-			#		"dynamic cursor color"
-			#		"font2"
-			#		"hidecursor"
-			#		"ligatures"
-			#		"netwmicon"
-			#		"sixel"
-			#		"scrollback"
-			#		"scrollback mouse"
-			#		"scrollback mouse altscreen"
-			#		"sync"
-			#		"themed cursor"
-			#		"undercurl"
-			#		"wide glyphs"
-			#	];
-			#	conf = import ./confs/config.def.h.nix {};
-			#	harfbuzzFeatures = [ "ss01" "ss02" "calt" "ss19" ];
-			#})
-			wezterm-git
+			(pkgs.callPackage ../../pkgs/st-flex.nix {
+				addPatches = [
+					"anysize"
+					"xresources"
+					"boxdraw"
+					"bold is not bright"
+					"csi 22 23"
+					"columns"
+					"delkey"
+					#"dynamic cursor color"
+					"font2"
+					"hidecursor"
+					"ligatures"
+					"netwmicon"
+					"sixel"
+					"scrollback"
+					"scrollback mouse"
+					"scrollback mouse altscreen"
+					"sync"
+					"themed cursor"
+					"undercurl"
+					#"wide glyphs"
+					"vertcenter"
+				];
+				conf = import ./confs/config.def.h.nix {};
+				harfbuzzFeatures = [ "ss01" "ss02" "calt" "ss19" ];
+			})
 
-			#docker-compose
 			luaPackages.lua
 			ghc
 			rustup
 			gcc
+			gnumake
 			cargo
 			texlive.combined.scheme-full
 
-			#unstable.wezterm
-
 			## neovim + deps
 			unstable.neovim
-			xsel
 			texlab
 			ltex-ls
 			jdt-language-server
@@ -164,41 +161,6 @@ in
 				borderColor = "#${theme.lbg}";
 				progressColor = with theme; "over #${c2}";
 			};
-#			foot = {
-#				enable = true;
-#				server.enable = true;
-#				settings = {
-#					main = {
-#						font = "Cascadia Code PL:size=6, CaskaydiaCove Nerd Font Mono:size=6";
-#					};
-#					cursor = {
-#						blink = "yes";
-#						style = "beam";
-#					};
-#					colors = with theme; {
-#						foreground = "${fg}";
-#						background = "${bg}";
-#						regular0 = "${c0}";
-#						regular1 = "${c1}";
-#						regular2 = "${c2}";
-#						regular3 = "${c3}";
-#						regular4 = "${c4}";
-#						regular5 = "${c5}";
-#						regular6 = "${c6}";
-#						regular7 = "${c7}";
-#						
-#						bright0 = "${c8}";
-#						bright1 = "${c9}";
-#						bright2 = "${c10}";
-#						bright3 = "${c11}";
-#						bright4 = "${c12}";
-#						bright5 = "${c13}";
-#						bright6 = "${c14}";
-#						bright7 = "${c15}";
-#						selection-background = "${c7}";
-#					};
-#				};
-#			};
 		};
   	};
 }

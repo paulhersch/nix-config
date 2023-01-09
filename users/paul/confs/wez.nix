@@ -15,6 +15,7 @@ return {
     },
     hide_tab_bar_if_only_one_tab = true,
     check_for_updates = false,
+    bold_brightens_ansi_colors = false,
     colors = {
 	background = '#${bg}',
 	foreground = '#${fg}',

@@ -16,17 +16,14 @@
 		maim
 		xfce.xfce4-clipman-plugin
 		networkmanagerapplet
-		rofi
 		picom
 		libnotify
-		lxappearance
 		lxrandr
 		redshift
 		i3lock-color
-		autorandr
 		sox
-		st
 		cinnamon.nemo
 		pamixer
+		wezterm-git
 	];
 }

@@ -2,11 +2,12 @@
 
 {
 	fonts.fonts = with pkgs; [
-		( nerdfonts.override { fonts = [ "CascadiaCode" ];} )
+		( nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" "FantasqueSansMono" ];} )
 		lato
 		inter
 		recursive
 		cascadia-code
+		iosevka
 		material-design-icons
 		twitter-color-emoji
 	];

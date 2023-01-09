@@ -134,7 +134,7 @@ $status$directory$git_branch$git_state $git_status$fill$cmd_duration
 			};
 			
 			python = {
-				format = "in [\\($symbol $virtualenv\\)]($style) ";
+				format = "in [\\($symbol$virtualenv\\)]($style) ";
 			};
 
 			custom.isroot = {
