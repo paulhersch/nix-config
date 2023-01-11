@@ -60,6 +60,7 @@ in
 			cargo
 			texlive.combined.scheme-full
 
+			emacs
 			## neovim + deps
 			unstable.neovim
 			texlab
@@ -73,6 +74,7 @@ in
 			#rubyPackages_3_1.solargraph
 			ripgrep
 			fd
+			tym
 		];
   	};
 	home-manager.users.paul = {

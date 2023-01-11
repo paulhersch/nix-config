@@ -13,6 +13,7 @@
 	};
 	environment.systemPackages = with pkgs; [
 		xsel
+		xclip
 		maim
 		xfce.xfce4-clipman-plugin
 		networkmanagerapplet

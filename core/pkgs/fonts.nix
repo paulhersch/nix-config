@@ -7,7 +7,8 @@
 		inter
 		recursive
 		cascadia-code
-		iosevka
+		iosevka-comfy.comfy-motion-fixed
+		iosevka-comfy.comfy-motion-duo
 		material-design-icons
 		twitter-color-emoji
 	];

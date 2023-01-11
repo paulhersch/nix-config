@@ -53,12 +53,14 @@
 			bindkey '^[[A' history-substring-search-up
 			bindkey '^[[B' history-substring-search-down
 
-			bindkey '^H' backward-kill-word # CTRL + BSPC
-			bindkey '5~' kill-word # CTRL + DEL
-			bindkey '5D' backward-word #st compat
-			bindkey '5C' forward-word #st compat
+			bindkey '^[^H' backward-kill-word # CTRL + BSPC
+			bindkey '^[5~' kill-word # CTRL + DEL
 			bindkey ';5D' backward-word
 			bindkey ';5C' forward-word
+			bindkey '^H' backward-kill-word # st-compat
+			bindkey '5~' kill-word # st compat
+			bindkey '5D' backward-word #st compat
+			bindkey '5C' forward-word #st compat
 #
 #	ALIASES & CUSTOM FUNCTIONS
 #
@@ -105,8 +107,8 @@ $status$directory$git_branch$git_state $git_status$fill$cmd_duration
 			};
 			status = {
 				format = "$symbol ";
-				symbol = "[▪]($bold red)";
-				success_symbol = "[▪]($bold green)";
+				symbol = "[・]($bold red)";
+				success_symbol = "[・]($bold green)";
 				disabled = false;
 				pipestatus = true;
 				pipestatus_separator = "";
