@@ -9,7 +9,8 @@
 		cascadia-code
 		iosevka-comfy.comfy-motion-fixed
 		iosevka-comfy.comfy-motion-duo
-		material-design-icons
+		#material-design-icons
+		emacs-all-the-icons-fonts
 		twitter-color-emoji
 	];
 }

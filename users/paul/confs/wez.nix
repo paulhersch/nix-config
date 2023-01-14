@@ -5,15 +5,17 @@ with theme;
 local wezterm = require "wezterm"
 return {
     font_shaper = "Harfbuzz",
-    harfbuzz_features = { "dlig" }, --, "liga", "clig", "ss01", "ss02", "ss19" },
-    font_size = 10.0,
+    -- harfbuzz_features = { "dlig" }, --, "liga", "clig", "ss01", "ss02", "ss19" },
+    font_size = 11.0,
     dpi = 96.0,
     default_cursor_style = 'SteadyBar',
     front_end = 'OpenGL',
     font = wezterm.font_with_fallback {
-    	{ family = "Rec Mono Casual" }
+    	'Iosevka Comfy Motion Fixed',
+	'all-the-icons',
     },
     hide_tab_bar_if_only_one_tab = true,
+    warn_about_missing_glyphs = false,
     check_for_updates = false,
     bold_brightens_ansi_colors = false,
     colors = {

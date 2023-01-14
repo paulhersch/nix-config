@@ -20,5 +20,7 @@ with theme; ''
 	*color7:	#${c7}
 	*color15:	#${c15}
 
+	*comment:	#${ddfg}
+	*contrast:	#${lbg}
 	st.borderpx:	10
 ''

@@ -69,6 +69,8 @@ in
 			java-language-server
 			haskell-language-server
 			sumneko-lua-language-server
+			python310Packages.python-lsp-server
+			nodePackages.pyright
 			omnisharp-roslyn
 			rnix-lsp
 			#rubyPackages_3_1.solargraph
