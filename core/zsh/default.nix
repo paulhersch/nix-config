@@ -69,7 +69,9 @@
 			alias cl="clear"
 			alias git-update="git fetch --recurse-submodules=no --progress --prune ''${1}"
 			alias dr="docker -H unix:///run/user/''${UID}/docker.sock"
-
+			ntdate () {
+				date --date="@$(( ($1 / 10000000) - 11644473600 ))"
+			}
 			texwithbiber () {
 				lualatex "$1" && biber "$1" && lualatex "$1"
 			}
