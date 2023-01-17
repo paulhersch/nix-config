@@ -1,6 +1,10 @@
 { config, lib, pkgs, stdenv, ... }:
 let
 	theme = import ../../globals/colors.nix { };
+	pylsp = [(pkgs.python310.withPackages (p: with p; [
+		python-lsp-server
+		flake8
+	]))];
 in
 {
 	imports = [
@@ -69,7 +73,6 @@ in
 			java-language-server
 			haskell-language-server
 			sumneko-lua-language-server
-			python310Packages.python-lsp-server
 			nodePackages.pyright
 			omnisharp-roslyn
 			rnix-lsp
@@ -77,7 +80,7 @@ in
 			ripgrep
 			fd
 			tym
-		];
+		] ++ pylsp;
   	};
 	home-manager.users.paul = {
 		imports = [ 
