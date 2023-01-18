@@ -49,7 +49,7 @@ in
 					"sync"
 					"themed cursor"
 					"undercurl"
-					#"wide glyphs"
+					"wide glyphs"
 					"vertcenter"
 				];
 				conf = import ./confs/config.def.h.nix {};

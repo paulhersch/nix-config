@@ -8,13 +8,13 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Rec Mono Casual:size=10:antialias=true";
+static char *font = "Iosevka Comfy Motion Fixed:size=11:antialias=true:autohint=true";
 #if FONT2_PATCH
 /* Spare fonts */
 static char *font2[] = {
-	"Symbols Nerd Font Mono:size=10:antialias=true:autohint=true",
-	"Material Design Icons:size=10:antialias=true:autohint=true",
-	"Twitter Color Emoji:size=10:antialias=true:autohint=true",
+	"Symbols Nerd Font Mono:size=11:antialias=true:autohint=true",
+	"Material Design Icons:size=11:antialias=true:autohint=true",
+	"Twitter Color Emoji:size=11:antialias=true:autohint=true",
 };
 #endif // FONT2_PATCH
 
