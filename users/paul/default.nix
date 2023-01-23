@@ -40,7 +40,7 @@ in
 					#"dynamic cursor color"
 					"font2"
 					"hidecursor"
-					"ligatures"
+					#"ligatures"
 					"netwmicon"
 					"sixel"
 					"scrollback"
@@ -53,7 +53,7 @@ in
 					"vertcenter"
 				];
 				conf = import ./confs/config.def.h.nix {};
-				harfbuzzFeatures = [ "ss01" "ss02" "calt" "ss19" ];
+				#harfbuzzFeatures = [ "ss01" "ss02" "calt" "ss19" ];
 			})
 
 			luaPackages.lua
@@ -67,19 +67,22 @@ in
 			emacs
 			## neovim + deps
 			unstable.neovim
+			
+			ripgrep
+			fd
+			
+			# language servers
 			texlab
 			ltex-ls
 			jdt-language-server
 			java-language-server
 			haskell-language-server
 			sumneko-lua-language-server
-			nodePackages.pyright
 			omnisharp-roslyn
 			rnix-lsp
-			#rubyPackages_3_1.solargraph
-			ripgrep
-			fd
-			tym
+			# debuggers
+			netcoredbg
+
 		] ++ pylsp;
   	};
 	home-manager.users.paul = {
