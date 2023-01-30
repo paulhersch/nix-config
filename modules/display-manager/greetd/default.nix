@@ -87,13 +87,13 @@ in
 			enable = true;
 			settings = {
 				default_session = {
-					command = "${cage}/bin/cage gtkgreet-styled";
+					command = "${cage}/bin/cage ${gtkgreet-wrap}/bin/gtkgreet-styled";
 				};
 			};
 		};
 		
 		# if xinitrc exists we assume and X WM -> wrapper for silent startx with -run suffix (startx awesome -> awesome-run)
-		environment.systemPackages = [ gtkgreet-wrap ]
+		environment.systemPackages = [] #[ gtkgreet-wrap ]
 			++ (lst.foldl (prev: curr: prev ++ [(pkgs.writeShellScriptBin (curr.entryName + "-run")
 				(if curr.isXWM
 					then "session=${curr.entryName} startx -- -keeptty >~/.xorg.log 2>&1\n"

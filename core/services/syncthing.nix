@@ -10,9 +10,7 @@
 			RestartSec = 1;
 			SuccessExitStatus = "3 4";
 			RestartForceExitStatus = "3 4";
-			SystemCallArchitecture = "native";
 			MemoryDenyWriteExecute = "true";
-			NoNewPriviliges = "true";
 		};
 	};
 }

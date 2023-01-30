@@ -15,13 +15,6 @@
 		enable = true;
 		entries = [
 			{
-				entryName="awesome";
-				isXWM = true;
-				preCmd = "xrdb -load .Xresources";
-				cmd = "${pkgs.awesome-git}/bin/awesome";
-				postCmd = "dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-			}
-			{
 				entryName = "sway";
 				isXWM = false;
 				cmd = "${pkgs.sway}/bin/sway";

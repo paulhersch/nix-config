@@ -9,7 +9,7 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		helix.url = github:SoraTenshi/helix/experimental;
+		#helix.url = github:SoraTenshi/helix/experimental;
 		nix-gaming.url = github:fufexan/nix-gaming;
 	};
 
@@ -26,11 +26,15 @@
 
 			overlays = with inputs; [
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
-				(final: _: let inherit (final) system; in {
-					unstable = import unstable { inherit config system; };
-					helix-git = inputs.helix.packages.${system}.default;
-				})
 				nixpkgs-f2k.overlays.default
+				(final: prev: let inherit (final) system; in {
+					unstable = import unstable { inherit config system; };
+					#helix-git = inputs.helix.packages.${system}.default;
+					
+					awesome-git-luajit = prev.awesome-git.override {
+						lua = prev.luajit;
+					};
+				})
 			];
 
 			shared-modules = [
