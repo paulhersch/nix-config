@@ -8,7 +8,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka Comfy Motion Fixed:size=11:antialias=true:autohint=true";
+static char *font = "Iosevka Comfy Motion:size=11:antialias=true:autohint=true";
 #if FONT2_PATCH
 /* Spare fonts */
 static char *font2[] = {

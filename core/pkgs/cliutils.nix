@@ -17,4 +17,5 @@ with pkgs; [
 	git
 	wget 
 	neovim
+	android-tools
 ]

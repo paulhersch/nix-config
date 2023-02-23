@@ -25,6 +25,9 @@ let
 		razergenie
 		#wine-ge
 	];
+	freesyncsteam = pkgs.writeShellScriptBin "freesyncgamescope" ''
+		${pkgs.gamescope}/bin/gamescope -r 144 -w 2560 -h 1440 -W 1920 -H 1080 -U -f --adaptive-sync -- steam
+	'';
 in
 {
 	programs = {
@@ -36,7 +39,9 @@ in
 			enableRenice = true;
 		};
 	};
-	environment.systemPackages = stablepkgs ++ unstablepkgs;
+	environment.systemPackages = stablepkgs ++ unstablepkgs ++ [
+		freesyncsteam
+	];
 	hardware = {
 		openrazer = {
 			enable = true;

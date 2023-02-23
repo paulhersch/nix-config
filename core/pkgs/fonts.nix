@@ -7,7 +7,7 @@
 		inter
 		recursive
 		cascadia-code
-		iosevka-comfy.comfy-motion-fixed
+		iosevka-comfy.comfy-motion
 		iosevka-comfy.comfy-motion-duo
 		material-design-icons
 		emacs-all-the-icons-fonts

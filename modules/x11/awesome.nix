@@ -81,5 +81,6 @@ in
 		sox
 		cinnamon.nemo
 		pamixer
+		imagemagick
 	];
 }

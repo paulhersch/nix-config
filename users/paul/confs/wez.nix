@@ -11,7 +11,7 @@ return {
     default_cursor_style = 'SteadyBar',
     front_end = 'OpenGL',
     font = wezterm.font_with_fallback {
-    	'Iosevka Comfy Motion Fixed',
+    	'Iosevka Comfy Motion',
 	'all-the-icons',
     },
     hide_tab_bar_if_only_one_tab = true,

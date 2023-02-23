@@ -4,7 +4,6 @@
   imports =
     [
     	(modulesPath + "/installer/scan/not-detected.nix")
-	### Arch better for gaming
 	../modules/gaming
     ];
 
@@ -82,7 +81,7 @@
 	'';
   };
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware = {
 	bluetooth = {
 		enable = true;
