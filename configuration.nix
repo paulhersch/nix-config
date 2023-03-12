@@ -29,7 +29,10 @@
 	};
 
 	boot = {
+		initrd.systemd.enable = true;
 		plymouth = {
+			theme = "dotLock";
+			themePackages = [ (pkgs.callPackage ./pkgs/plymouth_dotlock.nix {}) ];
 			enable = true;
 		};
   		loader = { 
