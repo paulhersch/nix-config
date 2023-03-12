@@ -4,7 +4,7 @@
   imports =
     [
     	(modulesPath + "/installer/scan/not-detected.nix")
-	../modules/gaming
+	#../modules/gaming
     ];
 
   #services.pipewire.lowLatency.enable = true;

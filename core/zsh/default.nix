@@ -79,6 +79,13 @@
 			findnixpackage () {
 				echo "/"$(ls -la $(which "$1") | cut -d ">" -f 2 | cut -d "/" -f 2,3,4)
 			}
+			calcunixpornyears () { 
+				[ "$1" -ge 0 ] || exit
+				if [ "$1" -gt 22 ]; then age="$(( ($1 - 22) * 5 + 26 ))"
+				elif [ "$1" -gt 18 ]; then age="$(( ($1 - 18) * 2 + 18 ))"
+				else age="$1" fi
+				echo "$1 human years is $age unixporn years" 
+			}
 
 			fortune -s | cowsay -f eyes
 			'';
