@@ -98,8 +98,12 @@ in
 		nixpkgs.config.allowUnfree = true;
 		
 		gtk = import ./gtk.nix { inherit pkgs; };
-		home.file.".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
 		xresources.extraConfig = import ./confs/xresources.nix { inherit theme; };
+		
+		home.file = {
+			".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
+			".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
+		};
 
 		# for direnv
 		home.file.".zshrc".text = "eval \"$(direnv hook zsh)\"";
@@ -119,12 +123,59 @@ in
 					set adjust-open width
 				'';
 			};
+			foot = {
+				enable = true;
+				server.enable = true;
+				settings = {
+					main = {
+						term = "xterm-256color";
+						font = "Iosevka Comfy Motion:size=10.5, Symbols Nerd Font:size=10.5";
+						pad = "10x10";
+						dpi-aware = "yes";
+					};
+					tweak = {
+						overflowing-glyphs = "yes";
+					};
+					bell = {
+						urgent = "no";
+						notify = "no";
+					};
+					scrollback = {
+						lines = 10000;
+					};
+					cursor = {
+						style = "beam";
+						blink = "yes";
+					};
+					colors = with theme; {
+						foreground = "${fg}";
+						background = "${bg}";
+						selection-background = "${llbg}";
+						regular0 = "${c0}";
+						regular1 = "${c1}";
+						regular2 = "${c2}";
+						regular3 = "${c3}";
+						regular4 = "${c4}";
+						regular5 = "${c5}";
+						regular6 = "${c6}";
+						regular7 = "${c7}";
+						bright0 = "${c8}";
+						bright1 = "${c9}";
+						bright2 = "${c10}";
+						bright3 = "${c11}";
+						bright4 = "${c12}";
+						bright5 = "${c13}";
+						bright6 = "${c14}";
+						bright7 = "${c15}";
+					};
+				};
+			};
 		};
 		services = {
 			mako = {
 				enable = true;
 				anchor = "bottom-right";
-				font = "Inter Regular 11";
+				font = "Recursive Sn Csl St 12";
 				borderRadius = 5;
 				defaultTimeout = 5000;
 
