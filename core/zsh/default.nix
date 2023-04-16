@@ -13,10 +13,7 @@
 			enable = true;
 		};
 		interactiveShellInit = ''
-			export PATH=$PATH:$HOME/.cargo/bin/:$HOME/.local/bin
-
 			autoload -U colors zcalc
-
 			source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 			zle -N history-substring-search-up
@@ -59,26 +56,28 @@
 			bindkey ';5C' forward-word
 			bindkey '^H' backward-kill-word # st-compat
 			bindkey '5~' kill-word # st compat
-			bindkey '5D' backward-word #st compat
-			bindkey '5C' forward-word #st compat
+			bindkey '5D' backward-word # st compat
+			bindkey '5C' forward-word # st compat
 #
 #	ALIASES & CUSTOM FUNCTIONS
 #
-			alias ls="exa"
-			alias tree="exa --tree"
+			alias tree="${pkgs.exa}/bin/exa --tree"
 			alias cl="clear"
-			alias git-update="git fetch --recurse-submodules=no --progress --prune ''${1}"
+			alias git-update="${pkgs.git}/bin/git fetch --recurse-submodules=no --progress --prune ''${1}"
+			# useful for rootless docker, but that shit buggy af anyways
 			alias dr="docker -H unix:///run/user/''${UID}/docker.sock"
 			ntdate () {
 				date --date="@$(( ($1 / 10000000) - 11644473600 ))"
 			}
+			
 			texwithbiber () {
 				lualatex "$1" && biber "$1" && lualatex "$1"
 			}
 
 			findnixpackage () {
-				echo "/"$(ls -la $(which "$1") | cut -d ">" -f 2 | cut -d "/" -f 2,3,4)
+				echo "/"$(readlink -e $(which "$1") | cut -d "/" -f 2,3,4)
 			}
+			
 			calcunixpornyears () { 
 				[ "$1" -ge 0 ] || exit
 				if [ "$1" -gt 22 ]; then age="$(( ($1 - 22) * 5 + 26 ))"

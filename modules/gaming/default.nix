@@ -22,8 +22,9 @@ let
 	];
 	stablepkgs = with pkgs; [
 		openrazer-daemon
-		razergenie
-		#wine-ge
+		# razergenie
+		polychromatic
+		# wine-ge
 	];
 	freesyncsteam = pkgs.writeShellScriptBin "freesyncgamescope" ''
 		${pkgs.gamescope}/bin/gamescope -r 144 -w 2560 -h 1440 -W 1920 -H 1080 -U -f --adaptive-sync -- steam
