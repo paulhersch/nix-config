@@ -37,41 +37,47 @@
 				})
 			];
 
-			shared-modules = [
-				./configuration.nix
-				inputs.home-manager.nixosModule
-				{
-					nixpkgs = { inherit config overlays; };
-				}
-			];
+			overlayed_nixpkgs = [{
+				nixpkgs = { inherit config overlays; };
+			}];
 		in
 		{
 			nixosConfigurations = {
 				snowstorm = nixosSystem {
 					system = "x86_64-linux";
-					modules = shared-modules ++ [
+					modules = overlayed_nixpkgs ++ [
+						./configuration.nix
+						inputs.home-manager.nixosModule
 						./hosts/snowstorm.nix
 						inputs.nix-gaming.nixosModules.pipewireLowLatency
 					];
 				};
 				snowflake = nixosSystem {
 					system = "x86_64-linux";
-					modules = shared-modules ++ [
+					modules = overlayed_nixpkgs ++ [
+						./configuration.nix
+						inputs.home-manager.nixosModule
 						./hosts/snowflake.nix
+					];
+				};
+				snowball = nixosSystem {
+					system = "x86_64-linux";
+					modules = overlayed_nixpkgs ++ [
+						./hosts/snowball
 					];
 				};
 			};
 			snowstorm = self.nixosConfigurations.snowstorm.config.system.build.toplevel;
 			snowflake = self.nixosConfigurations.snowflake.config.system.build.toplevel;
 		};
-	nixConfig = {
-		substituters = [
-			"https://cache.nixos.org?priority=10"
-			"https://cache.ngi0.nixos.org/"
-			"https://nix-community.cachix.org?priority=5"
-			"https://nixpkgs-wayland.cachix.org"
-			"https://fortuneteller2k.cachix.org"
-			"https://nix-gaming.cachix.org"
-		];
-  	};
+	#nixConfig = {
+	#	substituters = [
+	#		"https://cache.nixos.org?priority=10"
+	#		"https://cache.ngi0.nixos.org/"
+	#		"https://nix-community.cachix.org?priority=5"
+	#		"https://nixpkgs-wayland.cachix.org"
+	#		"https://fortuneteller2k.cachix.org"
+	#		"https://nix-gaming.cachix.org"
+	#	];
+  	#};
 }
