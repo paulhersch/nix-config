@@ -86,14 +86,12 @@
 				echo "$1 human years is $age unixporn years" 
 			}
 
-			fortune -s | cowsay -f eyes
+			${pkgs.fortune}/bin/fortune -s | ${pkgs.cowsay}/bin/cowsay -f eyes
 			'';
 		histFile = "$HOME/.zhistory";
 		histSize = 2000;
 	};
-	environment.shells = with pkgs; [ zsh ];
-
-# starship prompt
+	users.defaultUserShell = pkgs.zsh;
 	programs.starship = {
 		enable = true;
 		settings = {
@@ -106,7 +104,7 @@ $status$directory$git_branch$git_state $git_status$fill$cmd_duration
 				format = "in [$symbol$state]($style) ";
 			};
 			hostname = {
-				format = "[at ](italic white)[$ssh_symbol$hostname]($style) ";
+				format = "[on ](italic white)[$ssh_symbol$hostname]($style) ";
 			};
 			cmd_duration = {
 				format = "[$duration]($style)";
