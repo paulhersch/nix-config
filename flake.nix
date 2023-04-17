@@ -9,8 +9,8 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		#helix.url = github:SoraTenshi/helix/experimental;
 		nix-gaming.url = github:fufexan/nix-gaming;
+		cosmic.url = github:pop-os/cosmic-comp;
 	};
 
 	outputs =
@@ -28,21 +28,24 @@
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
 				nixpkgs-f2k.overlays.default
 				(final: prev: let inherit (final) system; in {
-					unstable = import unstable { inherit config system; };
-					#helix-git = inputs.helix.packages.${system}.default;
-					
+					unstable = import inputs.unstable { inherit config system; };
+					cosmic-comp = inputs.cosmic.packages.${system}.default;
 					awesome-git-luajit = prev.awesome-git.override {
 						lua = prev.luajit;
 					};
 				})
 			];
 
+			# i have no idea why these brackets need to be here
+			overlayed_nixpkgs = {
+				nixpkgs = { inherit config overlays; };
+			};
+			
 			shared-modules = [
 				./configuration.nix
+				./nixsettings.nix
 				inputs.home-manager.nixosModule
-				{
-					nixpkgs = { inherit config overlays; };
-				}
+				overlayed_nixpkgs
 			];
 		in
 		{
@@ -64,14 +67,14 @@
 			snowstorm = self.nixosConfigurations.snowstorm.config.system.build.toplevel;
 			snowflake = self.nixosConfigurations.snowflake.config.system.build.toplevel;
 		};
-	nixConfig = {
-		substituters = [
-			"https://cache.nixos.org?priority=10"
-			"https://cache.ngi0.nixos.org/"
-			"https://nix-community.cachix.org?priority=5"
-			"https://nixpkgs-wayland.cachix.org"
-			"https://fortuneteller2k.cachix.org"
-			"https://nix-gaming.cachix.org"
-		];
-  	};
+#	nixConfig = {
+#		substituters = [
+#			"https://cache.nixos.org?priority=10"
+#			"https://cache.ngi0.nixos.org/"
+#			"https://nix-community.cachix.org?priority=5"
+#			"https://nixpkgs-wayland.cachix.org"
+#			"https://fortuneteller2k.cachix.org"
+#			"https://nix-gaming.cachix.org"
+#		];
+#  	};
 }

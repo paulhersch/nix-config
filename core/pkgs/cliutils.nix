@@ -16,6 +16,7 @@ with pkgs; [
 	tree
 	git
 	wget 
-	neovim
 	android-tools
+] ++ [
+	pkgs.unstable.neovim
 ]

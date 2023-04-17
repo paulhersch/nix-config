@@ -23,8 +23,12 @@ let
 	cage = pkgs.writeShellScriptBin "cage" ''
 		XKB_DEFAULT_LAYOUT='de' \
 		${pkgs.cage}/bin/cage \
-			-s -d $1
+			-s \
+			-d \
+			$1
 	'';
+	# i would love to use this option but cage segfaults with this switch (0.14)
+	# -m last \
 	
 	# if there is a wayland session no xinitrcentry should be provided
 	entryType = types.submodule { options = {

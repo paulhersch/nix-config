@@ -26,16 +26,14 @@ in
 		shell = pkgs.zsh;
 		packages = with pkgs;[
 			steam-run
-			nodejs
-			nodePackages.yarn
 			geckodriver
 			chromedriver
 			chromium
 			jetbrains.idea-community
-			jetbrains.pycharm-community
-			jetbrains.jdk
+			#jetbrains.jdk
 			jetbrains.rider
-			wezterm-git
+			dbeaver
+			#wezterm-git
 			(pkgs.callPackage ../../pkgs/st-flex.nix {
 				addPatches = [
 					"anysize"
@@ -48,7 +46,7 @@ in
 					#"dynamic cursor color"
 					"font2"
 					"hidecursor"
-					"ligatures"
+					#"ligatures"
 					"netwmicon"
 					"sixel"
 					"scrollback"
@@ -72,7 +70,7 @@ in
 			cargo
 			texlive.combined.scheme-full
 
-			emacs
+			# emacs # not gonna switch i think
 			## neovim + deps
 			unstable.neovim
 			
@@ -82,15 +80,15 @@ in
 			# language servers
 			texlab
 			ltex-ls
-			jdt-language-server
-			java-language-server
+			# jdt-language-server
+			# java-language-server
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
 			rnix-lsp
+			unstable.nimlsp
 			# debuggers
-			netcoredbg
-
+			# netcoredbg
 		] ++ pylsp;
   	};
 	home-manager.users.paul = {
@@ -131,7 +129,7 @@ in
 						term = "xterm-256color";
 						font = "Iosevka Comfy Motion:size=10.5, Symbols Nerd Font:size=10.5";
 						pad = "10x10";
-						dpi-aware = "yes";
+						dpi-aware = "no";
 					};
 					tweak = {
 						overflowing-glyphs = "yes";
