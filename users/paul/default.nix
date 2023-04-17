@@ -26,14 +26,8 @@ in
 		shell = pkgs.zsh;
 		packages = with pkgs;[
 			steam-run
-			geckodriver
-			chromedriver
-			chromium
 			jetbrains.idea-community
-			#jetbrains.jdk
-			jetbrains.rider
 			dbeaver
-			#wezterm-git
 			(pkgs.callPackage ../../pkgs/st-flex.nix {
 				addPatches = [
 					"anysize"
@@ -43,7 +37,6 @@ in
 					"csi 22 23"
 					"columns"
 					"delkey"
-					#"dynamic cursor color"
 					"font2"
 					"hidecursor"
 					#"ligatures"
@@ -70,7 +63,6 @@ in
 			cargo
 			texlive.combined.scheme-full
 
-			# emacs # not gonna switch i think
 			## neovim + deps
 			unstable.neovim
 			
@@ -88,7 +80,6 @@ in
 			rnix-lsp
 			unstable.nimlsp
 			# debuggers
-			# netcoredbg
 		] ++ pylsp;
   	};
 	home-manager.users.paul = {
@@ -120,6 +111,41 @@ in
 					set guioptions vhs
 					set adjust-open width
 				'';
+			};
+			alacritty = {
+				enable = true;
+				settings = {
+					window = { 
+						padding = {
+							x = 5;
+							y = 5;
+						};
+						dynamic_padding = true;
+						decorations = "none";
+					};
+					scrolling = {
+						history = 20000;
+						multiplier = 5;
+					};
+					font = {
+						normal = { family = "Iosevka Comfy Motion"; };
+						size = 10.5;
+						offset = { y = 2; };
+						builtin_box_drawing = true;
+					};
+					selection = {
+						save_to_clipboard = true;
+					};
+					cursor = {
+						style = {
+							shape = "beam";
+							blinking = "on";
+						};
+						thickness = 0.1;
+					};
+					ipc_socket = false;
+					mouse = { hide_when_typing = true; };
+				};
 			};
 			foot = {
 				enable = true;

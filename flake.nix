@@ -36,45 +36,41 @@
 				})
 			];
 
-			# i have no idea why these brackets need to be here
-			overlayed_nixpkgs = {
+			overlayed_nixpkgs = [{
 				nixpkgs = { inherit config overlays; };
-			};
-			
-			shared-modules = [
-				./configuration.nix
-				./nixsettings.nix
-				inputs.home-manager.nixosModule
-				overlayed_nixpkgs
-			];
+			}];
 		in
 		{
 			nixosConfigurations = {
 				snowstorm = nixosSystem {
 					system = "x86_64-linux";
-					modules = shared-modules ++ [
+					modules = overlayed_nixpkgs ++ [
+						./configuration.nix
+						inputs.home-manager.nixosModule
 						./hosts/snowstorm.nix
+						./nixsettings.nix
 						inputs.nix-gaming.nixosModules.pipewireLowLatency
 					];
 				};
 				snowflake = nixosSystem {
 					system = "x86_64-linux";
-					modules = shared-modules ++ [
+					modules = overlayed_nixpkgs ++ [
+						./configuration.nix
+						inputs.home-manager.nixosModule
 						./hosts/snowflake.nix
+						./nixsettings.nix
+					];
+				};
+				snowball = nixosSystem {
+					system = "x86_64-linux";
+					modules = overlayed_nixpkgs ++ [
+						./hosts/snowball
+						./nixsettings.nix
 					];
 				};
 			};
 			snowstorm = self.nixosConfigurations.snowstorm.config.system.build.toplevel;
 			snowflake = self.nixosConfigurations.snowflake.config.system.build.toplevel;
+			snowball = self.nixosConfigurations.snowball.config.system.build.toplevel;
 		};
-#	nixConfig = {
-#		substituters = [
-#			"https://cache.nixos.org?priority=10"
-#			"https://cache.ngi0.nixos.org/"
-#			"https://nix-community.cachix.org?priority=5"
-#			"https://nixpkgs-wayland.cachix.org"
-#			"https://fortuneteller2k.cachix.org"
-#			"https://nix-gaming.cachix.org"
-#		];
-#  	};
 }
