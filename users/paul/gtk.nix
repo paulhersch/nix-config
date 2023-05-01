@@ -6,16 +6,16 @@
 		size = 11;
 	};
 	iconTheme = {
-		name = "Papirus-Dark";
+		name = "Papirus-Light";
 		package = pkgs.papirus-icon-theme;
 	};
 	cursorTheme = {
-		name = "Phinger Cursors (light)";
+		name = "Phinger Cursors";
 		package = pkgs.phinger-cursors;
 		size = 24;
 	};
 	theme = {
-		name = "Materia-dark";
+		name = "Materia-light";
 		package = pkgs.materia-theme;
 	};
 	gtk2 = {

@@ -1,4 +1,10 @@
-{ config, lib, pkgs, stdenv, ... }:
+{ config
+, lib
+, pkgs
+, stdenv
+, home-manager
+, ...
+}:
 let
 	theme = import ../../globals/colors.nix { };
 	pylsp = [(pkgs.python310.withPackages (p: with p; [
@@ -36,7 +42,6 @@ in
 					"bold is not bright"
 					"csi 22 23"
 					"columns"
-					"delkey"
 					"font2"
 					"hidecursor"
 					#"ligatures"
@@ -62,6 +67,16 @@ in
 			gnumake
 			cargo
 			texlive.combined.scheme-full
+			
+			## pyenv deps
+			#zlib.dev
+			#bzip2.dev
+			#readline.dev
+			#sqlite.dev
+			#openssl.dev
+			#tk.dev
+			#xz.dev
+			#libffi.dev
 
 			## neovim + deps
 			unstable.neovim
@@ -92,10 +107,13 @@ in
 		home.file = {
 			".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
 			".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
+			".zshrc".text = ''
+				#export PATH=$PATH:~/.pyenv/bin/
+				#eval "$(pyenv init -)"
+				eval "$(direnv hook zsh)"
+			'';
 		};
 
-		# for direnv
-		home.file.".zshrc".text = "eval \"$(direnv hook zsh)\"";
 		programs = {
 			direnv = {
 				enable = true;
@@ -194,8 +212,6 @@ in
 					};
 				};
 			};
-		};
-		services = {
 			mako = {
 				enable = true;
 				anchor = "bottom-right";
@@ -208,6 +224,9 @@ in
 				borderColor = "#${theme.lbg}";
 				progressColor = with theme; "over #${c2}";
 			};
+
 		};
+		#services = {
+		#};
   	};
 }

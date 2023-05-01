@@ -2,6 +2,7 @@
 
 with theme; ''
 	*foreground:	#${fg}
+	*cursorColor:	#${fg}
 	*background:	#${bg}
 	*color0:	#${c0}
 	*color8:	#${c8}

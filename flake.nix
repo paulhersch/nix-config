@@ -6,7 +6,7 @@
 		unstable.url = github:nixos/nixpkgs/nixpkgs-unstable;
 		nixpkgs-f2k.url = github:fortuneteller2k/nixpkgs-f2k;
 		home-manager = {
-			url = "github:nix-community/home-manager";
+			url = github:nix-community/home-manager/release-22.11;
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nix-gaming.url = github:fufexan/nix-gaming;
@@ -46,7 +46,7 @@
 					system = "x86_64-linux";
 					modules = overlayed_nixpkgs ++ [
 						./configuration.nix
-						inputs.home-manager.nixosModule
+						inputs.home-manager.nixosModules.home-manager
 						./hosts/snowstorm.nix
 						./nixsettings.nix
 						inputs.nix-gaming.nixosModules.pipewireLowLatency
@@ -56,7 +56,7 @@
 					system = "x86_64-linux";
 					modules = overlayed_nixpkgs ++ [
 						./configuration.nix
-						inputs.home-manager.nixosModule
+						inputs.home-manager.nixosModules.home-manager
 						./hosts/snowflake.nix
 						./nixsettings.nix
 					];
