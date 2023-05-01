@@ -25,6 +25,9 @@
 	virtualisation = {
 		libvirtd.enable = true;
 		docker = {
+			daemon.settings = {
+				storage-driver = "overlay2";
+			};
 			enable = true;
 			enableOnBoot = false;
 		};
