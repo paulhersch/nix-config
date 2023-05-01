@@ -117,4 +117,5 @@
 	};
   };
   networking.hostName = "snowstorm";
+  networking.interfaces.enp6s0.useDHCP = true;
 }

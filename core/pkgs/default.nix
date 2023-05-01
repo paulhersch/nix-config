@@ -15,8 +15,7 @@ in
 	imports = [ ./fonts.nix ];
 	environment.systemPackages = with pkgs; [
 		pfetch
-		cowsay
-		fortune
+		mullvad-vpn
 		#(pkgs.callPackage ../../pkgs/satk.nix {})
 	]
 	++ pythonpackages
@@ -24,6 +23,8 @@ in
 	++ media
 	++ guiutils
 	++ cliutils;
+	
+	services.mullvad-vpn.enable = true;
 
 	# set defaults
 	xdg.mime.defaultApplications = {
