@@ -19,6 +19,7 @@ let
 		steam
 		heroic
 		gamescope
+		prismlauncher
 	];
 	stablepkgs = with pkgs; [
 		openrazer-daemon

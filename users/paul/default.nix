@@ -80,7 +80,8 @@ in
 
 			## neovim + deps
 			unstable.neovim
-			
+			unstable.neovide
+
 			ripgrep
 			fd
 			

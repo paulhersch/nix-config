@@ -11,12 +11,12 @@ rec {
 	# used for comments
 	#ddfg = "646161";
 	
-	bg = "D8DAD3";
+	bg = "E8EAE3";
 	fg = "2B2F2F";
 
-	dbg = "BCC0BA";
+	dbg = "DCE0DA";
 	lbg = "CCD0CA";
-	llbg = "C5C5C2";
+	llbg = "BCC0BA";
 
 	ddfg = "6C6F85";
 
@@ -36,20 +36,22 @@ rec {
 	#c13 = "ce99cf";
     	#c14 = "77bbc2";
     	#c15 = "9da3a2";
-	c0 = "414444";
+	
+	c0 = llbg;
 	c1 = "6f4d4d";
 	c2 = "4b7548";
 	c3 = "88862a";
 	c4 = "316a92";
 	c5 = "9e599f";
 	c6 = "377b82";
-	c7 = "BCC0BA";
-	c8 = "9292A2";
+	c7 = "414444";
+	
+	c8 = lbg;
 	c9 = "ECB5B5";
 	c10 = "A2D5B5";
 	c11 = "D5D5AB";
 	c12 = "9BBBD5";
 	c13 = "CBB4CB";
 	c14 = "A0C8C8";
-	c15 = "CCD0CA";
+	c15 = "9292A2";
 }
