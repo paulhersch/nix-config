@@ -32,6 +32,7 @@ in
 		shell = pkgs.zsh;
 		packages = with pkgs;[
 			steam-run
+			prismlauncher
 			jetbrains.idea-community
 			dbeaver
 			(pkgs.callPackage ../../pkgs/st-flex.nix {
