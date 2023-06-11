@@ -15,7 +15,7 @@
 		};
 		printing = {
 			enable = true;
-			drivers = with pkgs; [ gutenprint gutenprintBin hplip samsung-unified-linux-driver splix brlaser ];
+			drivers = with pkgs; [ gutenprint gutenprintBin hplip samsung-unified-linux-driver splix brlaser cups-toshiba-estudio ];
 		};
 		xserver.modules = with pkgs; [ xf86_input_wacom ];
 	};

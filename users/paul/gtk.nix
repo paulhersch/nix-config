@@ -2,8 +2,9 @@
 {
 	enable = true;
 	font = {
-		name = "Recursive Sn Lnr St";
+		name = "Iosevka Comfy Motion Duo";
 		size = 11;
+		package = pkgs.iosevka-comfy.comfy-motion-duo;
 	};
 	iconTheme = {
 		name = "Papirus-Light";

@@ -9,12 +9,14 @@ let
 	theme = import ../../globals/colors.nix { };
 	pylsp = [(pkgs.python310.withPackages (p: with p; [
 		python-lsp-server
+		python-lsp-ruff
+		rope
 		flake8
 	]))];
 in
 {
 	imports = [
-		./services/mopidy.nix
+		#./services/mopidy.nix
 	];
 	users.users.paul = {
   		createHome = true;
@@ -32,6 +34,7 @@ in
 		shell = pkgs.zsh;
 		packages = with pkgs;[
 			steam-run
+			prismlauncher
 			jetbrains.idea-community
 			dbeaver
 			(pkgs.callPackage ../../pkgs/st-flex.nix {
@@ -67,20 +70,14 @@ in
 			gnumake
 			cargo
 			texlive.combined.scheme-full
-			
-			## pyenv deps
-			#zlib.dev
-			#bzip2.dev
-			#readline.dev
-			#sqlite.dev
-			#openssl.dev
-			#tk.dev
-			#xz.dev
-			#libffi.dev
+
+			# psqlcli
+			postgresql_15
 
 			## neovim + deps
 			unstable.neovim
 			unstable.neovide
+			# wezterm-git
 
 			ripgrep
 			fd
@@ -214,6 +211,10 @@ in
 					};
 				};
 			};
+
+
+		};
+		services = {
 			mako = {
 				enable = true;
 				anchor = "bottom-right";
@@ -226,9 +227,6 @@ in
 				borderColor = "#${theme.lbg}";
 				progressColor = with theme; "over #${c2}";
 			};
-
 		};
-		#services = {
-		#};
   	};
 }

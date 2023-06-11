@@ -38,12 +38,12 @@ assert sixel -> libsixel != null;
 
 stdenv.mkDerivation rec {
 	pname = "st-flexipatch";
-	version = "e6a2fb4";
+	version = "1343b29";
 	src = fetchFromGitHub {
 		owner = "bakkeby";
 		repo = "st-flexipatch";
-		rev = "e6a2fb489c192e2cd9439691014f48779d4966ad";
-		hash = "sha256-DCsuRbJJbU2Ii4vnOyd1o21VqiXvo2Dz7PKOsDizvCc=";
+		rev = "1343b29ee5e8a9d67607a4616f74386a2951e276";
+		hash = "sha256-cZcoBkgcG+MXVSmjupdmhEQv7j54rANbmMso6XnatEw=";
 	};
 		
 	configFile = lib.optionalString (conf != null)

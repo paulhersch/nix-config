@@ -49,7 +49,8 @@ entry:focus {
         transition: background-color 0.5s;
 }
 
-.text-button:hover {
+.text-button:hover
+, .text-button:active {
         background-color: @lbg;
 }
 
@@ -73,7 +74,8 @@ combobox arrow {
 	color: @fg;
 }
 
-button:hover {
+button:hover
+, button:active {
 	background-color: @lbg;
 	padding: 10px;	
 }
@@ -91,5 +93,8 @@ window.popup menuitem {
 	transition: background-color 0.3s;
 	border-radius: 5px;
 }
-window.popup menuitem:hover { background-color: @lbg; }
+window.popup menuitem:hover
+, window.popup menuitem:active { 
+	background-color: @lbg;
+}
 ''

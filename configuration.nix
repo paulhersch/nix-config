@@ -31,8 +31,11 @@
 	boot = {
 		initrd.systemd.enable = true;
 		plymouth = {
-			theme = "dotLock";
-			themePackages = [ (pkgs.callPackage ./pkgs/plymouth_dotlock.nix {}) ];
+			theme = "splash";
+			themePackages = [(
+				pkgs.unstable.adi1090x-plymouth-themes.override {
+					selected_themes = ["splash"];
+			})];
 			enable = true;
 		};
   		loader = { 
@@ -41,7 +44,6 @@
 			};
   			grub = {
  				enable = true;
-				version = 2;
 				device = "nodev";
 				efiSupport = true;
 				efiInstallAsRemovable = false;
