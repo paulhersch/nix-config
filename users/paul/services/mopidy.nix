@@ -15,8 +15,9 @@
 				enable = true;
 				extensionPackages = with pkgs; [
 					mopidy-mpd
-						mopidy-mpris
-						mopidy-local
+					mopidy-mpris
+					mopidy-local
+					mopidy-iris
 				];
 				settings = {
 					audio = {
@@ -46,6 +47,9 @@
 					mpris = {
 						enabled = true;
 						bus_type = "session";
+					};
+					iris = {
+						snapcast_enabled = false;
 					};
 				};
 			};

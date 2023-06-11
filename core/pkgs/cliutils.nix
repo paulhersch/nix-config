@@ -12,7 +12,7 @@ with pkgs; [
 	pamixer
 	patchelf
 	playerctl
-	bpytop
+	btop
 	tree
 	git
 	wget 

@@ -7,12 +7,12 @@
 		slurp
 		wofi
 		wlogout
-		wezterm
 		wev
 		fusuma
 		eww-wayland
 		wf-recorder
 		waybar
+		unstable.foot
 	];
 
 	programs = {

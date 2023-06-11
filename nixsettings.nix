@@ -3,10 +3,10 @@
 {
 	nix = {
 		settings = { #cachix 👍
-			trusted-substituters = [
+			substituters = [
 				"https://cache.nixos.org?priority=10"
 				"https://cache.ngi0.nixos.org/"
-				"https://nix-community.cachix.org?priority=5"
+				"https://nix-community.cachix.org"
 				"https://nixpkgs-wayland.cachix.org"
 				"https://fortuneteller2k.cachix.org"
 				"https://nix-gaming.cachix.org"

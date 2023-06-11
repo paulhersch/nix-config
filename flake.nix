@@ -2,15 +2,15 @@
 	description = "Flake for my Systems";
 	
 	inputs = {
-		nixpkgs.url = github:nixos/nixpkgs/nixos-22.11;
+		nixpkgs.url = github:nixos/nixpkgs/nixos-23.05;
 		unstable.url = github:nixos/nixpkgs/nixpkgs-unstable;
 		nixpkgs-f2k.url = github:fortuneteller2k/nixpkgs-f2k;
 		home-manager = {
-			url = github:nix-community/home-manager/release-22.11;
+			url = github:nix-community/home-manager/release-23.05;
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nix-gaming.url = github:fufexan/nix-gaming;
-		cosmic.url = github:pop-os/cosmic-comp;
+		# cosmic.url = github:pop-os/cosmic-comp;
 	};
 
 	outputs =
