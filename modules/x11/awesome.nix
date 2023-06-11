@@ -61,7 +61,10 @@ in
 		displayManager.gtkgreet.entries = [{
 			entryName="awesome";
 			isXWM = true;
-			preCmd = "xrdb -load .Xresources";
+			preCmd = ''
+				xrdb -load .Xresources
+				autorandr -c
+			'';
 			cmd = "${pkgs.awesome-git-luajit}/bin/awesome ${makeSearchPath luaModules}";
 			postCmd = "dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
 		}];
