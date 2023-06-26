@@ -113,6 +113,7 @@ in
 		};
 
 		programs = {
+			autorandr = import ./autorandrhm.nix {};
 			direnv = {
 				enable = true;
 				nix-direnv.enable = true;
