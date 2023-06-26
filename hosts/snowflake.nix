@@ -34,9 +34,11 @@
       fsType = "vfat";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/6913a5e4-7c10-4a61-9fe9-d5b759e5c16e"; }
-    ];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/6913a5e4-7c10-4a61-9fe9-d5b759e5c16e";
+    }
+  ];
   boot.initrd.luks.devices."enc" = {
 	device = "/dev/disk/by-uuid/9dc22222-57ab-4519-aca6-4bfc9a1e90c7";
 	preLVM = true;

@@ -28,6 +28,12 @@
 		memoryPercent = 33;
 	};
 
+	services.logind = {
+		lidSwitch = "hibernate";
+		lidSwitchDocked = "ignore";
+		lidSwitchExternalPower = "ignore";
+	};
+
 	boot = {
 		initrd.systemd.enable = true;
 		plymouth = {

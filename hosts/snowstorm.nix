@@ -93,6 +93,9 @@
   		driSupport = true;
 	};
   };
+  powerManagement = {
+  	cpuFreqGovernor = "powersave";
+  };
   services.autorandr = {
 	enable = true;
 	profiles = {
