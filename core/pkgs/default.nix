@@ -24,7 +24,7 @@ in
 	++ guiutils
 	++ cliutils;
 	
-	services.mullvad-vpn.enable = true;
+	# services.mullvad-vpn.enable = true;
 
 	# set defaults
 	xdg.mime.defaultApplications = {
