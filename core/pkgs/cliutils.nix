@@ -17,6 +17,8 @@ with pkgs; [
 	git
 	wget 
 	android-tools
+	partclone
+	nsnake
 ] ++ [
 	pkgs.unstable.neovim
 ]

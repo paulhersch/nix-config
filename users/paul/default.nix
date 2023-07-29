@@ -30,6 +30,7 @@ in
 			"input"
 			"docker"
 			"plugdev"
+			"wheel" # for cups
 		];
 		shell = pkgs.zsh;
 		packages = with pkgs;[
@@ -38,6 +39,8 @@ in
 			prismlauncher
 			jetbrains.idea-community
 			dbeaver
+			openjdk
+			maven
 			(pkgs.callPackage ../../pkgs/st-flex.nix {
 				addPatches = [
 					"anysize"
