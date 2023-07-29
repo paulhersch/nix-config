@@ -91,10 +91,14 @@
   	opengl = {
 		enable = true;
   		driSupport = true;
+		#extraPackages = with pkgs; [
+		#	rocm-opencl-icd
+		#	rocm-runtime
+		#];
 	};
   };
   powerManagement = {
-  	cpuFreqGovernor = "powersave";
+  	# cpuFreqGovernor = "powersave";
   };
   networking.hostName = "snowstorm";
   networking.interfaces.enp6s0.useDHCP = true;

@@ -11,6 +11,7 @@
 		#./modules/display-manager/lightdm
 		./modules/display-manager/greetd
 	];
+
 	services.xserver.displayManager.gtkgreet = {
 		enable = true;
 		entries = [
@@ -75,7 +76,5 @@
 		export BROWSER="${pkgs.librewolf}/bin/librewolf"
 	'';
 	
-	powerManagement.enable = true;
-
 	system.stateVersion = "22.11";
 } 
