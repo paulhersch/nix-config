@@ -63,7 +63,5 @@
 		export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
 	'';
 	
-	powerManagement.enable = true;
-
 	system.stateVersion = "22.11";
 } 

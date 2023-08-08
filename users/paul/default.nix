@@ -108,6 +108,7 @@ in
 		
 		home.file = {
 			".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
+			".config/alacritty/alacritty.yml".text = import ./confs/alacritty.nix { inherit theme; };
 			".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
 			".zshrc".text = ''
 				#export PATH=$PATH:~/.pyenv/bin/
@@ -133,41 +134,7 @@ in
 					set adjust-open width
 				'';
 			};
-			alacritty = {
-				enable = true;
-				settings = {
-					window = { 
-						padding = {
-							x = 5;
-							y = 5;
-						};
-						dynamic_padding = true;
-						decorations = "none";
-					};
-					scrolling = {
-						history = 20000;
-						multiplier = 5;
-					};
-					font = {
-						normal = { family = "Iosevka Comfy Motion"; };
-						size = 10.5;
-						offset = { y = 2; };
-						builtin_box_drawing = true;
-					};
-					selection = {
-						save_to_clipboard = true;
-					};
-					cursor = {
-						style = {
-							shape = "beam";
-							blinking = "on";
-						};
-						thickness = 0.1;
-					};
-					ipc_socket = false;
-					mouse = { hide_when_typing = true; };
-				};
-			};
+			alacritty.enable = true;
 			foot = {
 				enable = true;
 				server.enable = true;
