@@ -16,8 +16,8 @@
 		size = 24;
 	};
 	theme = {
-		name = "Materia-light";
-		package = pkgs.materia-theme;
+		name = "Materia-custom";
+		package = (pkgs.callPackage ../../pkgs/materia-custom.nix {});
 	};
 	gtk2 = {
 		configLocation = "/home/paul/.gtkrc-2.0";
