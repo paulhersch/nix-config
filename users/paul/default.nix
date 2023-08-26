@@ -34,7 +34,8 @@ in
 		];
 		shell = pkgs.zsh;
 		packages = with pkgs;[
-			rocminfo
+			chromium
+			firefox
 			steam-run
 			prismlauncher
 			jetbrains.idea-community
@@ -74,6 +75,7 @@ in
 			gnumake
 			cargo
 			texlive.combined.scheme-full
+			anydesk
 
 			# psqlcli
 			postgresql_15

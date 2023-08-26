@@ -44,6 +44,7 @@
 	preLVM = true;
     };
   hardware = {
+  	keyboard.qmk.enable = true;
 	bluetooth = {
 		enable = true;
 		package = pkgs.bluezFull;
