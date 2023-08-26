@@ -29,10 +29,12 @@
 				nixpkgs-f2k.overlays.default
 				(final: prev: let inherit (final) system; in {
 					unstable = import inputs.unstable { inherit config system; };
-					cosmic-comp = inputs.cosmic.packages.${system}.default;
-					awesome-git-luajit = prev.awesome-git.override {
-						lua = prev.luajit;
-					};
+					# cosmic-comp = inputs.cosmic.packages.${system}.default;
+					# awesome-git-luajit = prev.awesome-git.override {
+					# 	lua = prev.luajit;
+					# };
+					# map to f2k output
+					awesome-git-luajit = final.awesome-luajit-git;
 				})
 			];
 

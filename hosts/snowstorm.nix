@@ -83,6 +83,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
   boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware = {
+  	keyboard.qmk.enable = true;
 	bluetooth = {
 		enable = true;
 		package = pkgs.bluezFull;
