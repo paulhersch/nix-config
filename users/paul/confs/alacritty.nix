@@ -15,10 +15,8 @@ scrolling:
   multiplier: 5
 font:
   normal:
-    - family: Iosevka Comfy Motion
-  size: 9
-  offset: 
-    y: 2
+    family: Iosevka With Fallback
+  size: 8
   builtin_box_drawing: true
 selection:
   save_to_clipboard: true

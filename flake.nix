@@ -10,12 +10,12 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nix-gaming.url = github:fufexan/nix-gaming;
-		# cosmic.url = github:pop-os/cosmic-comp;
 	};
 
 	outputs =
 		{ self
 		, nixpkgs
+		, home-manager
 		, ...
 		}@inputs:
 		with nixpkgs.lib;
@@ -48,19 +48,21 @@
 					system = "x86_64-linux";
 					modules = overlayed_nixpkgs ++ [
 						./configuration.nix
-						inputs.home-manager.nixosModules.home-manager
 						./hosts/snowstorm.nix
 						./nixsettings.nix
 						inputs.nix-gaming.nixosModules.pipewireLowLatency
+						home-manager.nixosModules.home-manager {
+						}
 					];
 				};
 				snowflake = nixosSystem {
 					system = "x86_64-linux";
 					modules = overlayed_nixpkgs ++ [
 						./configuration.nix
-						inputs.home-manager.nixosModules.home-manager
 						./hosts/snowflake.nix
 						./nixsettings.nix
+						home-manager.nixosModules.home-manager {
+						}
 					];
 				};
 				snowball = nixosSystem {

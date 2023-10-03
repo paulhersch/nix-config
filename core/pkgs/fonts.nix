@@ -5,12 +5,9 @@
 		( nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" "FantasqueSansMono" ];} )
 		lato
 		inter
-		recursive
-		cascadia-code
 		iosevka-comfy.comfy-motion
 		iosevka-comfy.comfy-motion-duo
 		material-design-icons
-		emacs-all-the-icons-fonts
 		twitter-color-emoji
 	];
 }

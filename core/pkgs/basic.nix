@@ -7,7 +7,7 @@ with pkgs; [
 	zathura
 	unstable.thunderbird-bin
 	pdfarranger
-	unstable.discord
+	unstable.discord-ptb
 	keepassxc
 	xournalpp
 ]
