@@ -112,6 +112,7 @@ in
 			".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
 			".config/alacritty/alacritty.yml".text = import ./confs/alacritty.nix { inherit theme; };
 			".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
+			".config/fontconfig/conf.d/99-alias-main.conf".text = import ./confs/fontconf.nix {};
 			".zshrc".text = ''
 				#export PATH=$PATH:~/.pyenv/bin/
 				#eval "$(pyenv init -)"
@@ -120,6 +121,14 @@ in
 		};
 
 		programs = {
+			discocss = {
+				enable = true;
+				# You can override the discord package discocss uses
+				discordPackage = pkgs.unstable.discord-ptb; #pkgs.discord.overrideAttrs (old: { ... });
+				# Set to false if you don't want your Discord binary to be aliased to discocss
+				discordAlias = true;
+				css = (import ./confs/discord_css.nix { inherit theme; });
+			};
 			autorandr = import ./autorandrhm.nix {};
 			direnv = {
 				enable = true;
