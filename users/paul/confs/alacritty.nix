@@ -4,6 +4,8 @@
 # Alacritty cant use fallback fonts,
 # so until its happening st is best friend
 with theme; ''
+env:
+  WINIT_X11_SCALE_FACTOR: "1"
 window:
   padding:
     x: 5
@@ -16,7 +18,7 @@ scrolling:
 font:
   normal:
     family: Iosevka With Fallback
-  size: 8
+  size: 12
   builtin_box_drawing: true
 selection:
   save_to_clipboard: true

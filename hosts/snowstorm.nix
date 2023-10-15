@@ -77,11 +77,13 @@
   	videoDrivers = [ "amdgpu" ];
 	# this appends as opposed to what docs say
 	deviceSection = ''
+  Option "TearFree" "true"
   Option "VariableRefresh" "true"
+  Option "EnablePageFlip" "true"
 	'';
   };
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   hardware = {
   	keyboard.qmk.enable = true;
 	bluetooth = {

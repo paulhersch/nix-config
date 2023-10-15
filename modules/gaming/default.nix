@@ -23,7 +23,7 @@ let
 		factorio
 	];
 	stablepkgs = with pkgs; [
-		openrazer-daemon
+		# openrazer-daemon
 		polychromatic
 	];
 #	freesyncsteam = pkgs.writeShellScriptBin "freesyncgamescope" ''

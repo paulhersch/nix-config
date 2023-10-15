@@ -85,6 +85,7 @@ in
 		};
 	};
 	config = mkIf cfg.enable {
+		systemd.user.services.dbus.wantedBy = [ "default.target" ];
 		services.xserver.displayManager.lightdm.enable = lib.mkForce false;
 		services.xserver.displayManager.startx.enable = true;
 		services.greetd = {
