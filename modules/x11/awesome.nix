@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, options, ...}:
 
 let
 	lua-libpulse = pkgs.callPackage({ stdenv, luajit, fetchFromGitHub, pkg-config, libpulseaudio, glib, gobject-introspection, sass }:
@@ -57,8 +57,22 @@ in
 	imports = [
 		./x11defaults.nix
 	];
-	services.xserver = {
-		displayManager.gtkgreet.entries = [{
+	# create configs for lightdm and own greeter (if imported)
+	services.xserver.displayManager = {
+		session = [{
+			manage = "desktop";
+			name = "awesomeWM";
+			start = ''
+				dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+				${pkgs.awesome-git-luajit}/bin/awesome ${makeSearchPath luaModules} 2> ~/.cache/awesome/stderr &
+				${pkgs.lightlocker}/bin/light-locker &
+				xrdb -load .Xresources
+				autorandr -c
+            			waitPID=$!
+			'';
+		}];
+	} // lib.optionalAttrs (builtins.hasAttr "gtkgreet" options.services.xserver.displayManager) {
+		gtkgreet.entries = [{
 			entryName="awesome";
 			isXWM = true;
 			preCmd = ''
@@ -69,6 +83,7 @@ in
 			postCmd = "dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
 		}];
 	};
+
 	environment.systemPackages = with pkgs; [
 		awesome-git-luajit #for awesome-client
 		xsel
@@ -78,6 +93,7 @@ in
 		networkmanagerapplet
 		picom
 		libnotify
+		lightlocker
 		lxrandr
 		redshift
 		i3lock-color

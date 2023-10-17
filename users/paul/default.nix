@@ -113,11 +113,7 @@ in
 			".config/alacritty/alacritty.yml".text = import ./confs/alacritty.nix { inherit theme; };
 			".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
 			".config/fontconfig/conf.d/99-alias-main.conf".text = import ./confs/fontconf.nix {};
-			".zshrc".text = ''
-				#export PATH=$PATH:~/.pyenv/bin/
-				#eval "$(pyenv init -)"
-				eval "$(direnv hook zsh)"
-			'';
+			".zshrc".text = "eval \"$(direnv hook zsh)\"";
 		};
 
 		programs = {

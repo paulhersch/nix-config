@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 	imports = [ 
@@ -8,11 +8,15 @@
 		./modules/x11/awesome.nix
 		#./modules/wayland/hyprland.nix
 		#./modules/wayland/sway.nix
-		#./modules/display-manager/lightdm
-		./modules/display-manager/greetd
+		./modules/display-manager/lightdm
+		#./modules/display-manager/greetd
 	];
-	
-	services.xserver.displayManager.gtkgreet.enable = true;
+
+	# if greeter module is imported use greeter, else lightdm will be activated
+	services.xserver.displayManager = {} // lib.optionalAttrs (
+		builtins.hasAttr "gtkgreet" config.services.xserver.displayManager) {
+			gtkgreet.enable = true;
+		};
 	
 	zramSwap = {
 		enable = true;
@@ -55,7 +59,10 @@
 
 	i18n.defaultLocale = "de_DE.UTF-8";
 	
-	services.xserver.xkbOptions = "caps:escape";
+	services.xserver = {
+		layout = "de";
+		xkbOptions = "caps:escape";
+	};
 	console.useXkbConfig = true;
 	
 	environment.extraInit = ''

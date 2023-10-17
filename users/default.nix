@@ -4,7 +4,6 @@
 		./paul
 		./luise
 	];
-	#home-manager.users.paul = import ./paul;
 	system.userActivationScripts = {
 		xinitrc.text = ''ln -sf "/etc/X11/xinit/xinitrc" "$HOME/.xinitrc"'';
 	};

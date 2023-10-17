@@ -33,6 +33,7 @@
 					awesome-git-luajit = prev.awesome-git.override {
 						lua = prev.luajit;
 					};
+					gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix {};
 				})
 			];
 

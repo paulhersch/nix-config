@@ -9,8 +9,8 @@
 				greeters.gtk = {
 					enable = true;
 					theme = {
-						package = pkgs.orchis-theme;
-						name="Orchis-Dark";
+						package = pkgs.gtk-materia-custom;
+						name="Materia-custom";
 					};
 					cursorTheme = {
 						package = pkgs.phinger-cursors;
