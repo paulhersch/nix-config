@@ -29,10 +29,6 @@
 				nixpkgs-f2k.overlays.default
 				(final: prev: let inherit (final) system; in {
 					unstable = import inputs.unstable { inherit config system; };
-					cosmic-comp = inputs.cosmic.packages.${system}.default;
-					awesome-git-luajit = prev.awesome-git.override {
-						lua = prev.luajit;
-					};
 					gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix {};
 				})
 			];

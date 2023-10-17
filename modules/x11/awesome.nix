@@ -64,7 +64,7 @@ in
 			name = "awesomeWM";
 			start = ''
 				dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-				${pkgs.awesome-git-luajit}/bin/awesome ${makeSearchPath luaModules} 2> ~/.cache/awesome/stderr &
+				${pkgs.awesome-luajit-git}/bin/awesome ${makeSearchPath luaModules} 2> ~/.cache/awesome/stderr &
 				${pkgs.lightlocker}/bin/light-locker &
 				xrdb -load .Xresources
 				autorandr -c
@@ -85,7 +85,7 @@ in
 	};
 
 	environment.systemPackages = with pkgs; [
-		awesome-git-luajit #for awesome-client
+		awesome-luajit-git #for awesome-client
 		xsel
 		xclip
 		maim
