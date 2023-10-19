@@ -1,6 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
+	services.uni.jupyter.enable = true;
 	services.teamviewer.enable = true;
 	imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 	networking.hostName = "snowflake";

@@ -45,6 +45,8 @@
 						./configuration.nix
 						./hosts/snowstorm.nix
 						./nixsettings.nix
+						./modules/uni
+						./modules/gaming
 						inputs.nix-gaming.nixosModules.pipewireLowLatency
 						home-manager.nixosModules.home-manager {
 						}
@@ -56,6 +58,7 @@
 						./configuration.nix
 						./hosts/snowflake.nix
 						./nixsettings.nix
+						./modules/uni
 						home-manager.nixosModules.home-manager {
 						}
 					];
