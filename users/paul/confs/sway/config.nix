@@ -23,7 +23,7 @@ set $up Up
 set $right Right
 
 # i am enabling the user service, so no pkgs ref here
-set $term foot
+set $term alacritty
 
 set $menu "${pkgs.wofi}/bin/wofi --show drun,run"
 
@@ -41,10 +41,10 @@ input  * {
 }
 
 #settings for Desktop Monitor
-output 'Unknown HP 27xq CNK0311FR2' mode 2560x1440@144Hz adaptive_sync on
+output "HP Inc. HP 27xq CNK0311FR2" mode 2560x1440@144Hz adaptive_sync on
 
 ## bg TODO put this in the git repo
-output "*" background ~/Bilder/Hintergrundbilder/dark-street.jpg fill
+output "*" background ~/Bilder/Hintergrundbilder/pelicans.jpg fill
 
 bindsym $mod+0 exec ${pkgs.wlogout}/bin/wlogout
 
