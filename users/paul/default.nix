@@ -34,6 +34,7 @@ in
 		];
 		shell = pkgs.zsh;
 		packages = with pkgs;[
+			qmk
 			chromium
 			firefox
 			steam-run

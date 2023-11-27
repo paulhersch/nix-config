@@ -60,7 +60,6 @@
 	i18n.defaultLocale = "de_DE.UTF-8";
 	
 	services.xserver = {
-		layout = "de";
 		xkbOptions = "caps:escape";
 	};
 	console.useXkbConfig = true;

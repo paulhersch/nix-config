@@ -10,6 +10,7 @@ let
 	];
 	stablepkgs = with pkgs; [
 		polychromatic
+		radeontop
 	];
 in
 {
