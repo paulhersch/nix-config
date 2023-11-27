@@ -17,7 +17,12 @@
 		};
 	};
 
-	services.xserver.videoDrivers = [ "amdgpu" ];
+	services.xserver = {
+		videoDrivers = [ "amdgpu" ];
+		deviceSection = ''
+		  Option "TearFree" "true"
+		'';
+	};
 
 	fileSystems."/" = {
 		device = "/dev/disk/by-uuid/addcd413-7635-48ae-b091-4892545a0a5c";

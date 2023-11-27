@@ -21,6 +21,7 @@ in {
 				python3 = let
 					env = (pkgs.python3.withPackages (p: with p; [
 						ipykernel
+						requests
 					]));
 				in {
 					displayName = "Python RNuVS";

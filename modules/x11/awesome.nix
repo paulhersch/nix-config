@@ -98,8 +98,8 @@ in
 		redshift
 		i3lock-color
 		sox
-		cinnamon.nemo
 		pamixer
 		imagemagick
+		pcmanfm
 	];
 }

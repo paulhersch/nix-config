@@ -32,7 +32,7 @@ in
 			"plugdev"
 			"wheel" # for cups
 		];
-		shell = pkgs.zsh;
+		shell = pkgs.zsh; # hilbish;
 		packages = with pkgs;[
 			chromium
 			firefox
@@ -97,7 +97,7 @@ in
 			sumneko-lua-language-server
 			omnisharp-roslyn
 			rnix-lsp
-			unstable.nimlsp
+			ccls
 			# debuggers
 		] ++ pylsp;
   	};

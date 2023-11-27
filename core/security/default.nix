@@ -17,6 +17,8 @@
 			#needed for kdeconnect
 			allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
 			allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+			# samba browsing
+			extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
 		};
 	};
 }

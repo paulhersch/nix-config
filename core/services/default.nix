@@ -1,4 +1,4 @@
-{ pkgs, config, ...}:
+{ pkgs, config, lib, ...}:
 
 {
 	imports = [
@@ -9,7 +9,10 @@
 		upower.enable = true;
 		openssh.enable = true;
 		blueman.enable = true;
-		gvfs.enable = true;
+		gvfs = {
+			enable = true;
+			package = lib.mkForce pkgs.gnome.gvfs;
+		};
 		gnome = {
 			gnome-keyring.enable = pkgs.lib.mkForce false;
 		};
@@ -20,8 +23,12 @@
 		xserver.modules = with pkgs; [ xf86_input_wacom ];
 	};
 
-	programs.dconf.enable = true;
-	programs.ssh.enableAskPassword = false;
+	programs = {
+		#thunar.enable = true;
+		dconf.enable = true;
+		ssh.enableAskPassword = false;
+		system-config-printer.enable = true;
+	};
 	virtualisation = {
 		libvirtd.enable = true;
 		docker = {

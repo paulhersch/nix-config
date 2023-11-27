@@ -8,6 +8,7 @@ with pkgs; [
 	smartmontools
 	brightnessctl
 	unzip
+	zip
 	gammastep
 	pamixer
 	patchelf
@@ -19,6 +20,7 @@ with pkgs; [
 	android-tools
 	partclone
 	nsnake
+	cifs-utils
 ] ++ [
 	pkgs.unstable.neovim
 ]
