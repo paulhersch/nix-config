@@ -7,7 +7,7 @@
 		./core
 		./modules/x11/awesome.nix
 		#./modules/wayland/hyprland.nix
-		#./modules/wayland/sway.nix
+		./modules/wayland/sway.nix
 		./modules/display-manager/lightdm
 		#./modules/display-manager/greetd
 	];
@@ -60,7 +60,6 @@
 	i18n.defaultLocale = "de_DE.UTF-8";
 	
 	services.xserver = {
-		layout = "de";
 		xkbOptions = "caps:escape";
 	};
 	console.useXkbConfig = true;

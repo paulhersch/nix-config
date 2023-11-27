@@ -34,6 +34,7 @@ in
 		];
 		shell = pkgs.zsh; # hilbish;
 		packages = with pkgs;[
+			qmk
 			chromium
 			firefox
 			steam-run
@@ -119,9 +120,7 @@ in
 		programs = {
 			discocss = {
 				enable = true;
-				# You can override the discord package discocss uses
-				discordPackage = pkgs.unstable.discord-ptb; #pkgs.discord.overrideAttrs (old: { ... });
-				# Set to false if you don't want your Discord binary to be aliased to discocss
+				discordPackage = pkgs.unstable.discord;
 				discordAlias = true;
 				css = (import ./confs/discord_css.nix { inherit theme; });
 			};
