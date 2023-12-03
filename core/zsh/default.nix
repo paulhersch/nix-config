@@ -61,7 +61,7 @@
 #
 #	ALIASES & CUSTOM FUNCTIONS
 #
-			alias tree="${pkgs.exa}/bin/exa --tree"
+			alias tree="${pkgs.eza}/bin/eza --tree"
 			alias cl="clear"
 			alias git-update="${pkgs.git}/bin/git fetch --recurse-submodules=no --progress --prune ''${1}"
 			# useful for rootless docker, but that shit buggy af anyways
