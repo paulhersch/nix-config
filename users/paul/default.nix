@@ -77,6 +77,7 @@ in
 			cargo
 			texlive.combined.scheme-full
 			anydesk
+			pdfpc
 
 			# psqlcli
 			postgresql_15
