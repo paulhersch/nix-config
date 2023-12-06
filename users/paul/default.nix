@@ -148,7 +148,7 @@ in
 				settings = {
 					main = {
 						term = "xterm-256color";
-						font = "Iosevka Comfy Motion:size=10.5, Symbols Nerd Font:size=10.5";
+						font = "Iosevka With Fallback:size=12";
 						pad = "10x10";
 						dpi-aware = "no";
 					};

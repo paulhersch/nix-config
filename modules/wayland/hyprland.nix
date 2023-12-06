@@ -1,20 +1,33 @@
-{ config, pkgs, lib, ... }:
-
+{ config, pkgs, lib, options, ... }:
+# I want to use lua (coming from awesome wm) to serve
+# the data eww needs. this lua env is botched together here
 let
-	flake = (builtins.getFlake "https://github.com/hyprwm/Hyprland/archive/master.tar.gz");
-	hyprland-pkg = flake.packages.${pkgs.system}.default;
-	hyprland = pkgs.writeShellScriptBin "hyprland-run" ''
-		${hyprland-pkg}/bin/Hyprland
+	lua-stuff = import ../display-mixed/awm-lua-env.nix {
+		inherit config lib pkgs options;
+	};
+
+	luaEnvSearchPath = lib.concatMapStringsSep ";" (path:
+		(lua-stuff.getLuaPath path "share") + "/?.lua;" +
+		(lua-stuff.getLuaPath path "lib") + "/?.lua"
+	) lua-stuff.modules;
+	luaCenvSearchPath = lib.concatMapStringsSep ";" (path:
+		(lua-stuff.getLuaPath path "share") + "/?.so;" +
+		(lua-stuff.getLuaPath path "lib") + "/?.so"
+	) lua-stuff.modules;
+
+	eww-lua-env = pkgs.writeShellScriptBin "eww-lua" ''
+		export LUA_PATH="''${LUA_PATH};${luaEnvSearchPath}"
+		export LUA_CPATH="''${LUA_CPATH};${luaCenvSearchPath}"
+		${pkgs.luajit}/bin/luajit $@
 	'';
 in
 {
-	imports = [
-		flake.nixosModules.default
-	];
-	
+	programs.hyprland = {
+		enable = true;
+		xwayland.enable = true;
+	};
+
 	environment.systemPackages = with pkgs; [
-		hyprland
-		hyprland-pkg
 		foot
 		fusuma
 		grim
@@ -22,12 +35,9 @@ in
 		rofi
 		wlogout
 		wev
-		waybar
+		ags
+		eww-wayland
+		eww-lua-env
+		oguri
 	];
-
-	# hyprland cachix
-	nix.settings = {
-		substituters = ["https://hyprland.cachix.org"];
-		trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-	};
 }

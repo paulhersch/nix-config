@@ -2,14 +2,13 @@
 
 {
 	imports = [ 
-		#./hardware-configuration.nix
 		./users
 		./core
 		./modules/x11/awesome.nix
-		#./modules/wayland/hyprland.nix
-		./modules/wayland/sway.nix
+		./modules/wayland/hyprland.nix
+		# ./modules/wayland/sway.nix
 		./modules/display-manager/lightdm
-		#./modules/display-manager/greetd
+		# ./modules/display-manager/greetd
 	];
 
 	# if greeter module is imported use greeter, else lightdm will be activated

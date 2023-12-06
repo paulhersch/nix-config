@@ -10,6 +10,7 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nix-gaming.url = github:fufexan/nix-gaming;
+		ags.url = github:Aylur/ags;
 	};
 
 	outputs =
@@ -28,6 +29,7 @@
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
 				nixpkgs-f2k.overlays.default
 				(final: prev: let inherit (final) system; in {
+					ags = inputs.ags.packages.${system}.default;
 					unstable = import inputs.unstable { inherit config system; };
 					gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix {};
 				})
