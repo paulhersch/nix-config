@@ -8,4 +8,5 @@ with pkgs; [
 	vlc
 	obs-studio
 	feh
+	handbrake
 ]
