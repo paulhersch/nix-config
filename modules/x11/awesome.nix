@@ -20,12 +20,12 @@ in
 			manage = "desktop";
 			name = "awesomeWM";
 			start = ''
-				dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-				autorandr -c
 				xrdb -load .Xresources
 				${pkgs.awesome-luajit-git}/bin/awesome ${env-searchpath} 2> ~/.cache/awesome/stderr &
-            			waitPID=$!
-				${pkgs.lightlocker}/bin/light-locker &
+				waitPID=$!
+				dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+				dbus-launch --exit-with-x11 ${pkgs.lightlocker}/bin/light-locker &
+				autorandr -c
 			'';
 		}];
 	} // lib.optionalAttrs (builtins.hasAttr "gtkgreet" options.services.xserver.displayManager) {
@@ -59,4 +59,13 @@ in
 		imagemagick
 		pcmanfm
 	];
+
+	xdg.portal = {
+		enable = true;
+		extraPortals = with pkgs; [
+			xdg-desktop-portal-gtk
+		];
+		# use wm/de name defined above
+		config.awesomeWM = { default = [ "gtk" ];};
+	};
 }

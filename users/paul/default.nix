@@ -85,6 +85,8 @@ in
 			## neovim + deps
 			unstable.neovim
 			unstable.neovide
+			# fucking Jupyter Notebooks
+			vscodium
 			# wezterm-git
 
 			ripgrep
@@ -93,8 +95,6 @@ in
 			# language servers
 			texlab
 			ltex-ls
-			# jdt-language-server
-			# java-language-server
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
@@ -124,12 +124,12 @@ in
 		};
 
 		programs = {
-			discocss = {
-				enable = true;
-				discordPackage = pkgs.unstable.discord;
-				discordAlias = true;
-				css = (import ./confs/discord_css.nix { inherit theme; });
-			};
+			#discocss = {
+			#	enable = true;
+			#	discordPackage = pkgs.unstable.discord;
+			#	discordAlias = true;
+			#	css = (import ./confs/discord_css.nix { inherit theme; });
+			#};
 			autorandr = import ./autorandrhm.nix {};
 			direnv = {
 				enable = true;

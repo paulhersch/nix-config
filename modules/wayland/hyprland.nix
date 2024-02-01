@@ -37,8 +37,18 @@ in
 		wlogout
 		wev
 		ags
-		eww-wayland
-		eww-lua-env
+		# eww-wayland
+		# eww-lua-env
 		oguri
+		inotify-tools
 	];
+
+	xdg.portal = {
+		enable = true;
+		wlr.enable = true;
+		extraPortals = with pkgs; [
+			xdg-desktop-portal-hyprland
+			xdg-desktop-portal-gtk
+		];
+	};
 }
