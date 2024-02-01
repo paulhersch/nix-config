@@ -26,7 +26,6 @@
 	programs = {
 		#thunar.enable = true;
 		dconf.enable = true;
-		ssh.enableAskPassword = false;
 		system-config-printer.enable = true;
 	};
 	virtualisation = {

@@ -1,4 +1,4 @@
-{ config, ...}:
+{ config, pkgs, ...}:
 
 {
 	imports = [
@@ -20,5 +20,9 @@
 			# samba browsing
 			extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
 		};
+	};
+	programs.ssh = {
+		askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
+		enableAskPassword = true;
 	};
 }

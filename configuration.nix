@@ -31,11 +31,12 @@
 	boot = {
 		initrd.systemd.enable = true;
 		plymouth = {
-			theme = "splash";
-			themePackages = [(
-				pkgs.unstable.adi1090x-plymouth-themes.override {
-					selected_themes = ["splash"];
-			})];
+			# theme = "splash";
+			# themePackages = [
+			#	(pkgs.unstable.adi1090x-plymouth-themes.override {
+			#		selected_themes = ["splash"];
+			#	})
+			#];
 			enable = true;
 		};
   		loader = { 

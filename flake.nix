@@ -4,7 +4,7 @@
 	inputs = {
 		nixpkgs.url = github:nixos/nixpkgs/nixos-23.11;
 		unstable.url = github:nixos/nixpkgs/nixpkgs-unstable;
-		nixpkgs-f2k.url = github:fortuneteller2k/nixpkgs-f2k;
+		nixpkgs-f2k.url = github:moni-dz/nixpkgs-f2k;
 		home-manager = {
 			url = github:nix-community/home-manager/release-23.11;
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +32,51 @@
 					ags = inputs.ags.packages.${system}.default;
 					unstable = import inputs.unstable { inherit config system; };
 					gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix {};
+					# fail due to xdg directories being created in build.rs
+					pinnacle-comp = prev.pkgs.rustPlatform.buildRustPackage rec {
+						pname = "pinnacle-comp";
+						version = "dev";
+						src = prev.pkgs.fetchFromGitHub {
+							owner = "pinnacle-comp";
+							repo = "pinnacle";
+							rev = "7012b86a2deef195fc4562ded2699370189d01e5";
+							hash = "sha256-CYskHVV47JpMLoGbMW/3jTqUIqbOHRuMcbn28PXF/7M=";
+						};
+						cargoLock = {
+							lockFile = "${src}/Cargo.lock";
+							outputHashes = {
+								"smithay-0.3.0" = "sha256-IiHx7tqqANbZhz4EVjArcTj///lgd2ge2GFB66sZ3eM=";
+							};
+						};
+						preBuild = ''
+							export XDG_DATA_HOME=$out/share
+						'';
+						buildInputs = with prev.pkgs; [
+							(lua5_4.withPackages(lp: with lp; [
+								luarocks
+							]))
+							systemd.dev # libudev is in systemd
+							wayland
+							libxkbcommon
+							libinput
+							seatd
+							mesa
+							libglvnd
+							libGL.dev
+							egl-wayland
+							protobuf
+							xwayland
+							(with xorg; [
+								libX11
+								libXcursor
+								libXrandr
+							])
+
+						];
+						nativeBuildInputs = buildInputs ++ (with prev.pkgs; [
+							pkg-config
+						]);
+					};
 				})
 			];
 

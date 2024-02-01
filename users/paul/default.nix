@@ -38,11 +38,11 @@ in
 			chromium
 			firefox
 			steam-run
-			prismlauncher
+			# prismlauncher
 			jetbrains.idea-community
 			dbeaver
 			openjdk
-			maven
+			# maven
 			(pkgs.callPackage ../../pkgs/st-flex.nix {
 				addPatches = [
 					"anysize"
@@ -101,6 +101,11 @@ in
 			rnix-lsp
 			ccls
 			# debuggers
+			gdb
+
+			# annoying ass work software
+			# citrix_workspace
+			remmina
 		] ++ pylsp;
   	};
 	home-manager.users.paul = {

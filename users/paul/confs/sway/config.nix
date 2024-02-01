@@ -41,7 +41,7 @@ input  * {
 }
 
 #settings for Desktop Monitor
-output "HP Inc. HP 27xq CNK0311FR2" mode 2560x1440@144Hz adaptive_sync on
+output "HP Inc. HP 27xq CNK0311FR2" mode 2560x1440@144Hz # adaptive_sync on
 
 ## bg TODO put this in the git repo
 output "*" background ~/Bilder/Hintergrundbilder/pelicans.jpg fill
