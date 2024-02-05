@@ -2,7 +2,6 @@
 
 let
 	unstablepkgs = with pkgs.unstable; [
-		steam
 		# heroic
 		# gamescope
 		prismlauncher
