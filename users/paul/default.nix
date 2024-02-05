@@ -88,7 +88,7 @@ in
 			# fucking Jupyter Notebooks
 			vscodium
 			# wezterm-git
-
+			zk
 			ripgrep
 			fd
 			
@@ -120,7 +120,10 @@ in
 			".config/alacritty/alacritty.yml".text = import ./confs/alacritty.nix { inherit theme; };
 			".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
 			".config/fontconfig/conf.d/99-alias-main.conf".text = import ./confs/fontconf.nix {};
-			".zshrc".text = "eval \"$(direnv hook zsh)\"";
+			".zshrc".text = ''
+				eval "$(direnv hook zsh)"
+				export ZK_NOTEBOOK_DIR=$HOME/Dokumente/Uni/zk
+			'';
 		};
 
 		programs = {
