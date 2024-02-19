@@ -21,11 +21,11 @@ in
 			name = "awesomeWM";
 			start = ''
 				xrdb -load .Xresources
+				autorandr -c
 				${pkgs.awesome-luajit-git}/bin/awesome ${env-searchpath} 2> ~/.cache/awesome/stderr &
 				waitPID=$!
 				dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
 				dbus-launch --exit-with-x11 ${pkgs.lightlocker}/bin/light-locker &
-				autorandr -c
 			'';
 		}];
 	} // lib.optionalAttrs (builtins.hasAttr "gtkgreet" options.services.xserver.displayManager) {

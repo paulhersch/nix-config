@@ -5,8 +5,8 @@
 		./users
 		./core
 		./modules/x11/awesome.nix
-		./modules/wayland/hyprland.nix
-		# ./modules/wayland/sway.nix
+		# ./modules/wayland/hyprland.nix
+		./modules/wayland/sway.nix
 		./modules/display-manager/lightdm
 		# ./modules/display-manager/greetd
 	];
