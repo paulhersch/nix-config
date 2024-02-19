@@ -21,7 +21,9 @@
 		wlogout
 		wev
 		fusuma
-		eww-wayland
+		# eww-wayland
+		ags
+		inotify-tools
 		wf-recorder
 		waybar
 		unstable.foot
@@ -35,9 +37,9 @@
 				base = true;
 				gtk = true;
 			};
-			# package = pkgs.wayland-overlay.sway-unwrapped;
+			package = pkgs.unstable.swayfx;
 			extraSessionCommands = ''
-				${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+				dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
 			'';
 		};
 	};

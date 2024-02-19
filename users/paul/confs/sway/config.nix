@@ -11,8 +11,8 @@ let
 			${pkgs.grim}/bin/grim -c -t jpeg $PICTURE_DIR/Screenshots/$NAME.jpg
 		fi
 	'';
-	swaync_css = pkgs.writeText "style.css" (import ./swaync_style.css.nix { inherit theme; });
-	swaync_conf = pkgs.writeText "conf.json" (import ./swaync_config.json.nix { inherit theme; inherit pkgs; });
+	# swaync_css = pkgs.writeText "style.css" (import ./swaync_style.css.nix { inherit theme; });
+	# swaync_conf = pkgs.writeText "conf.json" (import ./swaync_config.json.nix { inherit theme; inherit pkgs; });
 in
 with theme; ''
 set $mod Mod1
@@ -23,7 +23,7 @@ set $up Up
 set $right Right
 
 # i am enabling the user service, so no pkgs ref here
-set $term alacritty
+set $term foot
 
 set $menu "${pkgs.wofi}/bin/wofi --show drun,run"
 
@@ -40,8 +40,9 @@ input  * {
     xkb_layout "de"
 }
 
-#settings for Desktop Monitor
-output "HP Inc. HP 27xq CNK0311FR2" mode 2560x1440@144Hz # adaptive_sync on
+# settings for Desktop Monitor
+output "HP Inc. HP 27xq CNK0311FR2" mode 2560x1440@144Hz
+# adaptive_sync on
 
 ## bg TODO put this in the git repo
 output "*" background ~/Bilder/Hintergrundbilder/pelicans.jpg fill
@@ -133,10 +134,20 @@ bindsym $mod+Tab scratchpad show
 ### Resizing containers: ###
 
 mode "resize" {
-    bindsym $right resize shrink width 20px
-    bindsym $up resize grow height 20px
-    bindsym $down resize shrink height 20px
-    bindsym $left resize grow width 20px
+    bindsym $right resize grow width 20px
+    bindsym $up resize shrink height 20px
+    bindsym $down resize grow height 20px
+    bindsym $left resize shrink width 20px
+
+    bindsym d resize grow width 20px
+    bindsym w resize shrink height 20px
+    bindsym s resize grow height 20px
+    bindsym a resize shrink width 20px
+
+    # bindsym Shift+d move right
+    # bindsym Shift+w resize shrink height 20px
+    # bindsym Shift+s resize grow height 20px
+    # bindsym Shift+a resize shrink width 20px
 
     bindsym Escape mode "default"
 }
@@ -155,12 +166,33 @@ client.background       #${bg}
 gaps inner 9
 default_border pixel 2
 
-exec ${pkgs.unstable.swaynotificationcenter}/bin/swaync -s ${swaync_css} -c ${swaync_conf}
+### SwayFX options: ###
+
+shadows enable
+shadows_on_csd enable
+shadow_blur_radius 7
+shadow_color #${c7}
+# not in 0.3.2
+# shadow_offset 5 4
+
+# ags windows
+layer_effects "bar-0" blur enable; shadows enable
+layer_effects "bar-1" blur enable; shadows enable
+layer_effects "bar-2" blur enable; shadows enable
+layer_effects "bar-3" blur enable; shadows enable
+layer_effects "launcher" blur enable; shadows enable
+
+### Autoexec: ###
+
 exec ${pkgs.autotiling-rs}/bin/autotiling-rs
 exec ${pkgs.blueman}/bin/blueman-applet
+# tends to crash a lot
 exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
 exec_always pkill gammastep; ${pkgs.gammastep}/bin/gammastep -O 4500
-exec_always pkill waybar; ${pkgs.waybar}/bin/waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css
+# ags autoreload script
+# exec ags -c ~/.config/sway/ags
 
 include /etc/sway/config.d/
 ''
+# exec ${pkgs.unstable.swaynotificationcenter}/bin/swaync -s ${swaync_css} -c ${swaync_conf}
+# exec_always pkill waybar; ${pkgs.waybar}/bin/waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css
