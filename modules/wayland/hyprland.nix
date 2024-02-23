@@ -28,7 +28,7 @@ in
 	};
 
 	environment.systemPackages = with pkgs; [
-		pinnacle-comp
+		# pinnacle-comp
 		foot
 		fusuma
 		grim

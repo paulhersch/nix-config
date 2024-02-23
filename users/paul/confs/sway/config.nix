@@ -27,22 +27,16 @@ set $term foot
 
 set $menu "${pkgs.wofi}/bin/wofi --show drun,run"
 
+# defining colors
+set $bg0 #${bg}
+set $bg1 #${lbg}
+set $bg2 #${llbg}
+set $fg0 #${fg}
+set $fg1 #${ddfg}
+
+set $red #${c1}
+
 xwayland enable
-
-input "1267:12541:ELAN071A:00_04F3:30FD_Touchpad" {
-    dwt enabled
-    tap enabled
-    natural_scroll disabled
-    middle_emulation enabled
-}
-
-input  * {
-    xkb_layout "de"
-}
-
-# settings for Desktop Monitor
-output "HP Inc. HP 27xq CNK0311FR2" mode 2560x1440@144Hz
-# adaptive_sync on
 
 ## bg TODO put this in the git repo
 output "*" background ~/Bilder/Hintergrundbilder/pelicans.jpg fill
@@ -69,7 +63,8 @@ for_window [app_id="nemo"] floating enable
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec $menu
+# eval at runtime, allow overrides
+bindsym $mod+d exec $$menu
 
 floating_modifier $mod normal
 
@@ -115,8 +110,6 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 
 ### Layout stuff: ###
-bindsym $mod+h splith
-bindsym $mod+v splitv
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
@@ -153,20 +146,20 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+### Visual Style ###
+
 # class                 border  backgr. text     indicator child_border
-client.focused          #${llbg} #${bg}  #${fg}   #${lbg}   #${lbg}
-client.focused_inactive #${bg}  #${bg}  #${ddfg} #${bg}    #${bg}
-client.unfocused        #${bg}  #${bg}  #${ddfg} #${bg}    #${bg}
-client.urgent           #${c1}  #${bg}  #${fg}   #${c1}    #${c1}
-client.placeholder      #${bg}  #${bg}  #${ddfg} #${bg}    #${bg}
+client.focused          $bg2 	$bg0  	$fg0     $bg1      $bg1
+client.focused_inactive $bg0    $bg0    $fg1     $bg0      $bg0
+client.unfocused        $bg0    $bg0    $fg1     $bg0      $bg0
+client.urgent           $red    $bg0    $fg0     $red      $red
+client.placeholder      $bg0    $bg0    $fg1     $bg0      $bg0
+client.background       $bg0
 
-client.background       #${bg}
-
-### Visual Style: ###
 gaps inner 9
 default_border pixel 2
 
-### SwayFX options: ###
+### SwayFX options ###
 
 shadows enable
 shadows_on_csd enable
@@ -182,17 +175,19 @@ layer_effects "bar-2" blur enable; shadows enable
 layer_effects "bar-3" blur enable; shadows enable
 layer_effects "launcher" blur enable; shadows enable
 
-### Autoexec: ###
+### Includes ###
+
+include "include.d/shared/*"
+include "include.d/$(cat /etc/hostname)/*"
+
+### Autoexec ###
 
 exec ${pkgs.autotiling-rs}/bin/autotiling-rs
 exec ${pkgs.blueman}/bin/blueman-applet
 # tends to crash a lot
 exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
 exec_always pkill gammastep; ${pkgs.gammastep}/bin/gammastep -O 4500
-# ags autoreload script
-# exec ags -c ~/.config/sway/ags
 
-include /etc/sway/config.d/
 ''
 # exec ${pkgs.unstable.swaynotificationcenter}/bin/swaync -s ${swaync_css} -c ${swaync_conf}
 # exec_always pkill waybar; ${pkgs.waybar}/bin/waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css
