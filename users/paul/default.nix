@@ -93,12 +93,13 @@ in
 			fd
 			
 			# language servers
-			texlab
+			# texlab
 			ltex-ls
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
-			rnix-lsp
+			quick-lint-js
+			nixd
 			ccls
 			# debuggers
 			gdb

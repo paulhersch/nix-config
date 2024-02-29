@@ -22,7 +22,7 @@
 		};
 	};
 	programs.ssh = {
-		askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
-		enableAskPassword = true;
+		# askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
+		enableAskPassword = false;
 	};
 }

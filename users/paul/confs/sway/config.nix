@@ -11,8 +11,6 @@ let
 			${pkgs.grim}/bin/grim -c -t jpeg $PICTURE_DIR/Screenshots/$NAME.jpg
 		fi
 	'';
-	# swaync_css = pkgs.writeText "style.css" (import ./swaync_style.css.nix { inherit theme; });
-	# swaync_conf = pkgs.writeText "conf.json" (import ./swaync_config.json.nix { inherit theme; inherit pkgs; });
 in
 with theme; ''
 set $mod Mod1
@@ -168,13 +166,6 @@ shadow_color #${c7}
 # not in 0.3.2
 # shadow_offset 5 4
 
-# ags windows
-layer_effects "bar-0" blur enable; shadows enable
-layer_effects "bar-1" blur enable; shadows enable
-layer_effects "bar-2" blur enable; shadows enable
-layer_effects "bar-3" blur enable; shadows enable
-layer_effects "launcher" blur enable; shadows enable
-
 ### Includes ###
 
 include "include.d/shared/*"
@@ -189,5 +180,3 @@ exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
 exec_always pkill gammastep; ${pkgs.gammastep}/bin/gammastep -O 4500
 
 ''
-# exec ${pkgs.unstable.swaynotificationcenter}/bin/swaync -s ${swaync_css} -c ${swaync_conf}
-# exec_always pkill waybar; ${pkgs.waybar}/bin/waybar -c ~/.config/sway/waybar/config -s ~/.config/sway/waybar/style.css
