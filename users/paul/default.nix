@@ -7,12 +7,12 @@
 }:
 let
 	theme = import ../../globals/colors.nix { };
-	pylsp = [(pkgs.python310.withPackages (p: with p; [
+	pylsp = (pkgs.python3.withPackages (p: with p; [
 		python-lsp-server
 		python-lsp-ruff
+		python-lsp-black
 		rope
-		flake8
-	]))];
+	]));
 in
 {
 	imports = [
@@ -38,11 +38,6 @@ in
 			chromium
 			firefox
 			steam-run
-			# prismlauncher
-			jetbrains.idea-community
-			dbeaver
-			openjdk
-			# maven
 			(pkgs.callPackage ../../pkgs/st-flex.nix {
 				addPatches = [
 					"anysize"
@@ -79,18 +74,23 @@ in
 			anydesk
 			pdfpc
 
+			jetbrains.idea-community
+			dbeaver
+			# prismlauncher
+			# openjdk
+			# maven
 			# psqlcli
 			postgresql_15
 
 			## neovim + deps
 			unstable.neovim
 			unstable.neovide
-			# fucking Jupyter Notebooks
-			vscodium
 			# wezterm-git
 			zk
 			ripgrep
 			fd
+			# fucking Jupyter Notebooks
+			vscodium
 			
 			# language servers
 			# texlab
@@ -101,13 +101,15 @@ in
 			quick-lint-js
 			nixd
 			ccls
+			pylsp
+			ruff
 			# debuggers
 			gdb
 
 			# annoying ass work software
 			# citrix_workspace
 			remmina
-		] ++ pylsp;
+		];
   	};
 	home-manager.users.paul = {
 		home = { stateVersion = "22.05"; };
