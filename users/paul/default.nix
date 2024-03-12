@@ -48,7 +48,7 @@ in
 					"columns"
 					"font2"
 					"hidecursor"
-					#"ligatures"
+					"ligatures"
 					"netwmicon"
 					"sixel"
 					"scrollback"
@@ -61,7 +61,7 @@ in
 					"vertcenter"
 				];
 				conf = import ./confs/config.def.h.nix {};
-				#harfbuzzFeatures = [ "ss01" "ss02" "calt" "ss19" ];
+				harfbuzzFeatures = [ "dlig" ];
 			})
 
 			luaPackages.lua
@@ -99,10 +99,9 @@ in
 			sumneko-lua-language-server
 			omnisharp-roslyn
 			quick-lint-js
-			nixd
+			nil
 			ccls
 			pylsp
-			ruff
 			# debuggers
 			gdb
 
@@ -130,12 +129,6 @@ in
 		};
 
 		programs = {
-			#discocss = {
-			#	enable = true;
-			#	discordPackage = pkgs.unstable.discord;
-			#	discordAlias = true;
-			#	css = (import ./confs/discord_css.nix { inherit theme; });
-			#};
 			autorandr = import ./autorandrhm.nix {};
 			direnv = {
 				enable = true;

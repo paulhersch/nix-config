@@ -1,15 +1,15 @@
 {
 	description = "Flake for my Systems";
-	
+
 	inputs = {
-		nixpkgs.url = github:nixos/nixpkgs/nixos-23.11;
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
 		unstable.url = github:nixos/nixpkgs/nixpkgs-unstable;
 		nixpkgs-f2k.url = github:moni-dz/nixpkgs-f2k;
 		home-manager = {
-			url = github:nix-community/home-manager/release-23.11;
+			url = "github:nix-community/home-manager/release-23.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		nix-gaming.url = github:fufexan/nix-gaming;
+		#nix-gaming.url = github:fufexan/nix-gaming;
 		ags.url = github:Aylur/ags;
 	};
 
@@ -94,7 +94,7 @@
 						./nixsettings.nix
 						./modules/uni
 						./modules/gaming
-						inputs.nix-gaming.nixosModules.pipewireLowLatency
+						#inputs.nix-gaming.nixosModules.pipewireLowLatency
 						home-manager.nixosModules.home-manager {
 						}
 					];

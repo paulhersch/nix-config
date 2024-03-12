@@ -5,15 +5,14 @@
 		./users
 		./core
 		./modules/x11/awesome.nix
-		./modules/wayland/hyprland.nix
-		./modules/wayland/sway.nix
-		# ./modules/display-manager/lightdm
+		# ./modules/wayland/hyprland.nix
+		# ./modules/wayland/sway.nix
+		./modules/display-manager/lightdm
 		# ./modules/display-manager/greetd
 	];
 
-	# if greeter module is imported use greeter, else sddm is active
+	# if greetd is available use greetd, otherwise use lightdm
 	services.xserver.displayManager = {
-			gdm.enable = true;
 		} // lib.optionalAttrs (builtins.hasAttr "gtkgreet" config.services.xserver.displayManager) {
 			gtkgreet.enable = true;
 		};

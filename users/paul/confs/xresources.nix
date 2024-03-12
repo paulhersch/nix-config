@@ -23,5 +23,5 @@ with theme; ''
 
 	*comment:	#${ddfg}
 	*contrast:	#${lbg}
-	st.borderpx:	10
+	st.borderpx:	5
 ''

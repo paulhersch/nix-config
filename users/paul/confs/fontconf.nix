@@ -7,7 +7,7 @@
   <alias>
     <family>Iosevka With Fallback</family>
     <prefer>
-        <family>Iosevka Comfy Motion</family>
+        <family>Iosevka Comfy Motion Fixed</family>
         <family>Symbols Nerd Font</family>
 	<family>Material Design Icons</family>
         <family>Twitter Color Emoji</family>
