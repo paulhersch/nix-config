@@ -85,6 +85,7 @@ in
 			## neovim + deps
 			unstable.neovim
 			unstable.neovide
+			gnvim
 			# wezterm-git
 			zk
 			ripgrep

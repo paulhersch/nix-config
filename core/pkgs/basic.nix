@@ -5,7 +5,7 @@ with pkgs; [
 	tdesktop #telegram
 	librewolf
 	zathura
-	unstable.thunderbird-bin
+	thunderbird
 	pdfarranger
 	unstable.discord-ptb
 	keepassxc

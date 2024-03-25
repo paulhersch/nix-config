@@ -9,6 +9,7 @@ let
 		" --search " + (lua-stuff.getLuaPath path "lib")
 	);
 	env-searchpath = makeSearchPath lua-stuff.modules;
+    gtkgreet-enabled = builtins.hasAttr "gtkgreet" options.services.xserver.displayManager;
 in
 {
 	imports = [
@@ -28,7 +29,7 @@ in
 				dbus-launch --exit-with-x11 ${pkgs.lightlocker}/bin/light-locker &
 			'';
 		}];
-	} // lib.optionalAttrs (builtins.hasAttr "gtkgreet" options.services.xserver.displayManager) {
+	} // lib.optionalAttrs gtkgreet-enabled {
 		gtkgreet.entries = [{
 			entryName="awesome";
 			isXWM = true;

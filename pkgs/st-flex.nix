@@ -56,7 +56,7 @@ stdenv.mkDerivation rec {
 				map (y: str.stringAsChars (z: if z==" " then "_" else z) y) addPatches
 	)));
 
-	# builds the features array for hb.c (currently broken, see https://github.com/cog1to/st-ligatures/issues/24)
+	# builds the features array for hb.c
 	hbFeatures = "hb_feature_t features[] = { " + (str.concatStringsSep ", " (lst.map (
 		x: "FEATURE(" + (
 			str.concatStringsSep ", " (

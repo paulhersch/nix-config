@@ -3,14 +3,14 @@
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-		unstable.url = github:nixos/nixpkgs/nixpkgs-unstable;
-		nixpkgs-f2k.url = github:moni-dz/nixpkgs-f2k;
+		unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+		nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
 		home-manager = {
 			url = "github:nix-community/home-manager/release-23.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		#nix-gaming.url = github:fufexan/nix-gaming;
-		ags.url = github:Aylur/ags;
+		ags.url = "github:ozwaldorf/ags/feature/sway";
 	};
 
 	outputs =
@@ -32,6 +32,16 @@
 					ags = inputs.ags.packages.${system}.default;
 					unstable = import inputs.unstable { inherit config system; };
 					gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix {};
+					# apparently doesnt override output like this :(
+					gnvim = prev.gnvim.overrideAttrs (old: {
+						version = "master";
+						src = prev.pkgs.fetchFromGitHub {
+							owner = "vhakulinen";
+							repo = "gnvim";
+							rev = "b8cc1bc78a94948041d37ddaf3d0ef05b45df40b";
+							hash = "sha256-dQVHG7arUZJXDVNeqjjTqikK1TeEtwy3gY8ybgXqjy4=";
+						};
+					});
 					# fail due to xdg directories being created in build.rs
 					pinnacle-comp = prev.pkgs.rustPlatform.buildRustPackage rec {
 						pname = "pinnacle-comp";

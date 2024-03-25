@@ -118,6 +118,12 @@ bindsym $mod+Shift+space floating toggle
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
 
+# manual splith and splitv
+bindsym $mod+h layout splith
+bindsym $mod+v layout splitv
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout default
+
 # Scratchpad: #
 bindsym $mod+Shift+Tab move scratchpad
 bindsym $mod+Tab scratchpad show
