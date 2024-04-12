@@ -11,6 +11,7 @@ let
 		python-lsp-server
 		python-lsp-ruff
 		python-lsp-black
+		pylsp-mypy
 		rope
 	]));
 in
@@ -94,12 +95,15 @@ in
 			vscodium
 			
 			# language servers
-			# texlab
+			texlab
 			ltex-ls
 			haskell-language-server
 			sumneko-lua-language-server
 			omnisharp-roslyn
 			quick-lint-js
+            nodePackages.typescript-language-server
+            nodePackages.bash-language-server
+            shellcheck
 			nil
 			ccls
 			pylsp

@@ -1,16 +1,16 @@
 { config, lib, pkgs, ...}:
 {
-	#services.xserver.displayManager.gtkgreet = {
-	#	enable = true;
-	#	entries = [
-	#		{
-	#			entryName = "sway";
-	#			isXWM = false;
-	#			cmd = "${pkgs.sway}/bin/sway";
-	#			postCmd = "dbus-launch ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-	#		}
-	#	];
-	#};
+    services.xserver.displayManager = {
+    } // lib.optionalAttrs (builtins.hasAttr "gtkgreet" config.services.xserver.displayManager) {
+        gtkgreet = {
+            enable = true;
+            entries = [{
+                entryName = "sway";
+                isXWM = false;
+                cmd = "${config.programs.sway.package}/bin/sway |& tee sway.log";
+            }];
+        };
+    };
 
 	environment.systemPackages = with pkgs; [
 		wl-clipboard
@@ -26,7 +26,7 @@
 		inotify-tools
 		wf-recorder
 		waybar
-		unstable.foot
+		foot
 	];
 
 	programs = {
@@ -37,7 +37,6 @@
 				base = true;
 				gtk = true;
 			};
-			package = pkgs.unstable.swayfx;
 			extraSessionCommands = ''
 				dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
 			'';

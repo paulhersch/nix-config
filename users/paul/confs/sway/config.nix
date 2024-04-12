@@ -4,8 +4,7 @@ let
 		NAME=$(date +%m-%d-%H%m%S)
 		PICTURE_DIR=$(cat $HOME/.config/user-dirs.dirs | grep "XDG_PICTURES" | cut -d "\"" -f 2)
 
-		if [ $1 -eq 1 ] 
-		then
+		if [ $1 -eq 1 ]; then
 			${pkgs.grim}/bin/grim -t jpeg -g "$(${pkgs.slurp}/bin/slurp)" $PICTURE_DIR/Screenshots/$NAME.jpg
 		else
 			${pkgs.grim}/bin/grim -c -t jpeg $PICTURE_DIR/Screenshots/$NAME.jpg
@@ -165,10 +164,10 @@ default_border pixel 2
 
 ### SwayFX options ###
 
-shadows enable
-shadows_on_csd enable
-shadow_blur_radius 7
-shadow_color #${c7}
+# shadows enable
+# shadows_on_csd enable
+# shadow_blur_radius 7
+# shadow_color #${c7}
 # not in 0.3.2
 # shadow_offset 5 4
 
@@ -183,6 +182,5 @@ exec ${pkgs.autotiling-rs}/bin/autotiling-rs
 exec ${pkgs.blueman}/bin/blueman-applet
 # tends to crash a lot
 exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
-exec_always pkill gammastep; ${pkgs.gammastep}/bin/gammastep -O 4500
-
+exec_always pkill .gammastep-wrap && ${pkgs.gammastep}/bin/gammastep -P -O 5100
 ''

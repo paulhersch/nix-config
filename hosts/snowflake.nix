@@ -63,7 +63,10 @@
 		opengl = {
 			enable = true;
 			driSupport = true;
-			extraPackages = with pkgs; [ libva libva-utils ];
+			extraPackages = with pkgs; [
+                libva
+                libva-utils
+            ];
 		};
 	};
 	

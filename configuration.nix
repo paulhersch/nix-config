@@ -1,20 +1,15 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
 	imports = [ 
 		./users
 		./core
-		./modules/x11/awesome.nix
+		# ./modules/x11/awesome.nix
         ./modules/wayland/sway.nix
-		./modules/display-manager/lightdm
-		# ./modules/display-manager/greetd
+		# ./modules/display-manager/lightdm
+		./modules/display-manager/greetd
 	];
 
-	# if greetd is available use greetd, otherwise use lightdm
-	services.xserver.displayManager = {
-		} // lib.optionalAttrs (builtins.hasAttr "gtkgreet" config.services.xserver.displayManager) {
-			gtkgreet.enable = true;
-		};
 	zramSwap = {
 		enable = true;
 		memoryPercent = 33;
@@ -29,12 +24,6 @@
 	boot = {
 		initrd.systemd.enable = true;
 		plymouth = {
-			# theme = "splash";
-			# themePackages = [
-			#	(pkgs.unstable.adi1090x-plymouth-themes.override {
-			#		selected_themes = ["splash"];
-			#	})
-			#];
 			enable = true;
 		};
   		loader = { 
@@ -62,10 +51,10 @@
 	};
 	console.useXkbConfig = true;
 	
-	environment.extraInit = ''
-		export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
-		export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
-	'';
+	# environment.extraInit = ''
+	# 	export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
+	# 	export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
+	# '';
 	
 	system.stateVersion = "22.11";
 } 
