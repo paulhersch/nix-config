@@ -8,26 +8,12 @@
                 entryName = "sway";
                 isXWM = false;
                 cmd = "${config.programs.sway.package}/bin/sway |& tee sway.log";
+		postCmd = ''
+			dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+		'';
             }];
         };
     };
-
-	environment.systemPackages = with pkgs; [
-		wl-clipboard
-		oguri
-		grim
-		slurp
-		wofi
-		wlogout
-		wev
-		fusuma
-		# eww-wayland
-		ags
-		inotify-tools
-		wf-recorder
-		waybar
-		foot
-	];
 
 	programs = {
 		xwayland.enable = true;
@@ -37,9 +23,19 @@
 				base = true;
 				gtk = true;
 			};
-			extraSessionCommands = ''
-				dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-			'';
+			extraPackages = with pkgs; [
+				wl-clipboard
+				swaylock
+				swayidle
+				grim
+				slurp
+				wev
+				kanshi
+				ags
+				inotify-tools
+				wf-recorder
+				foot
+			];
 		};
 	};
 }
