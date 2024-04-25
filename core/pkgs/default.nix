@@ -1,15 +1,10 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
 	media = import ./media.nix { pkgs = pkgs; };
 	basic = import ./basic.nix { pkgs = pkgs; };
 	guiutils = import ./guiutils.nix { pkgs = pkgs; };
 	cliutils = import ./cliutils.nix { pkgs = pkgs; };
 	pythonpackages = import ./python.nix { pkgs = pkgs; };
-
-	# there is so much shit to set with xdg
-	default_browser = "librewolf.desktop";
-	image_viewer = "feh.desktop";
-	video_viewer = "vlc.desktop";
 in
 {
 	imports = [ ./fonts.nix ];
@@ -27,7 +22,12 @@ in
 	# services.mullvad-vpn.enable = true;
 
 	# set defaults
-	xdg.mime.defaultApplications = {
+	xdg.mime.defaultApplications = let
+    	# there is so much shit to set with xdg
+	    default_browser = "librewolf.desktop";
+	    image_viewer = "nsxiv.desktop";
+	    video_viewer = "vlc.desktop";
+    in {
 		"application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
 		"image/png" = image_viewer;
 		"image/jpeg" = image_viewer;

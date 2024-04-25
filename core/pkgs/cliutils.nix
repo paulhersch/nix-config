@@ -5,11 +5,11 @@ with pkgs; [
 	efitools
 	pciutils
 	usbutils
+    dnsutils
 	smartmontools
 	brightnessctl
 	unzip
 	zip
-	gammastep
 	pamixer
 	patchelf
 	playerctl
