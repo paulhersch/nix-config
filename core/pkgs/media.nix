@@ -7,6 +7,6 @@ with pkgs; [
 	spotify
 	vlc
 	obs-studio
-	feh
 	handbrake
+    nsxiv
 ]

@@ -4,4 +4,3 @@
 	pygobject3
 ]))]
 ++ [ pkgs.gobject-introspection pkgs.pipenv ]
-

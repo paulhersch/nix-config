@@ -7,11 +7,12 @@
 }:
 let
 	theme = import ../../globals/colors.nix { };
-	pylsp = (pkgs.python3.withPackages (p: with p; [
+	py_pkgs = (pkgs.python3.withPackages (p: with p; [
 		python-lsp-server
 		python-lsp-ruff
 		python-lsp-black
 		pylsp-mypy
+		jupytext
 		rope
 	]));
 in
@@ -84,7 +85,8 @@ in
 			postgresql_15
 
 			## neovim + deps
-			unstable.neovim
+			# unstable.neovim
+            neovim-nightly
 			unstable.neovide
 			gnvim
 			# wezterm-git
@@ -106,7 +108,7 @@ in
             shellcheck
 			nil
 			ccls
-			pylsp
+			py_pkgs
 			# debuggers
 			gdb
 
