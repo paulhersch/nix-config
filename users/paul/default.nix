@@ -86,7 +86,7 @@ in
 
 			## neovim + deps
 			# unstable.neovim
-            neovim-nightly
+            		neovim-nightly
 			unstable.neovide
 			zk
 			ripgrep

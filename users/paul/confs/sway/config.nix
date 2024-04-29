@@ -1,13 +1,15 @@
 { pkgs, theme, ... }:
 let
+	# for some reason paramter expansion for $HOME cannot be performed here, so thats what sed is doing lol
 	scrotscript = pkgs.writeShellScriptBin "grimslurp" ''
-		NAME=$(date +%m-%d-%H%m%S)
-		PICTURE_DIR=$(cat $HOME/.config/user-dirs.dirs | grep "XDG_PICTURES" | cut -d "\"" -f 2)
+		NAME="$(date +%m-%d-%H%m%S)"
+		XDG_PICS=$(grep 'XDG_PICTURES' $HOME/.config/user-dirs.dirs | cut -d '"' -f 2 | cut -d '/' -f 2)
+		PICTURE_DIR=$(echo "$HOME/$XDG_PICS")
 
 		if [ $1 -eq 1 ]; then
-			${pkgs.grim}/bin/grim -t jpeg -g "$(${pkgs.slurp}/bin/slurp)" $PICTURE_DIR/Screenshots/$NAME.jpg
+			${pkgs.grim}/bin/grim -t jpeg -g "$(${pkgs.slurp}/bin/slurp -d)" "$PICTURE_DIR/Screenshots/$NAME.jpg"
 		else
-			${pkgs.grim}/bin/grim -c -t jpeg $PICTURE_DIR/Screenshots/$NAME.jpg
+			${pkgs.grim}/bin/grim -c -t jpeg "$PICTURE_DIR/Screenshots/$NAME.jpg"
 		fi
 	'';
 in
@@ -162,6 +164,9 @@ client.background       $bg0
 gaps inner 9
 default_border pixel 2
 
+font Iosevka Comfy Motion Duo 12
+titlebar_padding 5
+
 ### SwayFX options ###
 
 # shadows enable
@@ -183,4 +188,7 @@ exec ${pkgs.blueman}/bin/blueman-applet
 # tends to crash a lot
 exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
 exec_always pkill .gammastep-wrap && ${pkgs.gammastep}/bin/gammastep -P -O 5100
+exec swayidle -w \
+	timeout 600 'swaylock -f -c 000000; swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+	before-sleep 'swaylock -f -c 000000'
 ''
