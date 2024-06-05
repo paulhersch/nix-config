@@ -83,13 +83,11 @@ in
 			# openjdk
 			# maven
 			# psqlcli
-			postgresql_15
+			# postgresql_15
 
 			## neovim + deps
 			unstable.neovim
 			unstable.neovide
-			gnvim
-			# wezterm-git
 			zk
 			ripgrep
 			fd
@@ -104,9 +102,9 @@ in
 			sumneko-lua-language-server
 			omnisharp-roslyn
 			quick-lint-js
-            nodePackages.typescript-language-server
-            nodePackages.bash-language-server
-            shellcheck
+			nodePackages.typescript-language-server
+			nodePackages.bash-language-server
+			shellcheck
 			nil
 			ccls
 			py_pkgs

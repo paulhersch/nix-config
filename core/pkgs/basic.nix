@@ -8,6 +8,7 @@ with pkgs; [
 	thunderbird
 	pdfarranger
 	unstable.discord-ptb
+	vesktop
 	keepassxc
 	xournalpp
 ]
