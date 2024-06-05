@@ -73,7 +73,7 @@
     boot.kernelParams = [ "pci=noaer" ];
     swapDevices = [ ];
     services.xserver = {
-        layout = "eu";
+        xkb.layout = "eu";
         videoDrivers = [ "amdgpu" ];
         # this appends as opposed to what docs say
         deviceSection = ''

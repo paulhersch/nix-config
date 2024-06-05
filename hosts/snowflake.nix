@@ -4,7 +4,7 @@
 	services = {
 		uni.jupyter.enable = true;
 		teamviewer.enable = true;
-		xserver.layout = "de";
+		xserver.xkb.layout = "de";
 	};
 	imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 	networking.hostName = "snowflake";

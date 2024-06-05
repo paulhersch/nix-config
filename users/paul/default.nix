@@ -77,7 +77,7 @@ in
 			pdfpc
 
 			jetbrains.idea-community
-			dbeaver
+			dbeaver-bin
 			# prismlauncher
 			# openjdk
 			# maven
