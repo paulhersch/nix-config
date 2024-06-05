@@ -27,7 +27,7 @@
 
 			overlays = with inputs; [
 				nixpkgs-f2k.overlays.default
-                inputs.neovim-nightly.overlay
+                # inputs.neovim-nightly.overlays.default
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
 				(final: prev: let inherit (final) system; in {
 					ags = inputs.ags.packages.${system}.default;
