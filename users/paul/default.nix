@@ -40,6 +40,7 @@ in
 			chromium
 			firefox
 			steam-run
+            element-desktop
 			(pkgs.callPackage ../../pkgs/st-flex.nix {
 				addPatches = [
 					"anysize"
@@ -85,14 +86,15 @@ in
 			# postgresql_15
 
 			## neovim + deps
-			unstable.neovim
-            		# neovim
-			unstable.neovide
-			zk
 			ripgrep
 			fd
+			zk
+			unstable.neovim
+            # neovim
+			unstable.neovide
 			# fucking Jupyter Notebooks
-			vscodium
+			# vscodium
+            figma-linux
 			
 			# language servers
 			texlab

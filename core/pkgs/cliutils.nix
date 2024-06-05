@@ -21,6 +21,7 @@ with pkgs; [
 	partclone
 	nsnake
 	cifs-utils
+	lz4
 ] ++ [
 	pkgs.unstable.neovim
 ]

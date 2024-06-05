@@ -9,7 +9,7 @@
 			url = "github:nix-community/home-manager/release-24.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-        neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+        # neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 		ags.url = "github:ozwaldorf/ags/feature/sway";
 	};
 
@@ -27,7 +27,7 @@
 
 			overlays = with inputs; [
 				nixpkgs-f2k.overlays.default
-				inputs.neovim-nightly.overlays.default
+                # inputs.neovim-nightly.overlays.default
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
 				(final: prev: let inherit (final) system; in {
 					ags = inputs.ags.packages.${system}.default;
