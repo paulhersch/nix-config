@@ -86,11 +86,12 @@ in
 			# postgresql_15
 
 			## neovim + deps
-			unstable.neovim
-			unstable.neovide
-			zk
 			ripgrep
 			fd
+			zk
+			unstable.neovim
+            # neovim
+			unstable.neovide
 			# fucking Jupyter Notebooks
 			# vscodium
             figma-linux
