@@ -85,8 +85,8 @@ in
 			# postgresql_15
 
 			## neovim + deps
-			# unstable.neovim
-            		neovim-nightly
+			unstable.neovim
+            		# neovim
 			unstable.neovide
 			zk
 			ripgrep

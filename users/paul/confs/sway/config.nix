@@ -154,15 +154,15 @@ bindsym $mod+r mode "resize"
 ### Visual Style ###
 
 # class                 border  backgr. text     indicator child_border
-client.focused          $bg2 	$bg0  	$fg0     $bg1      $bg1
-client.focused_inactive $bg0    $bg0    $fg1     $bg0      $bg0
-client.unfocused        $bg0    $bg0    $fg1     $bg0      $bg0
-client.urgent           $red    $bg0    $fg0     $red      $red
-client.placeholder      $bg0    $bg0    $fg1     $bg0      $bg0
+client.focused          $bg1 	$bg2  	$fg0     $bg2      $bg1
+client.focused_inactive $bg0    $bg1    $fg1     $bg1      $bg0
+client.unfocused        $bg0    $bg1    $fg1     $bg1      $bg0
+client.urgent           $bg1    $red    $fg0     $red      $bg1
+client.placeholder      $bg0    $bg1    $fg1     $bg1      $bg0
 client.background       $bg0
 
 gaps inner 9
-default_border pixel 2
+default_border normal 2
 
 font Iosevka Comfy Motion Duo 12
 titlebar_padding 5
@@ -189,6 +189,7 @@ exec ${pkgs.blueman}/bin/blueman-applet
 exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
 exec_always pkill .gammastep-wrap && ${pkgs.gammastep}/bin/gammastep -P -O 5100
 exec swayidle -w \
-	timeout 600 'swaylock -f -c 000000; swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+	timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+	timeout 800 'swaylock -f -c 000000' \
 	before-sleep 'swaylock -f -c 000000'
 ''

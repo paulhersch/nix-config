@@ -2,11 +2,11 @@
 	description = "Flake for my Systems";
 
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 		unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 		nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
 		home-manager = {
-			url = "github:nix-community/home-manager/release-23.11";
+			url = "github:nix-community/home-manager/release-24.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
         neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
@@ -27,7 +27,7 @@
 
 			overlays = with inputs; [
 				nixpkgs-f2k.overlays.default
-                inputs.neovim-nightly.overlay
+				inputs.neovim-nightly.overlays.default
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
 				(final: prev: let inherit (final) system; in {
 					ags = inputs.ags.packages.${system}.default;
@@ -91,15 +91,15 @@
 				})
 			];
 
-			overlayed_nixpkgs = [{
+			overlayed_nixpkgs = {
 				nixpkgs = { inherit config overlays; };
-			}];
+			};
 		in
 		{
 			nixosConfigurations = {
 				snowstorm = nixosSystem {
 					system = "x86_64-linux";
-					modules = overlayed_nixpkgs ++ [
+					modules = [overlayed_nixpkgs] ++ [
 						./configuration.nix
 						./hosts/snowstorm.nix
 						./nixsettings.nix
@@ -112,7 +112,7 @@
 				};
 				snowflake = nixosSystem {
 					system = "x86_64-linux";
-					modules = overlayed_nixpkgs ++ [
+					modules = [overlayed_nixpkgs] ++ [
 						./configuration.nix
 						./hosts/snowflake.nix
 						./nixsettings.nix
@@ -123,7 +123,7 @@
 				};
 				snowball = nixosSystem {
 					system = "x86_64-linux";
-					modules = overlayed_nixpkgs ++ [
+					modules = [overlayed_nixpkgs] ++ [
 						./hosts/snowball
 						./nixsettings.nix
 					];

@@ -17,10 +17,21 @@ in
 	programs = {
 		steam = {
 			enable = true;
+			package = pkgs.steam.override {
+				extraPkgs = pkgs: with pkgs; [
+					gamescope
+					gamemode
+					mangohud
+				];
+			};
 		};
 		gamemode = {
 			enable = true;
 			enableRenice = true;
+		};
+		gamescope = {
+			enable = true;
+			capSysNice = true;
 		};
 	};
 	hardware = {
