@@ -157,7 +157,7 @@ bindsym $mod+r mode "resize"
 client.focused          $bg1 	$bg2  	$fg0     $bg2      $bg1
 client.focused_inactive $bg0    $bg1    $fg1     $bg1      $bg0
 client.unfocused        $bg0    $bg1    $fg1     $bg1      $bg0
-client.urgent           $bg1    $red    $fg0     $red      $bg1
+client.urgent           $fg0    $red    $bg0     $red      $fg0
 client.placeholder      $bg0    $bg1    $fg1     $bg1      $bg0
 client.background       $bg0
 

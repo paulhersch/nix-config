@@ -55,6 +55,5 @@
     # 	export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
     # 	export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
     # '';
-
-    system.stateVersion = "22.11";
+    system.stateVersion = "24.05";
 } 

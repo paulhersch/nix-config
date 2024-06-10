@@ -8,8 +8,9 @@
                 entryName = "sway";
                 isXWM = false;
                 cmd = "${config.programs.sway.package}/bin/sway |& tee sway.log";
-		postCmd = ''
-			dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+		        postCmd = ''
+                    dbus-launch --exit-with-session ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+                    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 		'';
             }];
         };
@@ -38,4 +39,16 @@
 			];
 		};
 	};
+
+    xdg.portal = {
+        enable = true;
+        wlr.enable = true;
+        extraPortals = with pkgs; [
+            xdg-desktop-portal-wlr
+            xdg-desktop-portal-gtk
+        ];
+        config.sway = {
+            default = [ "wlr" "gtk" ];
+        };
+    };
 }
