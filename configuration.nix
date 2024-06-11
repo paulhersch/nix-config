@@ -7,7 +7,8 @@
         # ./modules/x11/awesome.nix
         ./modules/wayland/sway.nix
         # ./modules/display-manager/lightdm
-        ./modules/display-manager/greetd
+        # ./modules/display-manager/greetd
+        ./modules/display-manager/regreet
     ];
 
     zramSwap = {

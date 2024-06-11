@@ -11,6 +11,9 @@ in
 	environment.systemPackages = with pkgs; [
 		pfetch
 		mullvad-vpn
+        papirus-icon-theme
+        phinger-cursors
+        gtk-materia-custom
 		#(pkgs.callPackage ../../pkgs/satk.nix {})
 	]
 	++ pythonpackages

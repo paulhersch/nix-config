@@ -14,6 +14,11 @@ let
 	'';
 in
 with theme; ''
+# IMPORTANT
+# bodge fucking xdg portals because the startup mechanic doesnt do this properly for some fucking reason
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec systemctl --user restart "xdg-desktop-portal*"
+
 set $mod Mod1
 
 set $left Left

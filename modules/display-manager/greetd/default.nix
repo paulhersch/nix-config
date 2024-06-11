@@ -73,11 +73,13 @@ in
 				default = [];
 				example = ''
 					[{
-						startCmd = \'\'
-							awesome &
+						cmd = \'\'
+							awesome
+						\'\';
+                        postCmd = \'\'
 							xrdb -load ~/.Xresources
 							dbus-launch --exit-with-x11 ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-						\'\';
+                        \'\'
 						isXWM = true;
 					}];
 				'';
@@ -87,7 +89,9 @@ in
 	config = mkIf cfg.enable {
 		systemd.user.services.dbus.wantedBy = [ "default.target" ];
 		services.xserver.displayManager.lightdm.enable = lib.mkForce false;
-		services.xserver.displayManager.startx.enable = true;
+		services.xserver.displayManager.startx.enable = builtins.foldl' (
+            a: e: if a then a else e.isXWM
+            ) false cfg.entries;
 		services.greetd = {
 			enable = true;
 			settings = {
@@ -101,8 +105,8 @@ in
 		environment.systemPackages = [] #[ gtkgreet-wrap ]
 			++ (lst.foldl (prev: curr: prev ++ [(pkgs.writeShellScriptBin (curr.entryName + "-run")
 				(if curr.isXWM
-					then "session=${curr.entryName} startx -- -keeptty >~/.xorg.log 2>&1\n"
-					else "${curr.preCmd}\n${curr.cmd}\n${curr.postCmd}"
+					then "${curr.preCmd}\nsession=${curr.entryName} startx -- -keeptty >~/.xorg.log 2>&1\n"
+					else "${curr.preCmd}\n${curr.cmd} 2>&1 | tee .${curr.entryName}.log &\n${curr.postCmd}"
 				))]) [] cfg.entries);
 		environment.etc = {
 			# concat start cmd strings with \n for type lines
