@@ -60,9 +60,6 @@
             wlr = {
                 enable = true;
             };
-            extraPortals = with pkgs; [
-                xdg-desktop-portal-gtk
-            ];
             config.sway = {
                 default = [ "wlr" "gtk" ];
             };
