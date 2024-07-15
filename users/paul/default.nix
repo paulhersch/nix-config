@@ -34,7 +34,6 @@ in
             "plugdev"
             "wheel" # for cups
         ];
-        shell = pkgs.zsh; # hilbish;
         packages = with pkgs;[
             qmk
             chromium
@@ -90,6 +89,8 @@ in
             fd
             zk
             unstable.neovim
+            luajitPackages.luarocks
+            inlyne
             # neovim
             unstable.neovide
             # fucking Jupyter Notebooks
@@ -127,7 +128,7 @@ in
         home = {
             file = {
                 ".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
-                ".config/alacritty/alacritty.yml".text = import ./confs/alacritty.nix { inherit theme; };
+                ".config/alacritty/alacritty.toml".text = import ./confs/alacritty.nix { inherit theme; };
                 ".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
                 ".config/fontconfig/conf.d/99-alias-main.conf".text = import ./confs/fontconf.nix {};
                 ".zshenv".text = "";
@@ -148,6 +149,7 @@ in
                 enableZshIntegration = true;
                 nix-direnv.enable = true;
             };
+            zsh.enable = true;
             zathura = {
                 enable = true;
                 extraConfig = with theme;''
@@ -209,20 +211,6 @@ in
             };
 
 
-        };
-        services = {
-            mako = {
-                enable = true;
-                anchor = "bottom-right";
-                font = "Recursive Sn Csl St 12";
-                borderRadius = 5;
-                defaultTimeout = 5000;
-
-                backgroundColor = "#${theme.bg}";
-                textColor = "#${theme.fg}";
-                borderColor = "#${theme.lbg}";
-                progressColor = with theme; "over #${c2}";
-            };
         };
     };
 }

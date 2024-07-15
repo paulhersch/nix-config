@@ -11,7 +11,7 @@
 		package = pkgs.papirus-icon-theme;
 	};
 	cursorTheme = {
-		name = "Phinger Cursors";
+		name = "phinger-cursors-dark";
 		package = pkgs.phinger-cursors;
 		size = 24;
 	};

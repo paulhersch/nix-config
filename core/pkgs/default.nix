@@ -10,11 +10,10 @@ in
 	imports = [ ./fonts.nix ];
 	environment.systemPackages = with pkgs; [
 		pfetch
-		mullvad-vpn
+		# mullvad-vpn
         papirus-icon-theme
-        phinger-cursors
         gtk-materia-custom
-		#(pkgs.callPackage ../../pkgs/satk.nix {})
+		# (pkgs.callPackage ../../pkgs/satk.nix {})
 	]
 	++ pythonpackages
 	++ basic
