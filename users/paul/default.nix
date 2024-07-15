@@ -162,6 +162,39 @@ in
                 '';
             };
             alacritty.enable = true;
+            tofi = {
+                enable = true;
+                settings = {
+                    font = "Iosevka Comfy Motion Duo";
+                    font-size = 15;
+                    text-color = "#${theme.fg}";
+                    placeholder-color = "#${theme.c0}";
+                    selection-match-color = "#${theme.c12}";
+                    selection-color = "#${theme.fg}";
+                    selection-background = "#${theme.dbg}";
+                    text-cursor-style = "bar";
+                    prompt-text = "> ";
+                    prompt-padding = 5;
+                    padding-bottom = 20;
+                    padding-top = 20;
+                    padding-left = 20;
+                    padding-right = 20;
+                    placeholder-text = "search";
+                    num-results = 10;
+                    result-spacing = 25;
+                    horizontal = false;
+                    background-color = "#${theme.bg}";
+                    outline-width = 0;
+                    border-width = 2;
+                    border-color = "#${theme.c12}";
+                    hide-cursor = true;
+                    text-cursor = true;
+                    history = false;
+                    require-match = true;
+                    drun-launch = true;
+                    # matching-algorithm = "fuzzy";
+                };
+            };
             foot = {
                 enable = true;
                 server.enable = true;
@@ -209,8 +242,6 @@ in
                     };
                 };
             };
-
-
         };
     };
 }

@@ -22,7 +22,6 @@
             wbg
             wl-clipboard
             wlr-randr
-            wofi
         ];
     };
 
