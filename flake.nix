@@ -10,7 +10,9 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
         # neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-		ags.url = "github:ozwaldorf/ags/feature/sway";
+		ags.url = "github:Aylur/ags";
+        astal-river.url = "github:astal-sh/river";
+        libastal.url = "github:astal-sh/libastal";
 	};
 
 	outputs =
@@ -30,64 +32,24 @@
                 # inputs.neovim-nightly.overlays.default
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
 				(final: prev: let inherit (final) system; in {
+                    astal-lualib = prev.pkgs.luajitPackages.toLuaModule (
+                        prev.pkgs.stdenv.mkDerivation {
+                            name = "astal-lualib";
+                            version = "0.1.0";
+                            src = "${inputs.libastal}/lua";
+                            dontBuild = true;
+                            installPhase = ''
+                                mkdir -p $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
+                                cp -r astal/* $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
+                            '';
+                        }
+                    );
+                    astal = inputs.libastal.packages.${system}.default;
+                    # inputs.libastal.packages.${default}.default;
+                    astal-river = inputs.astal-river.packages.${system}.default;
 					ags = inputs.ags.packages.${system}.default;
 					unstable = import inputs.unstable { inherit config system; };
 					gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix {};
-					# apparently doesnt override output like this :(
-					gnvim = prev.gnvim.overrideAttrs (old: {
-						version = "master";
-						src = prev.pkgs.fetchFromGitHub {
-							owner = "vhakulinen";
-							repo = "gnvim";
-							rev = "b8cc1bc78a94948041d37ddaf3d0ef05b45df40b";
-							hash = "sha256-dQVHG7arUZJXDVNeqjjTqikK1TeEtwy3gY8ybgXqjy4=";
-						};
-					});
-					# fail due to xdg directories being created in build.rs
-					# pinnacle-comp = prev.pkgs.rustPlatform.buildRustPackage rec {
-					# 	pname = "pinnacle-comp";
-					# 	version = "dev";
-					# 	src = prev.pkgs.fetchFromGitHub {
-					# 		owner = "pinnacle-comp";
-					# 		repo = "pinnacle";
-					# 		rev = "7012b86a2deef195fc4562ded2699370189d01e5";
-					# 		hash = "sha256-CYskHVV47JpMLoGbMW/3jTqUIqbOHRuMcbn28PXF/7M=";
-					# 	};
-					# 	cargoLock = {
-					# 		lockFile = "${src}/Cargo.lock";
-					# 		outputHashes = {
-					# 			"smithay-0.3.0" = "sha256-IiHx7tqqANbZhz4EVjArcTj///lgd2ge2GFB66sZ3eM=";
-					# 		};
-					# 	};
-					# 	preBuild = ''
-					# 		export XDG_DATA_HOME=$out/share
-					# 	'';
-					# 	buildInputs = with prev.pkgs; [
-					# 		(lua5_4.withPackages(lp: with lp; [
-					# 			luarocks
-					# 		]))
-					# 		systemd.dev # libudev is in systemd
-					# 		wayland
-					# 		libxkbcommon
-					# 		libinput
-					# 		seatd
-					# 		mesa
-					# 		libglvnd
-					# 		libGL.dev
-					# 		egl-wayland
-					# 		protobuf
-					# 		xwayland
-					# 		(with xorg; [
-					# 			libX11
-					# 			libXcursor
-					# 			libXrandr
-					# 		])
-					#
-					# 	];
-					# 	nativeBuildInputs = buildInputs ++ (with prev.pkgs; [
-					# 		pkg-config
-					# 	]
-                    # };
 				})
 			];
 

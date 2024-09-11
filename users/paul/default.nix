@@ -76,7 +76,9 @@ in
             anydesk
             pdfpc
 
-            jetbrains.idea-community
+            # finally, no Java :))))
+            # keeping this in here in case i need to do the cringe again
+            # jetbrains.idea-community
             dbeaver-bin
             # prismlauncher
             # openjdk
@@ -88,14 +90,11 @@ in
             ripgrep
             fd
             zk
-            unstable.neovim
             luajitPackages.luarocks
-            inlyne
-            # neovim
+            unstable.neovim
             unstable.neovide
             # fucking Jupyter Notebooks
             # vscodium
-            figma-linux
             
             # language servers
             texlab
@@ -115,6 +114,9 @@ in
 
             # annoying ass work software
             # citrix_workspace
+            # instead i ask the ppl provisioning boxes to give me a static IP + RDP
+            # and then i use remmina to access them, citrix simply doesnt fucking
+            # connect to anything without giving me any clues about whats going on
             remmina
         ];
     };
@@ -143,7 +145,8 @@ in
         };
 
         programs = {
-            autorandr = import ./autorandrhm.nix {};
+            # autorandr = import ./autorandrhm.nix {};
+            # not on X any more
             direnv = {
                 enable = true;
                 enableZshIntegration = true;

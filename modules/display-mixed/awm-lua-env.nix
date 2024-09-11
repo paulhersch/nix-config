@@ -1,4 +1,4 @@
-{ config, lib, pkgs, options, ... }:
+{ pkgs, ... }:
 
 let
 	lua-libpulse = pkgs.callPackage({ stdenv, luajit, fetchFromGitHub, pkg-config, libpulseaudio, glib, gobject-introspection, sass }:
