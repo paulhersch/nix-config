@@ -31,22 +31,46 @@
 				nixpkgs-f2k.overlays.default
                 # inputs.neovim-nightly.overlays.default
 				# copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
-				(final: prev: let inherit (final) system; in {
-                    astal-lualib = prev.pkgs.luajitPackages.toLuaModule (
-                        prev.pkgs.stdenv.mkDerivation {
-                            name = "astal-lualib";
-                            version = "0.1.0";
-                            src = "${inputs.libastal}/lua";
-                            dontBuild = true;
-                            installPhase = ''
-                                mkdir -p $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
-                                cp -r astal/* $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
-                            '';
-                        }
-                    );
+				(final: prev: let inherit (final) system; in { 
                     astal = inputs.libastal.packages.${system}.default;
                     # inputs.libastal.packages.${default}.default;
                     astal-river = inputs.astal-river.packages.${system}.default;
+                    libastal-lua = let
+                        astal-lualib = prev.pkgs.luajitPackages.toLuaModule (
+                            prev.pkgs.stdenv.mkDerivation {
+                                name = "astal-lualib";
+                                version = "0.1.0";
+                                src = "${inputs.libastal}/lua";
+                                dontBuild = true;
+                                installPhase = ''
+                                    mkdir -p $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
+                                    cp -r astal/* $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
+                                    '';
+                            }
+                        );
+                        lua-env = prev.pkgs.luajit.withPackages (p:
+                            [p.lgi p.fzy p.rapidjson astal-lualib]
+                        );
+                    in prev.pkgs.stdenv.mkDerivation {
+                        pname = "astal-lua";
+                        version = "0.1.0";
+                        nativeBuildInputs = with prev.pkgs; [
+                            gobject-introspection
+                            wrapGAppsHook
+                        ];
+                        unpackPhase = "true";
+                        buildInputs = with prev.pkgs; [
+                            luajit
+                            glib
+                            inputs.libastal.packages.${system}.default
+                            # should be included in the default libastal package
+                            # inputs.astal-river.packages.${system}.default
+                        ];
+                        installPhase = ''
+                            mkdir -p $out/bin
+                            ln -s ${lua-env}/bin/lua $out/bin/libastal-lua
+                        '';
+                    };
 					ags = inputs.ags.packages.${system}.default;
 					unstable = import inputs.unstable { inherit config system; };
 					gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix {};

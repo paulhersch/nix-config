@@ -1,18 +1,5 @@
 { pkgs, lib, ... }:
 
-let
-    astal-lua = pkgs.luajit.withPackages (p: [
-        p.lgi
-        p.fzy
-        p.rapidjson
-        pkgs.astal-lualib
-    ]);
-    libastal-lua = pkgs.writeScriptBin "libastal-lua" ''
-        #!${astal-lua}/bin/lua
-        package.path = package.path .. ";${./.}/?.lua"
-        require "init"
-    '';
-in
 {
     imports = [
         ./common.nix
@@ -22,11 +9,12 @@ in
         enable = true;
         extraPackages = with pkgs; [
             # ags with river module
-            (ags.override {
-                extraPackages = [
-                    astal-river
-                ];
-            })
+            # (ags.override {
+            #     extraPackages = [
+            #         astal-river
+            #     ];
+            # })
+            ags
             cinnamon.nemo-with-extensions
             foot
             gammastep

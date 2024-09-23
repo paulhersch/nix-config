@@ -33,18 +33,22 @@
 				gtk = true;
 			};
 			extraPackages = with pkgs; [
-				ags
-				foot
-				grim
-				inotify-tools
-				kanshi
-				slurp
-				swayidle
-				swaylock
-				wev
-				wf-recorder
-				wl-clipboard
+                ags
+                cinnamon.nemo-with-extensions
+                foot
+                gammastep
                 glib
+                grim
+                inotify-tools
+                kanshi
+                libastal-lua
+                networkmanagerapplet
+                slurp
+                swayidle
+                swaylock
+                wev
+                wl-clipboard
+                wlr-randr
 			];
 		};
 	};
