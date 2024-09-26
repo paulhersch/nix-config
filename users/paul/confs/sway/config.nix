@@ -29,7 +29,7 @@ set $right Right
 # i am enabling the user service, so no pkgs ref here
 set $term foot
 
-set $menu "${pkgs.wofi}/bin/wofi --show drun,run"
+set $menu "${pkgs.tofi}/bin/tofi-drun"
 
 # defining colors
 set $bg0 #${bg}
@@ -195,6 +195,7 @@ exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
 exec_always pkill .gammastep-wrap && ${pkgs.gammastep}/bin/gammastep -P -O 5100
 exec swayidle -w \
 	timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-	timeout 800 'swaylock -f -c 000000' \
-	before-sleep 'swaylock -f -c 000000'
+	timeout 800 'swaylock -f -c 000000'
+    # \
+    # before-sleep 'swaylock -f -c 000000'
 ''

@@ -46,6 +46,7 @@
                 slurp
                 swayidle
                 swaylock
+                tofi
                 wev
                 wl-clipboard
                 wlr-randr
