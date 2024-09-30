@@ -188,6 +188,8 @@ include "include.d/$(cat /etc/hostname)/*"
 
 ### Autoexec ###
 
+exec_always "P_ID=$(pgrep polkit-gnome-au); [[ -z \"$P_ID\" ]] && ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+
 exec ${pkgs.autotiling-rs}/bin/autotiling-rs
 exec ${pkgs.blueman}/bin/blueman-applet
 # tends to crash a lot

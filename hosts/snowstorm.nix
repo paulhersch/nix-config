@@ -11,6 +11,15 @@
     boot.initrd.kernelModules = [ "amdgpu" ];
     boot.kernelModules = [ "kvm-intel" ];
 
+    programs.corectrl = {
+        enable = true;
+        gpuOverclock = {
+            enable = true;
+            ppfeaturemask = "0xffffffff";
+        };
+    };
+    environment.systemPackages = with pkgs; [ corectrl ];
+
     fileSystems."/" =
     { device = "/dev/disk/by-uuid/0a97ed09-58ce-4ab6-91d7-d7bdcb046d69";
         fsType = "btrfs";
@@ -83,7 +92,7 @@
             '';
     };
     boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-    boot.kernelPackages = pkgs.linuxPackages_zen;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
     hardware = {
         keyboard.qmk.enable = true;
         bluetooth = {
