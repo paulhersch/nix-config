@@ -4,12 +4,7 @@
     imports = [ 
         ./users
         ./core
-        # ./modules/x11/awesome.nix
-        ./modules/wayland/sway.nix
-        ./modules/wayland/river.nix
-        # ./modules/display-manager/lightdm
         # ./modules/display-manager/greetd
-        ./modules/display-manager/regreet
     ];
 
     zramSwap = {

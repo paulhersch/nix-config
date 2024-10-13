@@ -145,7 +145,7 @@ in
         };
 
         programs = {
-            # autorandr = import ./autorandrhm.nix {};
+            autorandr = import ./autorandrhm.nix {};
             # not on X any more
             direnv = {
                 enable = true;

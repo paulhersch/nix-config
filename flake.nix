@@ -23,10 +23,6 @@
 		}@inputs:
 		with nixpkgs.lib;
 		let
-			config = {
-				allowUnfree = true;
-			};
-
 			overlays = with inputs; [
 				nixpkgs-f2k.overlays.default
                 # inputs.neovim-nightly.overlays.default
@@ -34,7 +30,6 @@
 				(final: prev: let inherit (final) system; in { 
                     astal = inputs.libastal.packages.${system}.default;
                     # inputs.libastal.packages.${default}.default;
-                    astal-river = inputs.astal-river.packages.${system}.default;
                     libastal-lua = let
                         astal-lualib = prev.pkgs.luajitPackages.toLuaModule (
                             prev.pkgs.stdenv.mkDerivation {
@@ -63,8 +58,7 @@
                             luajit
                             glib
                             inputs.libastal.packages.${system}.default
-                            # should be included in the default libastal package
-                            # inputs.astal-river.packages.${system}.default
+                            inputs.astal-river.packages.${system}.default
                         ];
                         installPhase = ''
                             mkdir -p $out/bin
@@ -72,33 +66,47 @@
                         '';
                     };
 					ags = inputs.ags.packages.${system}.default;
-					unstable = import inputs.unstable { inherit config system; };
+					unstable = import inputs.unstable { inherit system; config = { allowUnfree = true; }; };
 					gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix {};
 				})
 			];
 
-			overlayed_nixpkgs = {
-				nixpkgs = { inherit config overlays; };
+			default_nixpkgs = {
+				nixpkgs = {
+                    inherit overlays;
+                    config = {
+                        allowUnfree = true;
+                    };
+                };
 			};
+            
+            cuda_nixpkgs = {
+				nixpkgs = {
+                    inherit overlays;
+                    config = {
+                        allowUnfree = true;
+                        cudaSupport = true;
+                    };
+                };
+            };
 		in
 		{
 			nixosConfigurations = {
 				snowstorm = nixosSystem {
 					system = "x86_64-linux";
-					modules = [overlayed_nixpkgs] ++ [
+					modules = [default_nixpkgs] ++ [
 						./configuration.nix
 						./hosts/snowstorm.nix
 						./nixsettings.nix
 						./modules/uni
 						./modules/gaming
-						#inputs.nix-gaming.nixosModules.pipewireLowLatency
 						home-manager.nixosModules.home-manager {
 						}
 					];
 				};
 				snowflake = nixosSystem {
 					system = "x86_64-linux";
-					modules = [overlayed_nixpkgs] ++ [
+					modules = [default_nixpkgs] ++ [
 						./configuration.nix
 						./hosts/snowflake.nix
 						./nixsettings.nix
@@ -109,7 +117,7 @@
 				};
 				snowball = nixosSystem {
 					system = "x86_64-linux";
-					modules = [overlayed_nixpkgs] ++ [
+					modules = [default_nixpkgs] ++ [
 						./hosts/snowball
 						./nixsettings.nix
 					];

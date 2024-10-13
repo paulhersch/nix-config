@@ -6,7 +6,12 @@
 		teamviewer.enable = true;
 		xserver.xkb.layout = "de";
 	};
-	imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+	imports = [
+        (modulesPath + "/installer/scan/not-detected.nix")
+        ../modules/wayland/sway.nix
+        ../modules/wayland/river.nix
+        ../modules/display-manager/regreet
+    ];
 	networking.hostName = "snowflake";
 
 	boot = {

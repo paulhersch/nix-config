@@ -1,24 +1,29 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-    imports =
-        [
+    imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
-        ];
+        # ../modules/x11/awesome.nix
+        # ../modules/display-manager/lightdm
+        ../modules/display-manager/regreet
+        ../modules/wayland/sway.nix
+        ../modules/wayland/river.nix
+    ];
 
     services.uni.jupyter.enable = true;
     boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
-    boot.initrd.kernelModules = [ "amdgpu" ];
+    boot.initrd.kernelModules = [ "nvidia" ];
     boot.kernelModules = [ "kvm-intel" ];
+    boot.extraModulePackages = [ config.boot.kernelPackages.nvidiaPackages.stable ];
 
-    programs.corectrl = {
-        enable = true;
-        gpuOverclock = {
-            enable = true;
-            ppfeaturemask = "0xffffffff";
-        };
-    };
-    environment.systemPackages = with pkgs; [ corectrl ];
+    # programs.corectrl = {
+    #     enable = true;
+    #     gpuOverclock = {
+    #         enable = true;
+    #         ppfeaturemask = "0xffffffff";
+    #     };
+    # };
+    # environment.systemPackages = with pkgs; [ corectrl ];
 
     fileSystems."/" =
     { device = "/dev/disk/by-uuid/0a97ed09-58ce-4ab6-91d7-d7bdcb046d69";
@@ -83,17 +88,29 @@
     swapDevices = [ ];
     services.xserver = {
         xkb.layout = "eu";
-        videoDrivers = [ "amdgpu" ];
+        videoDrivers = [ "nvidia" ];
         # this appends as opposed to what docs say
-        deviceSection = ''
-            Option "TearFree" "true"
-            Option "VariableRefresh" "true"
-            Option "EnablePageFlip" "true"
-            '';
+        # deviceSection = ''
+        #     Option "TearFree" "true"
+        #     Option "VariableRefresh" "true"
+        #     Option "EnablePageFlip" "true"
+        #     '';
     };
     boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    # boot.kernelPackages = pkgs.linuxPackages_latest;
     hardware = {
+        nvidia = {
+            # forceFullCompositionPipeline = true;
+            modesetting.enable = true;
+            open = false;
+            nvidiaSettings = true;
+            # package = config.boot.kernelPackages.nvidia_x11;
+            prime = {
+                sync.enable = true;
+                nvidiaBusId = "PCI:1:0:0";
+                intelBusId = "PCI:0:2:0";
+            };
+        };
         keyboard.qmk.enable = true;
         bluetooth = {
             enable = true;
@@ -105,8 +122,9 @@
             driSupport = true;
             driSupport32Bit = true;
             extraPackages = with pkgs; [
-                libva
-                libva-utils
+                # libv
+                nvidia-vaapi-driver
+                # libva-utils
                 # rocm-opencl-icd
                 # rocm-runtime
             ];
@@ -116,5 +134,5 @@
         # cpuFreqGovernor = "powersave";
     };
     networking.hostName = "snowstorm";
-    networking.interfaces.enp6s0.useDHCP = true;
+    # networking.interfaces.enp6s0.useDHCP = true;
 }
