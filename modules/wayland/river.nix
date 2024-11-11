@@ -8,12 +8,6 @@
     programs.river = {
         enable = true;
         extraPackages = with pkgs; [
-            # ags with river module
-            # (ags.override {
-            #     extraPackages = [
-            #         astal-river
-            #     ];
-            # })
             ags
             nemo-with-extensions
             foot
@@ -21,6 +15,7 @@
             glib
             grim
             libastal-lua
+            astal
             kanshi
             networkmanagerapplet
             river-luatile

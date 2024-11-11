@@ -19,28 +19,10 @@
         "type": "github"
       }
     },
-    "astal-river": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1721999404,
-        "narHash": "sha256-4xnWTJleUmcnO4MBrWZjSPRbUqEWDBUJ725IgGq1Bvw=",
-        "owner": "astal-sh",
-        "repo": "river",
-        "rev": "0a8a39d18bb1c2e36923aa034d03bfd33869dfe8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "astal-sh",
-        "repo": "river",
-        "type": "github"
-      }
-    },
     "emacs": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
@@ -136,19 +118,19 @@
     },
     "libastal": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1725144873,
-        "narHash": "sha256-S+mZOlWsJ8+fagWx3vr1s/GoTi0/G7UmUJctPtETJEM=",
-        "owner": "astal-sh",
-        "repo": "libastal",
-        "rev": "49cdf5d5e010c9abb9b02034999eef2f49f066b9",
+        "lastModified": 1730328293,
+        "narHash": "sha256-i8VF2HjPGcoXQalh/7B256PJQnJqmuvS8iY25lSvhLc=",
+        "owner": "Aylur",
+        "repo": "astal",
+        "rev": "2585ca7071638d90c02a2a21022815ac910fec07",
         "type": "github"
       },
       "original": {
-        "owner": "astal-sh",
-        "repo": "libastal",
+        "owner": "Aylur",
+        "repo": "astal",
         "type": "github"
       }
     },
@@ -171,7 +153,7 @@
     "nixpkgs-f2k": {
       "inputs": {
         "emacs": "emacs",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-fmt": "nixpkgs-fmt",
         "parts": "parts"
       },
@@ -242,22 +224,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1720031269,
-        "narHash": "sha256-rwz8NJZV+387rnWpTYcXaRNvzUSnnF9aHONoJIYmiUQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "9f4128e00b0ae8ec65918efeba59db998750ead6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1716293225,
         "narHash": "sha256-pU9ViBVE3XYb70xZx+jK6SEVphvt7xMTbm6yDIF4xPs=",
         "owner": "nixos",
@@ -272,7 +238,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1729256560,
         "narHash": "sha256-/uilDXvCIEs3C9l73JTACm4quuHUsIHcns1c+cHUJwA=",
@@ -288,7 +254,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1729070438,
         "narHash": "sha256-KOTTUfPkugH52avUvXGxvWy8ibKKj4genodIYUED+Kc=",
@@ -304,7 +270,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1729306143,
         "narHash": "sha256-CfUdwqljH31yPDGMdVyD/sdXITtKAmxw/gZYdUPb6JU=",
@@ -341,10 +307,9 @@
     "root": {
       "inputs": {
         "ags": "ags",
-        "astal-river": "astal-river",
         "home-manager": "home-manager",
         "libastal": "libastal",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-f2k": "nixpkgs-f2k",
         "unstable": "unstable"
       }

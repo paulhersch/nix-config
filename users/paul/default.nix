@@ -14,6 +14,7 @@ let
         pylsp-mypy
         jupytext
         rope
+        pylatexenc
     ]));
 in
 {
@@ -87,27 +88,8 @@ in
             # postgresql_15
 
             ## neovim + deps
-            ripgrep
-            fd
-            zk
-            luajitPackages.luarocks
-            unstable.neovim
             unstable.neovide
-            # fucking Jupyter Notebooks
-            # vscodium
-            
-            # language servers
-            texlab
-            ltex-ls
-            haskell-language-server
-            sumneko-lua-language-server
-            omnisharp-roslyn
-            quick-lint-js
-            nodePackages.typescript-language-server
-            nodePackages.bash-language-server
-            shellcheck
-            nil
-            ccls
+            # python and different python stuffs for everything
             py_pkgs
             # debuggers
             gdb
@@ -145,6 +127,33 @@ in
         };
 
         programs = {
+            neovim = {
+                enable = true;
+                package = pkgs.unstable.neovim-unwrapped;
+                vimAlias = true;
+                withNodeJs = true; # :(
+                extraLuaPackages = p: with p; [
+                    luarocks
+                ];
+                extraPackages = with pkgs; [
+                    luajitPackages.luarocks
+                    ripgrep
+                    fd
+                    zk
+                    # language servers
+                    texlab
+                    ltex-ls
+                    haskell-language-server
+                    sumneko-lua-language-server
+                    omnisharp-roslyn
+                    quick-lint-js
+                    nodePackages.typescript-language-server
+                    nodePackages.bash-language-server
+                    shellcheck
+                    nil
+                    ccls
+                ];
+            };
             autorandr = import ./autorandrhm.nix {};
             # not on X any more
             direnv = {

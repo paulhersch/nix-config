@@ -39,11 +39,12 @@ set $fg0 #${fg}
 set $fg1 #${ddfg}
 
 set $red #${c1}
+set $blue #${c12}
 
 xwayland enable
 
 ## bg TODO put this in the git repo
-output "*" background ~/Bilder/Hintergrundbilder/pelicans.jpg fill
+output "*" background ~/Bilder/Hintergrundbilder/cherry_blossom_closeup.jpg fill
 
 bindsym $mod+0 exec ${pkgs.wlogout}/bin/wlogout
 
@@ -159,7 +160,7 @@ bindsym $mod+r mode "resize"
 ### Visual Style ###
 
 # class                 border  backgr. text     indicator child_border
-client.focused          $bg1 	$bg2  	$fg0     $bg2      $bg1
+client.focused          $blue 	$bg2  	$fg0     $blue      $blue
 client.focused_inactive $bg0    $bg1    $fg1     $bg1      $bg0
 client.unfocused        $bg0    $bg1    $fg1     $bg1      $bg0
 client.urgent           $fg0    $red    $bg0     $red      $fg0
@@ -167,10 +168,10 @@ client.placeholder      $bg0    $bg1    $fg1     $bg1      $bg0
 client.background       $bg0
 
 gaps inner 9
-default_border normal 2
+default_border pixel 2
 
 font Iosevka Comfy Motion Duo 12
-titlebar_padding 5
+# titlebar_padding 5
 
 ### SwayFX options ###
 
@@ -198,6 +199,4 @@ exec_always pkill .gammastep-wrap && ${pkgs.gammastep}/bin/gammastep -P -O 5100
 exec swayidle -w \
 	timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 	timeout 800 'swaylock -f -c 000000'
-    # \
-    # before-sleep 'swaylock -f -c 000000'
 ''

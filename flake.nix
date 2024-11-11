@@ -11,8 +11,7 @@
 		};
         # neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 		ags.url = "github:Aylur/ags";
-        astal-river.url = "github:astal-sh/river";
-        libastal.url = "github:astal-sh/libastal";
+        libastal.url = "github:Aylur/astal";
 	};
 
 	outputs =
@@ -35,11 +34,11 @@
                             prev.pkgs.stdenv.mkDerivation {
                                 name = "astal-lualib";
                                 version = "0.1.0";
-                                src = "${inputs.libastal}/lua";
+                                src = "${inputs.libastal}/lang/lua/astal";
                                 dontBuild = true;
                                 installPhase = ''
                                     mkdir -p $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
-                                    cp -r astal/* $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
+                                    cp -r * $out/share/lua/${prev.pkgs.luajit.luaversion}/astal
                                     '';
                             }
                         );
@@ -57,8 +56,14 @@
                         buildInputs = with prev.pkgs; [
                             luajit
                             glib
+                            gtk3
                             inputs.libastal.packages.${system}.default
-                            inputs.astal-river.packages.${system}.default
+                            inputs.libastal.packages.${system}.astal3
+                            inputs.libastal.packages.${system}.auth
+                            inputs.libastal.packages.${system}.battery
+                            inputs.libastal.packages.${system}.river
+                            inputs.libastal.packages.${system}.tray
+                            inputs.libastal.packages.${system}.notifd
                         ];
                         installPhase = ''
                             mkdir -p $out/bin
