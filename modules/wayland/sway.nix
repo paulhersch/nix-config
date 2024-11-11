@@ -32,6 +32,9 @@
 				base = true;
 				gtk = true;
 			};
+            extraOptions = [
+                "--unsupported-gpu"
+            ];
 			extraPackages = with pkgs; [
                 ags
                 cinnamon.nemo-with-extensions
