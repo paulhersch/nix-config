@@ -89,27 +89,29 @@
     services.xserver = {
         xkb.layout = "eu";
         videoDrivers = [ "nvidia" ];
-        # this appends as opposed to what docs say
-        # deviceSection = ''
-        #     Option "TearFree" "true"
-        #     Option "VariableRefresh" "true"
-        #     Option "EnablePageFlip" "true"
-        #     '';
     };
     boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-    # boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
     hardware = {
-        nvidia = {
+        nvidia = let
+            nverStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
+            nverBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
+            nvidiaPackage =
+                if (lib.versionOlder nverBeta nverStable)
+                then config.boot.kernelPackages.nvidiaPackages.stable
+                else config.boot.kernelPackages.nvidiaPackages.beta;
+        in{
             # forceFullCompositionPipeline = true;
             modesetting.enable = true;
             open = false;
             nvidiaSettings = true;
-            # package = config.boot.kernelPackages.nvidia_x11;
-            prime = {
-                sync.enable = true;
-                nvidiaBusId = "PCI:1:0:0";
-                intelBusId = "PCI:0:2:0";
-            };
+            powerManagement.enable = false;
+            package = nvidiaPackage;
+            # prime = {
+            #     sync.enable = true;
+            #     nvidiaBusId = "PCI:1:0:0";
+            #     intelBusId = "PCI:0:2:0";
+            # };
         };
         keyboard.qmk.enable = true;
         bluetooth = {
@@ -117,22 +119,12 @@
             package = pkgs.bluez;
         };
         cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-        opengl = {
+        graphics = {
             enable = true;
-            driSupport = true;
-            driSupport32Bit = true;
             extraPackages = with pkgs; [
-                # libv
                 nvidia-vaapi-driver
-                # libva-utils
-                # rocm-opencl-icd
-                # rocm-runtime
             ];
         };
     };
-    powerManagement = {
-        # cpuFreqGovernor = "powersave";
-    };
     networking.hostName = "snowstorm";
-    # networking.interfaces.enp6s0.useDHCP = true;
 }

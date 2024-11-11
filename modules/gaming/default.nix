@@ -39,10 +39,10 @@ in
 		# 	enable = true;
 		# 	users = [ "paul" "luise" ];
 		# };
-		opengl = {
+		graphics = {
 			extraPackages = with pkgs; [ libva libva-utils ];
 			extraPackages32 = with pkgs.pkgsi686Linux; [ libva libva-utils ];
-			driSupport32Bit = true;
+			enable32Bit = true;
 		};
 	};
   	powerManagement.cpuFreqGovernor = lib.mkDefault "performance";

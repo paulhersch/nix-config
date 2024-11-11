@@ -62,7 +62,7 @@ bindsym XF86AudioNext exec ${pkgs.playerctl}/bin/playerctl-i firefox next
 bindsym Print exec ${scrotscript}/bin/grimslurp 0
 bindsym $mod+Print exec ${scrotscript}/bin/grimslurp 1
 
-bindsym $mod+F3 exec ${pkgs.cinnamon.nemo}/bin/nemo
+bindsym $mod+F3 exec ${pkgs.nemo-with-extensions}/bin/nemo
 for_window [app_id="nemo"] floating enable
 
 bindsym $mod+Return exec $term

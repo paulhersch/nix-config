@@ -15,7 +15,7 @@
             #     ];
             # })
             ags
-            cinnamon.nemo-with-extensions
+            nemo-with-extensions
             foot
             gammastep
             glib

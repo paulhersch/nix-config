@@ -65,9 +65,8 @@
 			package = pkgs.bluez;
 		};
 		cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-		opengl = {
+		graphics = {
 			enable = true;
-			driSupport = true;
 			extraPackages = with pkgs; [
                 libva
                 libva-utils
