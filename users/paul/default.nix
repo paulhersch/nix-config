@@ -134,9 +134,29 @@ in
                 withNodeJs = true; # :(
                 extraLuaPackages = p: with p; [
                     luarocks
+                    # molten-nvim
+                    magick
+                ];
+                extraPython3Packages = ps: with ps; [
+                    # molten-nvim
+                    cairosvg
+                    jupyter-client
+                    kaleido
+                    nbformat
+                    pillow
+                    plotly
+                    pnglatex
+                    pynvim
+                    pyperclip
+                    requests
+                    websocket-client
                 ];
                 extraPackages = with pkgs; [
                     luajitPackages.luarocks
+                    # molten-nvim
+                    imagemagick
+                    ueberzugpp
+                    # telescope
                     ripgrep
                     fd
                     zk
