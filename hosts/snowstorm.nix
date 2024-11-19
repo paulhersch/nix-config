@@ -3,18 +3,21 @@
 {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
-        # ../modules/x11/awesome.nix
+        ../modules/x11/awesome.nix
         # ../modules/display-manager/lightdm
         ../modules/display-manager/regreet
         ../modules/wayland/sway.nix
         ../modules/wayland/river.nix
     ];
 
+    programs.sway.extraOptions = [
+        "--unsupported-gpu"
+    ];
     services.uni.jupyter.enable = true;
     boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
     boot.initrd.kernelModules = [ "nvidia" ];
     boot.kernelModules = [ "kvm-intel" ];
-    boot.extraModulePackages = [ config.boot.kernelPackages.nvidiaPackages.stable ];
+    boot.extraModulePackages = [ config.hardware.nvidia.package ]; # [ config.boot.kernelPackages.nvidiaPackages.stable ];
 
     # programs.corectrl = {
     #     enable = true;
@@ -84,35 +87,41 @@
         fsType = "vfat";
     };
 
-    boot.kernelParams = [ "pci=noaer" ];
+    # boot.kernelParams = [ "module_blacklist=i915" ]; # "pci=noaer" ];
     swapDevices = [ ];
     services.xserver = {
         xkb.layout = "eu";
         videoDrivers = [ "nvidia" ];
     };
     boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages;
     hardware = {
-        nvidia = let
-            nverStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
-            nverBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
-            nvidiaPackage =
-                if (lib.versionOlder nverBeta nverStable)
-                then config.boot.kernelPackages.nvidiaPackages.stable
-                else config.boot.kernelPackages.nvidiaPackages.beta;
-        in{
-            # forceFullCompositionPipeline = true;
-            modesetting.enable = true;
-            open = false;
-            nvidiaSettings = true;
-            powerManagement.enable = false;
-            package = nvidiaPackage;
-            # prime = {
-            #     sync.enable = true;
-            #     nvidiaBusId = "PCI:1:0:0";
-            #     intelBusId = "PCI:0:2:0";
-            # };
-        };
+        nvidia =
+            let
+                nverStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
+                nverBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
+                nvidiaPackage =
+                    if (lib.versionOlder nverBeta nverStable)
+                        then config.boot.kernelPackages.nvidiaPackages.stable
+                    else config.boot.kernelPackages.nvidiaPackages.beta;
+            in
+                {
+                # forceFullCompositionPipeline = true;
+                modesetting.enable = true;
+                open = false;
+                nvidiaSettings = true;
+                powerManagement = {
+                    enable = true;
+                    #    finegrained = false;
+                };
+                package = nvidiaPackage;
+                #prime = {
+                #    # reverseSync.enable = true;
+                #    sync.enable = true;
+                #    nvidiaBusId = "PCI:1:0:0";
+                #    intelBusId = "PCI:0:2:0";
+                #};
+            };
         keyboard.qmk.enable = true;
         bluetooth = {
             enable = true;
@@ -121,6 +130,7 @@
         cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
         graphics = {
             enable = true;
+            enable32Bit = true;
             extraPackages = with pkgs; [
                 nvidia-vaapi-driver
             ];

@@ -136,6 +136,8 @@ in
                     luarocks
                 ];
                 extraPackages = with pkgs; [
+                    nodejs
+                    tree-sitter
                     luajitPackages.luarocks
                     ripgrep
                     fd
