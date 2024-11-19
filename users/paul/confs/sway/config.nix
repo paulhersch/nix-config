@@ -16,8 +16,7 @@ in
 with theme; ''
 # IMPORTANT
 # bodge fucking xdg portals because the startup mechanic doesnt do this properly for some fucking reason
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-exec systemctl --user restart "xdg-desktop-portal*"
+exec_always "sleep 3; wayland-xdg-fix" #see modules/wayland/common.nix
 
 set $mod Mod1
 
