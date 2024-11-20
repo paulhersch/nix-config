@@ -26,7 +26,7 @@ set $up Up
 set $right Right
 
 # i am enabling the user service, so no pkgs ref here
-set $term foot
+set $term kitty
 
 set $menu "${pkgs.tofi}/bin/tofi-drun"
 

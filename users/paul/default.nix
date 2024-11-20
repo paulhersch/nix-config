@@ -111,8 +111,8 @@ in
         
         home = {
             file = {
-                ".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
-                ".config/alacritty/alacritty.toml".text = import ./confs/alacritty.nix { inherit theme; };
+                # ".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
+                # ".config/alacritty/alacritty.toml".text = import ./confs/alacritty.nix { inherit theme; };
                 ".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
                 ".config/fontconfig/conf.d/99-alias-main.conf".text = import ./confs/fontconf.nix {};
                 ".zshenv".text = "";
@@ -127,6 +127,38 @@ in
         };
 
         programs = {
+            kitty = {
+                enable = true;
+                font = {
+                    name = "family=\"Iosevka Comfy Motion Fixed\" style=Medium";
+                    size = 12;
+                };
+                settings = {
+                    symbol_map = "U+E000-U+F533 Symbols Nerd Font Mono";
+                    disable_ligatures = "always";
+                    cursor = "#${theme.c0}";
+                    window_padding_width = "7";
+                    foreground = "#${theme.fg}";
+                    background = "#${theme.bg}";
+                    selection_background = "#${theme.dbg}";
+                    color0 =  "#${theme.c0}";
+                    color1 =  "#${theme.c1}";
+                    color2 =  "#${theme.c2}";
+                    color3 =  "#${theme.c3}";
+                    color4 =  "#${theme.c4}";
+                    color5 =  "#${theme.c5}";
+                    color6 =  "#${theme.c6}";
+                    color7 =  "#${theme.c7}";
+                    color8 =  "#${theme.c8}";
+                    color9 =  "#${theme.c9}";
+                    color10 = "#${theme.c10}";
+                    color11 = "#${theme.c11}";
+                    color12 = "#${theme.c12}";
+                    color13 = "#${theme.c13}";
+                    color14 = "#${theme.c14}";
+                    color15 = "#${theme.c15}";
+                };
+            };
             neovim = {
                 enable = true;
                 package = pkgs.unstable.neovim-unwrapped;
@@ -195,7 +227,6 @@ in
                     set adjust-open width
                 '';
             };
-            alacritty.enable = true;
             tofi = {
                 enable = true;
                 settings = {
