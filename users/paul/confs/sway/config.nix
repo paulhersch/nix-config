@@ -43,7 +43,8 @@ set $blue #${c12}
 xwayland enable
 
 ## bg TODO put this in the git repo
-output "*" background ~/Bilder/Hintergrundbilder/cherry_blossom_closeup.jpg fill
+# output shall be set in local config folders (hostname include.d)
+# output "*" background ~/Bilder/Hintergrundbilder/cherry_blossom_closeup.jpg fill
 
 bindsym $mod+0 exec ${pkgs.wlogout}/bin/wlogout
 

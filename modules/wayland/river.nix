@@ -20,8 +20,8 @@
             networkmanagerapplet
             river-luatile
 			slurp
+            swww
             waybar
-            wbg
             wl-clipboard
             wlr-randr
         ];

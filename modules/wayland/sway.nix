@@ -49,6 +49,7 @@
                 slurp
                 swayidle
                 swaylock
+                swww
                 tofi
                 wev
                 wl-clipboard
@@ -69,7 +70,7 @@
                 enable = true;
             };
             config.sway = {
-                default = [ "wlr" "gtk" ];
+                default = lib.mkForce [ "wlr" "gtk" ];
             };
         };
     };
