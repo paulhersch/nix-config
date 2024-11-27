@@ -52,8 +52,8 @@
 
 			bindkey '^[^H' backward-kill-word # CTRL + BSPC
 			bindkey '^[5~' kill-word # CTRL + DEL
-			bindkey ';5D' backward-word
-			bindkey ';5C' forward-word
+			bindkey '\e[1;5D' backward-word
+			bindkey "\e[1;5C" forward-word
 			bindkey '^H' backward-kill-word # st-compat
 			bindkey '5~' kill-word # st compat
 			bindkey '5D' backward-word # st compat
@@ -98,10 +98,10 @@
 			add_newline = true;
 			continuation_prompt = "[󱞩 ](bright-black)";
 			format = ''
-$status$directory$git_branch$git_state $git_status$fill$cmd_duration
-''${custom.isroot}$hostname$nix_shell$python[❯ ](purple)'';
+$directory$git_branch$git_status$git_state$nix_shell$python$fill$cmd_duration
+''${custom.isroot}$hostname$status '';
 			nix_shell = {
-				format = "in [$symbol$state]($style) ";
+				format = "[\\($state\\)]($style) ";
 			};
 			hostname = {
 				format = "[on ](italic white)[$ssh_symbol$hostname]($style) ";
@@ -113,8 +113,8 @@ $status$directory$git_branch$git_state $git_status$fill$cmd_duration
 			};
 			status = {
 				format = "$symbol ";
-				symbol = "[・]($bold red)";
-				success_symbol = "[・]($bold green)";
+				symbol = "[Δ]($bold bright-red)";
+				success_symbol = "[Δ]($bold bright-green)";
 				disabled = false;
 				pipestatus = true;
 				pipestatus_separator = "";
@@ -130,9 +130,10 @@ $status$directory$git_branch$git_state $git_status$fill$cmd_duration
 				home_symbol = "~";
 				truncation_length = 5;
 				truncation_symbol = "../";
+                read_only = " [-]";
 			};
 			git_branch = {
-				format = "on [$symbol$branch]($style)";
+				format = "[on $branch]($style)";
 			};
 
 			git_status = {
@@ -142,7 +143,7 @@ $status$directory$git_branch$git_state $git_status$fill$cmd_duration
 			};
 			
 			python = {
-				format = "in [\\($symbol$virtualenv\\)]($style) ";
+				format = "[\\($virtualenv\\)]($style) ";
 			};
 
 			custom.isroot = {

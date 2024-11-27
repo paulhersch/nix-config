@@ -129,12 +129,13 @@ in
         programs = {
             kitty = {
                 enable = true;
-                font = {
-                    name = "family=\"Iosevka Comfy Motion Fixed\" style=Medium";
-                    size = 12;
-                };
                 settings = {
-                    symbol_map = "U+E000-U+F533 Symbols Nerd Font Mono";
+                    font_family = "family=\"Iosevka Comfy Motion Fixed\" style=Medium";
+                    bold_font = "family=\"Iosevka Comfy Motion Fixed\" style=Bold";
+                    italic_font = "family=\"Iosevka Comfy Motion Fixed\" style=\"Medium Italic\"";
+                    bold_italic_font = "family=\"Iosevka Comfy Motion Fixed\" style=\"Bold Italic\"";
+                    font_size = 12;
+                    symbol_map = "U+E0A0-U+E0D7,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6B5,U+E700-U+E7C5,U+EA60-U+EC1E,U+ED00-U+EFCE,U+F000-U+F375,U+F400-U+F533,U+276C-U+2771,U+23FB-U+23FE,U+2B58 Symbols Nerd Font Mono\nsymbol_map U+1FA70-U+E007F,U+1F90C-U+1F9FF,U+1F7E0-U+1F7F0,U+1F680-U+1F6FC,U+1F170-U+1F64F,U+1F0CF,U+1F004,U+3030-U+3299,U+2B05-U+2B55,U+2795-U+2935,U+25AA-U+2764,U+23CF-U+23FA,U+203C-U+2328 Twitter Color Emoji";
                     disable_ligatures = "always";
                     cursor = "#${theme.c0}";
                     window_padding_width = "7";
