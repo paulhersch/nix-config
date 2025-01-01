@@ -98,12 +98,12 @@
     hardware = {
         nvidia =
             let
-                nverStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
-                nverBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
+                nverStable = pkgs.linuxPackages.nvidiaPackages.stable.version;
+                nverBeta = pkgs.linuxPackages.nvidiaPackages.beta.version;
                 nvidiaPackage =
                     if (lib.versionOlder nverBeta nverStable)
-                        then config.boot.kernelPackages.nvidiaPackages.stable
-                    else config.boot.kernelPackages.nvidiaPackages.beta;
+                        then pkgs.linuxPackages.nvidiaPackages.stable
+                    else pkgs.linuxPackages.nvidiaPackages.beta;
             in
                 {
                 # forceFullCompositionPipeline = true;
