@@ -21,6 +21,10 @@
 			experimental-features = [ "nix-command" "flakes" ];
             trusted-users = [ "paul" ];
 		};
+        gc = {
+            automatic = true;
+            dates = "weekly";
+        };
 		extraOptions = ''
 			keep-outputs = true
 			keep-derivations = true

@@ -10,6 +10,7 @@
     zramSwap = {
         enable = true;
         memoryPercent = 33;
+        algorithm = "lz4";
     };
 
     services.logind = {

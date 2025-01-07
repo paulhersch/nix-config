@@ -31,7 +31,13 @@
     fileSystems."/" =
     { device = "/dev/disk/by-uuid/0a97ed09-58ce-4ab6-91d7-d7bdcb046d69";
         fsType = "btrfs";
-        options = [ "subvol=nixos" ];
+        options = [ "subvol=nixos" "compress=zstd" ];
+    };
+
+    services.btrfs.autoScrub = {
+        enable = true;
+        fileSystems = [ "/" ];
+        interval = "weekly";
     };
 
     fileSystems."/home" =

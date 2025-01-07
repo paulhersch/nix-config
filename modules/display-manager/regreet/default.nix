@@ -7,7 +7,10 @@
         cageArgs = [ "-m" "last" ];
         settings = {
             background = {
-                path = "/etc/nixos/modules/display-manager/greetd/gtkgreet/bg.jpg";
+                path = builtins.path {
+                    path = ./regreet-bg.jpeg;
+                    name = "regreet-wallpaper";
+                };
                 fit = "Cover";
             };
             GTK = lib.mkForce {
