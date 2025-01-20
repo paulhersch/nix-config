@@ -35,10 +35,10 @@ in
 		};
 	};
 	hardware = {
-		# openrazer = {
-		# 	enable = true;
-		# 	users = [ "paul" "luise" ];
-		# };
+		openrazer = {
+			enable = true;
+			users = [ "paul" "luise" ];
+		};
 		graphics = {
 			extraPackages = with pkgs; [ libva libva-utils ];
 			extraPackages32 = with pkgs.pkgsi686Linux; [ libva libva-utils ];
