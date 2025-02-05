@@ -13,21 +13,21 @@
 , libsixel ? null
 , ncurses
 , writeText
-, addPatches ? []
+, addPatches ? [ ]
 , conf ? null
-, harfbuzzFeatures ? []
+, harfbuzzFeatures ? [ ]
 }:
 
 let
-	str = lib.strings;
-	lst = lib.lists;
+  str = lib.strings;
+  lst = lib.lists;
 
-	# booleans for patches that require some extra libs and settings
-	# can this be made easier?
-	ligatures = lst.any (x: x == "ligatures") addPatches;
-	themedCursor = lst.any (x: x == "themed cursor") addPatches;
-	alpha = lst.any (x: x == "alpha") addPatches;
-	sixel = lst.any (x: x == "sixel") addPatches;
+  # booleans for patches that require some extra libs and settings
+  # can this be made easier?
+  ligatures = lst.any (x: x == "ligatures") addPatches;
+  themedCursor = lst.any (x: x == "themed cursor") addPatches;
+  alpha = lst.any (x: x == "alpha") addPatches;
+  sixel = lst.any (x: x == "sixel") addPatches;
 in
 
 # use libs if needed
@@ -37,78 +37,81 @@ assert alpha -> libXrender != null;
 assert sixel -> libsixel != null;
 
 stdenv.mkDerivation rec {
-	pname = "st-flexipatch";
-	version = "f87d3de";
-	src = fetchFromGitHub {
-		owner = "bakkeby";
-		repo = "st-flexipatch";
-		rev = "f87d3de2cfce8729ec0934a81231691c9290095b";
-		hash = "sha256-cZcoBkgcG+MXVSmjupdmhEQv7j54rANbmMso6XnatEw=";
-	};
-		
-	configFile = lib.optionalString (conf != null)
-		(writeText "config.def.h" conf);
-	
-	# creates the patches.h file, replaces spaces with underlines, capitalizes letters and adds "_PATCH"
-	patchFile = writeText "patches.def.h" (
-		lib.concatStrings (
-			lib.concatMap (x: [ "#define ${str.toUpper x}_PATCH 1\n" ]) (
-				map (y: str.stringAsChars (z: if z==" " then "_" else z) y) addPatches
-	)));
+  pname = "st-flexipatch";
+  version = "f87d3de";
+  src = fetchFromGitHub {
+    owner = "bakkeby";
+    repo = "st-flexipatch";
+    rev = "f87d3de2cfce8729ec0934a81231691c9290095b";
+    hash = "sha256-cZcoBkgcG+MXVSmjupdmhEQv7j54rANbmMso6XnatEw=";
+  };
 
-	# builds the features array for hb.c
-	hbFeatures = "hb_feature_t features[] = { " + (str.concatStringsSep ", " (lst.map (
-		x: "FEATURE(" + (
-			str.concatStringsSep ", " (
-				# needs to be escaped for sed
-				lst.map (y: "\'${y}\'") (str.stringToCharacters x)
-		)) + ")"
-	) harfbuzzFeatures)) + " };";
+  configFile = lib.optionalString (conf != null)
+    (writeText "config.def.h" conf);
 
-	postPatch = lib.optionalString (conf != null) "cp ${configFile} config.h \n"
-		+ lib.optionalString (addPatches != []) "cp ${patchFile} patches.h \n"
-		
-		#uncomment lines for patch libs
-		+ (if ligatures then ''
-			sed -i 's/#LIGATURES_/LIGATURES_/' config.mk
-			sed -i "30s/.*/${hbFeatures}/" hb.c
-			''
-		  else "")
-		+ (if themedCursor then ''
-			sed -i "19s/.//" config.mk
-			''
-		  else "")
-		+ (if alpha then ''
-			sed -i "16s/.//" config.mk
-			''
-		  else "")
-		+ (if sixel then ''
-			sed -i "28s/.//" config.mk
-			''
-		  else "")
-		+ lib.optionalString stdenv.isDarwin ''
-		substituteInPlace config.mk --replace "-lrt" ""
-	'';
+  # creates the patches.h file, replaces spaces with underlines, capitalizes letters and adds "_PATCH"
+  patchFile = writeText "patches.def.h" (
+    lib.concatStrings (
+      lib.concatMap (x: [ "#define ${str.toUpper x}_PATCH 1\n" ]) (
+        map (y: str.stringAsChars (z: if z == " " then "_" else z) y) addPatches
+      )));
 
-	strictDeps = true;
-	makeFlags = [
-		"PKG_CONFIG=${stdenv.cc.targetPrefix}pkg-config"
-	];
+  # builds the features array for hb.c
+  hbFeatures = "hb_feature_t features[] = { " + (str.concatStringsSep ", " (lst.map
+    (
+      x: "FEATURE(" + (
+        str.concatStringsSep ", " (
+          # needs to be escaped for sed
+          lst.map (y: "\'${y}\'") (str.stringToCharacters x)
+        )
+      ) + ")"
+    )
+    harfbuzzFeatures)) + " };";
 
-	depsBuildBuild = [ ncurses fontconfig freetype pkg-config ]
-		++ (if ligatures then [ harfbuzz ] else [])
-		++ (if themedCursor then [ libXcursor ] else [])
-		++ (if alpha then [ libXrender ] else [])
-		++ (if sixel then [ libsixel ] else []);
-	
-	depsHostHost = [ libX11 libXft ]
-		++ (if ligatures then [ harfbuzz ] else [])
-		++ (if themedCursor then [ libXcursor ] else [])
-		++ (if alpha then [ libXrender ] else [])
-		++ (if sixel then [ libsixel ] else []);
-	
-	preInstall = ''
-		export TERMINFO=$out/share/terminfo
-	'';
-	installFlags = [ "PREFIX=$(out)" ];
+  postPatch = lib.optionalString (conf != null) "cp ${configFile} config.h \n"
+    + lib.optionalString (addPatches != [ ]) "cp ${patchFile} patches.h \n"
+
+    #uncomment lines for patch libs
+    + (if ligatures then ''
+    			sed -i 's/#LIGATURES_/LIGATURES_/' config.mk
+    			sed -i "30s/.*/${hbFeatures}/" hb.c
+    			''
+  else "")
+    + (if themedCursor then ''
+    			sed -i "19s/.//" config.mk
+    			''
+  else "")
+    + (if alpha then ''
+    			sed -i "16s/.//" config.mk
+    			''
+  else "")
+    + (if sixel then ''
+    			sed -i "28s/.//" config.mk
+    			''
+  else "")
+    + lib.optionalString stdenv.isDarwin ''
+    		substituteInPlace config.mk --replace "-lrt" ""
+    	'';
+
+  strictDeps = true;
+  makeFlags = [
+    "PKG_CONFIG=${stdenv.cc.targetPrefix}pkg-config"
+  ];
+
+  depsBuildBuild = [ ncurses fontconfig freetype pkg-config ]
+    ++ (if ligatures then [ harfbuzz ] else [ ])
+    ++ (if themedCursor then [ libXcursor ] else [ ])
+    ++ (if alpha then [ libXrender ] else [ ])
+    ++ (if sixel then [ libsixel ] else [ ]);
+
+  depsHostHost = [ libX11 libXft ]
+    ++ (if ligatures then [ harfbuzz ] else [ ])
+    ++ (if themedCursor then [ libXcursor ] else [ ])
+    ++ (if alpha then [ libXrender ] else [ ])
+    ++ (if sixel then [ libsixel ] else [ ]);
+
+  preInstall = ''
+    		export TERMINFO=$out/share/terminfo
+    	'';
+  installFlags = [ "PREFIX=$(out)" ];
 }

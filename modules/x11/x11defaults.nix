@@ -1,11 +1,11 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
-	services ={ 
-        xserver = {
-            enable = true;
-            exportConfiguration = true;
-        };
-		libinput.enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      exportConfiguration = true;
     };
+    libinput.enable = true;
+  };
 }

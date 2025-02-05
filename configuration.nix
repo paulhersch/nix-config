@@ -1,57 +1,57 @@
 { pkgs, ... }:
 
 {
-    imports = [ 
-        ./users
-        ./core
-        # ./modules/display-manager/greetd
-    ];
+  imports = [
+    ./users
+    ./core
+    # ./modules/display-manager/greetd
+  ];
 
-    zramSwap = {
+  zramSwap = {
+    enable = true;
+    memoryPercent = 33;
+    algorithm = "lz4";
+  };
+
+  services.logind = {
+    lidSwitch = "hibernate";
+    lidSwitchDocked = "ignore";
+    lidSwitchExternalPower = "ignore";
+  };
+
+  boot = {
+    initrd.systemd.enable = true;
+    plymouth = {
+      enable = true;
+    };
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+      };
+      grub = {
         enable = true;
-        memoryPercent = 33;
-        algorithm = "lz4";
+        device = "nodev";
+        efiSupport = true;
+        efiInstallAsRemovable = false;
+        configurationLimit = 5;
+        enableCryptodisk = true;
+      };
     };
+    supportedFilesystems = { "ntfs" = true; };
+  };
 
-    services.logind = {
-        lidSwitch = "hibernate";
-        lidSwitchDocked = "ignore";
-        lidSwitchExternalPower = "ignore";
-    };
+  time.timeZone = "Europe/Berlin";
 
-    boot = {
-        initrd.systemd.enable = true;
-        plymouth = {
-            enable = true;
-        };
-        loader = { 
-            efi = {
-                canTouchEfiVariables = true;
-            };
-            grub = {
-                enable = true;
-                device = "nodev";
-                efiSupport = true;
-                efiInstallAsRemovable = false;
-                configurationLimit = 5;
-                enableCryptodisk = true;
-            };
-        };
-        supportedFilesystems = { "ntfs" = true; };
-    };
+  i18n.defaultLocale = "de_DE.UTF-8";
 
-    time.timeZone = "Europe/Berlin";
+  services.xserver = {
+    xkb.options = "caps:escape";
+  };
+  console.useXkbConfig = true;
 
-    i18n.defaultLocale = "de_DE.UTF-8";
-
-    services.xserver = {
-        xkb.options = "caps:escape";
-    };
-    console.useXkbConfig = true;
-
-    # environment.extraInit = ''
-    # 	export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
-    # 	export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
-    # '';
-    system.stateVersion = "24.05";
+  # environment.extraInit = ''
+  # 	export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
+  # 	export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
+  # '';
+  system.stateVersion = "24.05";
 } 
