@@ -1,10 +1,10 @@
 { pkgs, lib, config, home-manager, ... }:
 {
-	imports = [
-		./paul
-		./luise
-	];
-	system.userActivationScripts = {
-		xinitrc.text = ''ln -sf "/etc/X11/xinit/xinitrc" "$HOME/.xinitrc"'';
-	};
+  imports = [
+    ./paul
+    ./luise
+  ];
+  system.userActivationScripts = {
+    xinitrc.text = ''ln -sf "/etc/X11/xinit/xinitrc" "$HOME/.xinitrc"'';
+  };
 }

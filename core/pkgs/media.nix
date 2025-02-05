@@ -1,11 +1,11 @@
 { pkgs, ... }:
 
 with pkgs; [
-	nomacs
-	gimp
-	inkscape
-	spotify
-	vlc
-	handbrake
-    nsxiv
+  nomacs
+  gimp
+  inkscape
+  spotify
+  vlc
+  handbrake
+  nsxiv
 ]

@@ -5,7 +5,7 @@ let
     mkdir -p $out/bin
     ln -s ${pkgs.resvg}/bin/resvg $out/bin/rendersvg
   '';
-  theme = import ../globals/colors.nix {};
+  theme = import ../globals/colors.nix { };
 in
 pkgs.stdenv.mkDerivation rec {
   name = "generated-materia-theme";

@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
@@ -11,13 +12,15 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/sda1";
+    {
+      device = "/dev/sda1";
       fsType = "btrfs";
       options = [ "compress=zstd" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/DB25-52DD";
+    {
+      device = "/dev/disk/by-uuid/DB25-52DD";
       fsType = "vfat";
     };
 
@@ -28,8 +31,8 @@
     interfaces.enp3s0 = {
       useDHCP = false;
       ipv4.addresses = [{
-        address="192.168.178.99";
-        prefixLength=24;
+        address = "192.168.178.99";
+        prefixLength = 24;
       }];
     };
     defaultGateway = "192.168.178.1";
