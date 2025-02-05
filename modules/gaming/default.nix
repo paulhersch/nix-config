@@ -9,7 +9,13 @@ let
 	];
 	stablepkgs = with pkgs; [
 		polychromatic
-		radeontop
+	    (pkgs.wrapOBS {
+            plugins = with pkgs.obs-studio-plugins; [
+                obs-pipewire-audio-capture
+                obs-vkcapture
+                input-overlay
+            ];
+        })
 	];
 in
 {

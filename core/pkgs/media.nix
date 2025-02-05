@@ -6,7 +6,6 @@ with pkgs; [
 	inkscape
 	spotify
 	vlc
-	obs-studio
 	handbrake
     nsxiv
 ]
