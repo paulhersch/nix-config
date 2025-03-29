@@ -27,6 +27,7 @@
     #thunar.enable = true;
     dconf.enable = true;
     system-config-printer.enable = true;
+    kdeconnect.enable = true;
   };
   virtualisation = {
     libvirtd.enable = true;
