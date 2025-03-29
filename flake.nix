@@ -76,14 +76,12 @@
             })
         ];
 
-        config = {
-          allowUnfree = true;
-        };
-
         default_nixpkgs = {
           nixpkgs = {
             inherit overlays;
-            inherit config;
+            config = {
+              allowUnfree = true;
+            };
           };
         };
 

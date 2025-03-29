@@ -2,10 +2,8 @@
 
 let
   unstablepkgs = with pkgs.unstable; [
-    # heroic
-    # gamescope
     prismlauncher
-    factorio
+    # factorio
   ];
   stablepkgs = with pkgs; [
     polychromatic

@@ -130,7 +130,9 @@ in
     services = {
       mako = {
         # only useful with niri, got a ui for sway (TODO tho)
-        enable = config.programs.niri.enable;
+        # enable = config.programs.niri.enable;
+        # libastal is annoying asf
+        enable = true;
         anchor = "top-center";
         width = 600;
         backgroundColor = "#${theme.bg}";
@@ -147,6 +149,27 @@ in
         settings = [
           { include = "~/.config/kanshi.conf"; }
         ];
+        systemdTarget = if config.programs.niri.enable then "niri.service" else
+        (
+          "sway-session.target" # river also executes that i think
+        );
+      };
+      gammastep = {
+        enable = true;
+        provider = "manual";
+        # dawnTime = "7:00-8:30";
+        # duskTime = "16:45-17:30";
+        latitude = 51.0;
+        longitude = 12.0;
+        temperature = {
+          day = 5200;
+          night = 4700;
+        };
+        settings.general = {
+          "brightness-day" = 1.0;
+          "brightness-night" = 0.9;
+        };
+        tray = true;
       };
     };
 

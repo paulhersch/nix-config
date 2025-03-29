@@ -1,13 +1,18 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config
+, lib
+, pkgs
+, modulesPath
+, ...
+}:
 
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../modules/x11/awesome.nix
-    # ../modules/display-manager/lightdm
     ../modules/display-manager/regreet
-    ../modules/wayland/sway.nix
     ../modules/wayland/river.nix
+    # ../modules/wayland/niri.nix # cant use it right now because
+    # i need all the video memory i can get for LLMs, and niri uses
+    # more than river
   ];
 
   programs.sway.extraOptions = [
@@ -16,8 +21,8 @@
   services.uni.jupyter.enable = true;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
   boot.initrd.kernelModules = [ "nvidia" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ config.hardware.nvidia.package ]; # [ config.boot.kernelPackages.nvidiaPackages.stable ];
+  boot.kernelModules = [ "kvm-intel" "nvidia-uvm" ];
+  boot.extraModulePackages = [ config.hardware.nvidia.package ];
 
   # programs.corectrl = {
   #     enable = true;
@@ -26,7 +31,56 @@
   #         ppfeaturemask = "0xffffffff";
   #     };
   # };
-  # environment.systemPackages = with pkgs; [ corectrl ];
+  environment.systemPackages = let
+    steam-run = pkgs.steam-run;
+    stdenvNoCC = pkgs.stdenvNoCC;
+    makeWrapper = pkgs.makeWrapper;
+  in [
+    # https://github.com/NixOS/nixpkgs/pull/365769/commits/baeba6e0bd558185f475b5a02f007bfa06b25df1
+    (stdenvNoCC.mkDerivation (finalAttrs: {
+      pname = "noita_entangled_worlds";
+      version = "1.5.1";
+
+      src = pkgs.fetchzip {
+        url = "https://github.com/IntQuant/noita_entangled_worlds/releases/download/v${finalAttrs.version}/noita-proxy-linux.zip";
+        hash = "sha256-HcEvXOkq8G3hrYXom/KJQYOHngGT8b6cwlo4Xv8ZU18=";
+        stripRoot = false;
+      };
+
+      nativeBuildInputs = [
+        makeWrapper
+      ];
+
+      buildInputs = [
+        steam-run
+      ];
+
+      installPhase = ''
+        runHook preInstall
+        mkdir -p $out/bin
+        mkdir -p $out/libexec
+        cp noita_proxy.x86_64 $out/libexec/noita-proxy-bin
+        cp libsteam_api.so $out/libexec/
+        # Create a wrapper script that calls the binary from libexec
+        makeWrapper ${steam-run}/bin/steam-run $out/bin/noita-proxy \
+        --add-flags "$out/libexec/noita-proxy-bin"
+        runHook postInstall
+      '';
+
+      meta = {
+        changelog = "https://github.com/IntQuant/noita_entangled_worlds/releases/tag/v${finalAttrs.version}";
+        description = "True coop multiplayer mod for Noita";
+        homepage = "https://github.com/IntQuant/noita_entangled_worlds";
+        license = with lib.licenses; [
+          asl20
+          mit
+        ];
+        maintainers = with lib.maintainers; [ orbsa ];
+        platforms = lib.platforms.linux;
+        mainProgram = "noita-proxy";
+      };
+    }))
+  ];
 
   fileSystems."/" =
     {
@@ -112,25 +166,28 @@
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
   boot.kernelPackages = pkgs.linuxPackages;
   hardware = {
+    xone.enable = true;
+    xpadneo.enable = true;
+    nvidia-container-toolkit.enable = true;
     nvidia =
-      let
-        nverStable = pkgs.linuxPackages.nvidiaPackages.stable.version;
-        nverBeta = pkgs.linuxPackages.nvidiaPackages.beta.version;
-        nvidiaPackage =
-          if (lib.versionOlder nverBeta nverStable)
-          then pkgs.linuxPackages.nvidiaPackages.stable
-          else pkgs.linuxPackages.nvidiaPackages.beta;
-      in
+      # let
+      #   nverStable = pkgs.linuxPackages.nvidiaPackages.stable.version;
+      #   nverBeta = pkgs.linuxPackages.nvidiaPackages.beta.version;
+      #   nvidiaPackage =
+      #     if (lib.versionOlder nverBeta nverStable)
+      #     then pkgs.linuxPackages.nvidiaPackages.stable
+      #     else pkgs.linuxPackages.nvidiaPackages.beta;
+      # in
       {
         # forceFullCompositionPipeline = true;
         modesetting.enable = true;
-        open = false;
+        open = true; # should be stable now
         nvidiaSettings = true;
         powerManagement = {
           enable = true;
           #    finegrained = false;
         };
-        package = nvidiaPackage;
+        # package = nvidiaPackage;
         #prime = {
         #    # reverseSync.enable = true;
         #    sync.enable = true;
