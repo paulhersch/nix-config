@@ -25,4 +25,7 @@
     # askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
     enableAskPassword = false;
   };
+  boot.initrd.services.udev.rules = ''
+    KERNEL=="ttyUSB*", GROUP="dialout"
+  '';
 }

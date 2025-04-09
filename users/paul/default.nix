@@ -34,6 +34,7 @@ in
       "docker"
       "plugdev"
       "wheel" # for cups
+      "dialout" # ESP32 dev
     ];
     packages = with pkgs;[
       qmk
