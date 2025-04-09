@@ -26,7 +26,7 @@ with theme; ''
   set $right Right
 
   # i am enabling the user service, so no pkgs ref here
-  set $term kitty
+  set $term foot
 
   set $menu "${pkgs.tofi}/bin/tofi-drun"
 
