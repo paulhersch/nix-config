@@ -3,7 +3,6 @@
 {
   services = {
     uni.jupyter.enable = true;
-    teamviewer.enable = true;
     xserver.xkb.layout = "de";
   };
   imports = [

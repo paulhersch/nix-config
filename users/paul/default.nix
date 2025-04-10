@@ -8,13 +8,7 @@
 let
   theme = import ../../globals/colors.nix { };
   py_pkgs = (pkgs.python3.withPackages (p: with p; [
-    python-lsp-server
-    python-lsp-ruff
-    python-lsp-black
-    pylsp-mypy
-    jupytext
-    rope
-    pylatexenc
+    pandas
   ]));
 in
 {
@@ -82,7 +76,7 @@ in
       # finally, no Java :))))
       # keeping this in here in case i need to do the cringe again
       # jetbrains.idea-community
-      dbeaver-bin
+      # dbeaver-bin
       # prismlauncher
       # openjdk
       # maven
@@ -231,6 +225,13 @@ in
           pyperclip
           requests
           websocket-client
+          python-lsp-server
+          python-lsp-ruff
+          python-lsp-black
+          pylsp-mypy
+          jupytext
+          rope
+          pylatexenc
         ];
         extraPackages = with pkgs; [
           nodejs
