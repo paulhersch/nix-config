@@ -22,6 +22,7 @@ with pkgs; [
   nsnake
   cifs-utils
   lz4
+  rar
 ] ++ [
   pkgs.unstable.neovim
 ]

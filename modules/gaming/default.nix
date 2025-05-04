@@ -26,6 +26,8 @@ in
           gamescope
           gamemode
           mangohud
+          ryujinx
+          torzu
         ];
       };
     };
@@ -39,6 +41,8 @@ in
     };
   };
   hardware = {
+    xone.enable = true;
+    xpadneo.enable = true;
     openrazer = {
       enable = true;
       users = [ "paul" "luise" ];

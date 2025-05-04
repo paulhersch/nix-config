@@ -22,12 +22,13 @@
     };
     gc = {
       automatic = true;
+      persistent = true;
       dates = "weekly";
       options = "--delete-older-than 3d";
     };
+    # keep-derivations = true
     extraOptions = ''
-      			keep-outputs = true
-      			keep-derivations = true
-          		'';
+      keep-outputs = true
+    '';
   };
 }

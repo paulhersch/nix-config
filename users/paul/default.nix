@@ -9,6 +9,12 @@ let
   theme = import ../../globals/colors.nix { };
   py_pkgs = (pkgs.python3.withPackages (p: with p; [
     pandas
+    numpy
+    python-lsp-server
+    python-lsp-ruff
+    python-lsp-black
+    pylsp-mypy
+    rope
   ]));
 in
 {
@@ -72,6 +78,7 @@ in
       anydesk
       pdfpc
       pandoc
+      drawio
 
       # finally, no Java :))))
       # keeping this in here in case i need to do the cringe again
@@ -204,7 +211,7 @@ in
       };
       neovim = {
         enable = true;
-        package = pkgs.unstable.neovim-unwrapped;
+        package = pkgs.neovim-unwrapped;
         vimAlias = true;
         withNodeJs = true; # :(
         extraLuaPackages = p: with p; [
@@ -225,12 +232,7 @@ in
           pyperclip
           requests
           websocket-client
-          python-lsp-server
-          python-lsp-ruff
-          python-lsp-black
-          pylsp-mypy
           jupytext
-          rope
           pylatexenc
         ];
         extraPackages = with pkgs; [
