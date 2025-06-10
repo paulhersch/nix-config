@@ -15,6 +15,7 @@ let
     python-lsp-black
     pylsp-mypy
     rope
+    pymilter
   ]));
 in
 {
@@ -132,19 +133,21 @@ in
     services = {
       mako = {
         # only useful with niri, got a ui for sway (TODO tho)
-        # enable = config.programs.niri.enable;
+        enable = config.programs.niri.enable;
         # libastal is annoying asf
-        enable = true;
-        anchor = "top-center";
-        width = 600;
-        backgroundColor = "#${theme.bg}";
-        textColor = "#${theme.fg}";
-        borderColor = "#${theme.dbg}";
-        defaultTimeout = 5000;
-        font = "Iosevka Comfy Motion Duo 12";
-        format = "<span style=\"italic\" size=\"large\">%s</span>\\n%b";
-        markup = true;
-        iconPath = "${config.home-manager.users.paul.gtk.iconTheme.package}/share/icons/${config.home-manager.users.paul.gtk.iconTheme.name}";
+        # enable = true;
+        settings = {
+          anchor = "top-center";
+          width = 600;
+          background-color = "#${theme.bg}";
+          text-color = "#${theme.fg}";
+          border-color = "#${theme.dbg}";
+          default-timeout = 5000;
+          font = "Iosevka Comfy Motion Duo 12";
+          format = "<span style=\"italic\" size=\"large\">%s</span>\\n%b";
+          markup = true;
+          icon-path = "${config.home-manager.users.paul.gtk.iconTheme.package}/share/icons/${config.home-manager.users.paul.gtk.iconTheme.name}";
+        };
       };
       kanshi = {
         enable = true;
@@ -169,7 +172,7 @@ in
         };
         settings.general = {
           "brightness-day" = 1.0;
-          "brightness-night" = 0.9;
+          "brightness-night" = 0.8;
         };
         tray = true;
       };

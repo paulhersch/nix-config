@@ -40,7 +40,6 @@ in
     rofi
     wlogout
     wev
-    ags
     # eww-wayland
     # eww-lua-env
     oguri

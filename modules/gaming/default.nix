@@ -27,7 +27,7 @@ in
           gamemode
           mangohud
           ryujinx
-          torzu
+          old.torzu
         ];
       };
     };

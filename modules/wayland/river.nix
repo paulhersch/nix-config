@@ -8,7 +8,6 @@
   programs.river = {
     enable = true;
     extraPackages = with pkgs; [
-      ags
       nemo-with-extensions
       foot
       gammastep

@@ -2,11 +2,13 @@
   description = "Flake for my Systems";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    # for torzu, got taken down
+    old.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     libastal.url = "github:Aylur/astal";
@@ -72,6 +74,7 @@
                   '';
                 };
               unstable = import inputs.unstable { inherit system; config = { allowUnfree = true; }; };
+              old = import inputs.old { inherit system; config = { allowUnfree = true; }; };
               gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix { };
             })
         ];

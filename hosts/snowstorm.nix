@@ -10,6 +10,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../modules/display-manager/regreet
     ../modules/wayland/river.nix
+    ../modules/wayland/sway.nix
     # ../modules/wayland/niri.nix # cant use it right now because
     # i need all the video memory i can get for LLMs, and niri uses
     # more than river
@@ -166,8 +167,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
   boot.kernelPackages = pkgs.linuxPackages;
   hardware = {
-    xone.enable = true;
-    xpadneo.enable = true;
+    # xone.enable = true;
     nvidia-container-toolkit.enable = true;
     nvidia =
       # let

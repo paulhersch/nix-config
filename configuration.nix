@@ -49,6 +49,10 @@
   };
   console.useXkbConfig = true;
 
+  networking.extraHosts = ''
+    127.0.0.1 mail.stegamail.de
+  '';
+
   # environment.extraInit = ''
   # 	export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
   # 	export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
