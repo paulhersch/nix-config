@@ -23,7 +23,7 @@ with theme; ''
   builtin_box_drawing = true
 
   [font.normal]
-  family = "Iosevka With Fallback"
+  family = "Aporetic With Fallback"
 
   [selection]
   save_to_clipboard = true

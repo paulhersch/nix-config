@@ -2,9 +2,9 @@
 {
   enable = true;
   font = {
-    name = "Iosevka Comfy Motion Duo";
+    name = "Aporetic Serif Medium";
     size = 11;
-    package = pkgs.iosevka-comfy.comfy-motion-duo;
+    package = pkgs.aporetic;
   };
   iconTheme = {
     name = "Papirus-Light";

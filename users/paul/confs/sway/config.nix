@@ -170,7 +170,7 @@ with theme; ''
   gaps inner 9
   default_border pixel 2
 
-  font Iosevka Comfy Motion Duo 12
+  font Aporetic Serif 12
   # titlebar_padding 5
 
   ### SwayFX options ###

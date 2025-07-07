@@ -5,11 +5,11 @@
   <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
   <fontconfig>
     <alias>
-      <family>Iosevka With Fallback</family>
+      <family>Aporetic With Fallback</family>
       <prefer>
-          <family>Iosevka Comfy Motion Fixed</family>
+          <family>Aporetic Serif Mono</family>
           <family>Symbols Nerd Font</family>
-  	<family>Material Design Icons</family>
+        	<family>Material Design Icons</family>
           <family>Twitter Color Emoji</family>
       </prefer>
     </alias>

@@ -23,6 +23,10 @@ in
 
   # services.mullvad-vpn.enable = true;
 
+  # to block xow from being built
+  hardware = {
+    xpadneo.enable = true;
+  };
   # set defaults
   xdg.mime.defaultApplications =
     let

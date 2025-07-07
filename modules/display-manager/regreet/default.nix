@@ -15,7 +15,7 @@
       };
       GTK = lib.mkForce {
         cursor_theme_name = "phinger-cursors-dark";
-        font_name = "Iosevka Comfy Motion Duo 11";
+        font_name = "Aporetic Serif Medium 11";
         icon_theme_name = "Papirus-Light";
         theme_name = "Materia-custom";
       };

@@ -143,7 +143,7 @@ in
           text-color = "#${theme.fg}";
           border-color = "#${theme.dbg}";
           default-timeout = 5000;
-          font = "Iosevka Comfy Motion Duo 12";
+          font = "Aporetic Serif 12";
           format = "<span style=\"italic\" size=\"large\">%s</span>\\n%b";
           markup = true;
           icon-path = "${config.home-manager.users.paul.gtk.iconTheme.package}/share/icons/${config.home-manager.users.paul.gtk.iconTheme.name}";
@@ -182,10 +182,10 @@ in
       kitty = {
         enable = true;
         settings = {
-          font_family = "family=\"Iosevka Comfy Motion Fixed\" style=Medium";
-          bold_font = "family=\"Iosevka Comfy Motion Fixed\" style=Bold";
-          italic_font = "family=\"Iosevka Comfy Motion Fixed\" style=\"Medium Italic\"";
-          bold_italic_font = "family=\"Iosevka Comfy Motion Fixed\" style=\"Bold Italic\"";
+          font_family = "family=\"Aporetic Serif Mono\" style=Medium";
+          bold_font = "family=\"Aporetic Serif Mono\" style=Bold";
+          italic_font = "family=\"Aporetic Serif Mono\" style=\"Medium Italic\"";
+          bold_italic_font = "family=\"Aporetic Serif Mono\" style=\"Bold Italic\"";
           font_size = 12;
           symbol_map = "U+E0A0-U+E0D7,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6B5,U+E700-U+E7C5,U+EA60-U+EC1E,U+ED00-U+EFCE,U+F000-U+F375,U+F400-U+F533,U+276C-U+2771,U+23FB-U+23FE,U+2B58 Symbols Nerd Font Mono\nsymbol_map U+1FA70-U+E007F,U+1F90C-U+1F9FF,U+1F7E0-U+1F7F0,U+1F680-U+1F6FC,U+1F170-U+1F64F,U+1F0CF,U+1F004,U+3030-U+3299,U+2B05-U+2B55,U+2795-U+2935,U+25AA-U+2764,U+23CF-U+23FA,U+203C-U+2328 Twitter Color Emoji";
           disable_ligatures = "always";
@@ -241,9 +241,10 @@ in
         extraPackages = with pkgs; [
           nodejs
           tree-sitter
-          luajitPackages.luarocks
+          readline # for hererocks
+          (luajit.withPackages(p: with p; [luarocks])) # for hererocks
           # molten-nvim
-          imagemagick
+          imagemagickBig
           ueberzugpp
           # telescope
           ripgrep
@@ -285,7 +286,7 @@ in
       tofi = {
         enable = true;
         settings = {
-          font = "Iosevka Comfy Motion Duo";
+          font = "Aporetic Serif Mono Medium";
           font-size = 15;
           text-color = "#${theme.fg}";
           placeholder-color = "#${theme.c0}";
@@ -300,7 +301,7 @@ in
           padding-left = 20;
           padding-right = 20;
           placeholder-text = "search";
-          num-results = 10;
+          # num-results = 10;
           result-spacing = 25;
           horizontal = false;
           background-color = "#${theme.bg}";
@@ -321,7 +322,7 @@ in
         settings = {
           main = {
             term = "xterm-256color";
-            font = "Iosevka With Fallback:size=12";
+            font = "Aporetic With Fallback:size=12";
             pad = "10x10";
             dpi-aware = "no";
           };
