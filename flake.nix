@@ -12,6 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     libastal.url = "github:Aylur/astal";
+    quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
   };
 
   outputs =
@@ -29,6 +30,7 @@
           (final: prev:
             let inherit (final) system; in {
               astal = inputs.libastal.packages.${system}.default;
+              quickshell = inputs.quickshell.packages.${system}.default;
               # inputs.libastal.packages.${default}.default;
               libastal-lua =
                 let

@@ -23,6 +23,7 @@
     inotify-tools
     kanshi
     libastal-lua
+    quickshell
     networkmanagerapplet
     swaylock
     swww

@@ -44,6 +44,7 @@
         inotify-tools
         kanshi
         libastal-lua
+        quickshell
         networkmanagerapplet
         slurp
         swayidle
@@ -57,6 +58,8 @@
       ];
     };
   };
+  
+  # qt.enable = true;
 
   xdg = {
     terminal-exec.settings = {
