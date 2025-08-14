@@ -7,29 +7,37 @@ let
   ];
   stablepkgs = with pkgs; [
     polychromatic
-    (pkgs.wrapOBS {
+  ];
+in
+{
+  environment.systemPackages = unstablepkgs ++ stablepkgs ++ (with pkgs; [
+    ryujinx
+    old.torzu
+    pcsx2
+  ]);
+
+  programs = {
+    obs-studio = {
+      enable = true;
+      package = pkgs.obs-studio.override { cudaSupport = true; };
       plugins = with pkgs.obs-studio-plugins; [
         obs-pipewire-audio-capture
         obs-vkcapture
         input-overlay
       ];
-    })
-  ];
-in
-{
-  environment.systemPackages = unstablepkgs ++ stablepkgs;
-  programs = {
+    };
     steam = {
+      gamescopeSession.enable = true;
       enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          gamescope
-          gamemode
-          mangohud
-          ryujinx
-          old.torzu
-        ];
-      };
+      extraPackages = with pkgs; [
+        gamescope
+        gamemode
+        mangohud
+        libkrb5
+        keyutils
+        stdenv.cc.cc.lib
+        libpng
+      ];
     };
     gamemode = {
       enable = true;
@@ -37,7 +45,7 @@ in
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
+      # capSysNice = true;
     };
   };
   hardware = {

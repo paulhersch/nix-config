@@ -9,6 +9,7 @@
     aporetic
     material-design-icons
     twitter-color-emoji
+    arkpandora_ttf
   ] ++ (with pkgs.nerd-fonts; [
     symbols-only
     fantasque-sans-mono

@@ -22,7 +22,7 @@
     grim
     inotify-tools
     kanshi
-    libastal-lua
+    # libastal-lua
     quickshell
     networkmanagerapplet
     swaylock
@@ -36,11 +36,25 @@
   xdg = {
     portal = {
       extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
         xdg-desktop-portal-gnome
       ];
       config.niri = {
-        default = [ "gnome" ];
+        default = [ "gtk" "gnome" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
     };
   };
+
+  # systemd.user.services."quickshell-daemon" = {
+  #   description = "Niri's quickshell background process";
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.quickshell}/bin/qs";
+  #     Restart = "on-failure";
+  #     RestartSec = 5;
+  #   };
+  #   wantedBy = [ "niri.service" ];
+  #   after = [ "niri.service" ];
+  #   partOf = [ "graphical-session.target" ];
+  # };
 }

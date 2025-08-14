@@ -9,11 +9,10 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../modules/display-manager/regreet
-    ../modules/wayland/river.nix
-    ../modules/wayland/sway.nix
-    # ../modules/wayland/niri.nix # cant use it right now because
-    # i need all the video memory i can get for LLMs, and niri uses
-    # more than river
+    # ../modules/x11/awesome.nix
+    # ../modules/wayland/sway.nix
+    ../modules/wayland/hyprland.nix
+    ../modules/wayland/niri.nix
   ];
 
   programs.sway.extraOptions = [
@@ -40,11 +39,11 @@
     # https://github.com/NixOS/nixpkgs/pull/365769/commits/baeba6e0bd558185f475b5a02f007bfa06b25df1
     (stdenvNoCC.mkDerivation (finalAttrs: {
       pname = "noita_entangled_worlds";
-      version = "1.5.1";
+      version = "1.6.2";
 
       src = pkgs.fetchzip {
         url = "https://github.com/IntQuant/noita_entangled_worlds/releases/download/v${finalAttrs.version}/noita-proxy-linux.zip";
-        hash = "sha256-HcEvXOkq8G3hrYXom/KJQYOHngGT8b6cwlo4Xv8ZU18=";
+        hash = "sha256-08+W4uGTzVrnX4tsnoLFwvEuLPozdJbKAJZQJoqjXBA=";
         stripRoot = false;
       };
 

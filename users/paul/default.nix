@@ -71,6 +71,7 @@ in
 
       luaPackages.lua
       ghc
+      haskellPackages.tidal
       rustup
       gcc
       gnumake
@@ -79,7 +80,7 @@ in
       anydesk
       pdfpc
       pandoc
-      drawio
+      # drawio
 
       # finally, no Java :))))
       # keeping this in here in case i need to do the cringe again
@@ -103,7 +104,7 @@ in
       # instead i ask the ppl provisioning boxes to give me a static IP + RDP
       # and then i use remmina to access them, citrix simply doesnt fucking
       # connect to anything without giving me any clues about whats going on
-      remmina
+      # remmina
     ];
   };
   home-manager.users.paul = {
@@ -133,7 +134,7 @@ in
     services = {
       mako = {
         # only useful with niri, got a ui for sway (TODO tho)
-        enable = config.programs.niri.enable;
+        # enable = config.programs.niri.enable;
         # libastal is annoying asf
         # enable = true;
         settings = {
@@ -264,7 +265,7 @@ in
           ccls
         ];
       };
-      autorandr = import ./autorandrhm.nix { };
+      # autorandr = import ./autorandrhm.nix { };
       # not on X any more
       direnv = {
         enable = true;

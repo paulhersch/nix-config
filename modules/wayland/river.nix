@@ -14,6 +14,7 @@
       glib
       grim
       libastal-lua
+      quickshell
       astal
       kanshi
       networkmanagerapplet
