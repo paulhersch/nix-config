@@ -29,7 +29,6 @@
     swww
     tofi
     wev
-    waybar
     wl-clipboard
   ];
 

@@ -14,6 +14,10 @@ in
     ryujinx
     old.torzu
     pcsx2
+    bottles
+    lutris
+    wine
+    winetricks
   ]);
 
   programs = {

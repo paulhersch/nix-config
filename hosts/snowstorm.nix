@@ -31,11 +31,13 @@
   #         ppfeaturemask = "0xffffffff";
   #     };
   # };
+  services.udev.packages = [ pkgs.via ];
   environment.systemPackages = let
     steam-run = pkgs.steam-run;
     stdenvNoCC = pkgs.stdenvNoCC;
     makeWrapper = pkgs.makeWrapper;
   in [
+    pkgs.via
     # https://github.com/NixOS/nixpkgs/pull/365769/commits/baeba6e0bd558185f475b5a02f007bfa06b25df1
     (stdenvNoCC.mkDerivation (finalAttrs: {
       pname = "noita_entangled_worlds";
