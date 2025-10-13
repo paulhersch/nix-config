@@ -24,13 +24,6 @@
   boot.kernelModules = [ "kvm-intel" "nvidia-uvm" ];
   boot.extraModulePackages = [ config.hardware.nvidia.package ];
 
-  # programs.corectrl = {
-  #     enable = true;
-  #     gpuOverclock = {
-  #         enable = true;
-  #         ppfeaturemask = "0xffffffff";
-  #     };
-  # };
   services.udev.packages = [ pkgs.via ];
   environment.systemPackages = let
     steam-run = pkgs.steam-run;

@@ -5,7 +5,7 @@
     createHome = true;
     description = "Luise Haase";
     isNormalUser = true;
-    extraGroups = [ "video" "networkmanager" "flatpak" "libvirtd" "messagebus" ];
+    extraGroups = [ "video" "networkmanager" "libvirtd" "messagebus" ];
   };
 }
 
