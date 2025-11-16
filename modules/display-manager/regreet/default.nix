@@ -1,7 +1,8 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
   services.greetd.enable = true;
+  services.xserver.displayManager.startx.enable = config.services.xserver.enable; # only enable startx if x exists
   programs.regreet = {
     enable = true;
     cageArgs = [ "-m" "last" ];

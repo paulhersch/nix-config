@@ -53,12 +53,12 @@ in
     libnotify
     lightlocker
     lxrandr
-    redshift
     i3lock-color
     sox
     pamixer
     imagemagick
-    pcmanfm
+    nemo-with-extensions
+    alacritty
   ];
 
   xdg.portal = {

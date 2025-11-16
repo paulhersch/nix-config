@@ -117,7 +117,7 @@ in
     home = {
       file = {
         # ".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
-        # ".config/alacritty/alacritty.toml".text = import ./confs/alacritty.nix { inherit theme; };
+        ".config/alacritty/alacritty.toml".text = import ./confs/alacritty.nix { inherit theme; };
         ".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
         ".config/fontconfig/conf.d/99-alias-main.conf".text = import ./confs/fontconf.nix { };
         ".zshenv".text = "";
@@ -265,7 +265,7 @@ in
           ccls
         ];
       };
-      # autorandr = import ./autorandrhm.nix { };
+      autorandr = import ./autorandrhm.nix { };
       # not on X any more
       direnv = {
         enable = true;

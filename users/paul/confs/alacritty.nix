@@ -1,6 +1,7 @@
 { theme }:
 
 with theme; ''
+  [general]
   ipc_socket = true
 
   [env]

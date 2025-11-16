@@ -15,16 +15,15 @@
     ../modules/wayland/niri.nix
   ];
 
-  programs.sway.extraOptions = [
-    "--unsupported-gpu"
-  ];
-  services.uni.jupyter.enable = true;
+  # services.uni.jupyter.enable = true;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
   boot.initrd.kernelModules = [ "nvidia" ];
   boot.kernelModules = [ "kvm-intel" "nvidia-uvm" ];
   boot.extraModulePackages = [ config.hardware.nvidia.package ];
 
   services.udev.packages = [ pkgs.via ];
+
+  # Noita mod for coop
   environment.systemPackages = let
     steam-run = pkgs.steam-run;
     stdenvNoCC = pkgs.stdenvNoCC;
@@ -152,42 +151,28 @@
       fsType = "vfat";
     };
 
+  # i shouldn't have to blacklist the module in theory
   # boot.kernelParams = [ "module_blacklist=i915" ]; # "pci=noaer" ];
   swapDevices = [ ];
+
   services.xserver = {
     xkb.layout = "eu";
     videoDrivers = [ "nvidia" ];
   };
+
   boot.loader.efi.efiSysMountPoint = "/boot/EFI";
   boot.kernelPackages = pkgs.linuxPackages;
   hardware = {
     # xone.enable = true;
     nvidia-container-toolkit.enable = true;
-    nvidia =
-      # let
-      #   nverStable = pkgs.linuxPackages.nvidiaPackages.stable.version;
-      #   nverBeta = pkgs.linuxPackages.nvidiaPackages.beta.version;
-      #   nvidiaPackage =
-      #     if (lib.versionOlder nverBeta nverStable)
-      #     then pkgs.linuxPackages.nvidiaPackages.stable
-      #     else pkgs.linuxPackages.nvidiaPackages.beta;
-      # in
-      {
+    nvidia = {
         # forceFullCompositionPipeline = true;
         modesetting.enable = true;
-        open = true; # should be stable now
+        open = true;
         nvidiaSettings = true;
         powerManagement = {
           enable = true;
-          #    finegrained = false;
         };
-        # package = nvidiaPackage;
-        #prime = {
-        #    # reverseSync.enable = true;
-        #    sync.enable = true;
-        #    nvidiaBusId = "PCI:1:0:0";
-        #    intelBusId = "PCI:0:2:0";
-        #};
       };
     keyboard.qmk.enable = true;
     bluetooth = {

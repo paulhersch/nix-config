@@ -6,7 +6,7 @@
     old.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
+    nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +24,7 @@
       with nixpkgs.lib;
       let
         overlays = with inputs; [
-          # nixpkgs-f2k.overlays.default
+          nixpkgs-f2k.overlays.default
           # inputs.neovim-nightly.overlays.default
           # copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
           (final: prev:
