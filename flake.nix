@@ -77,7 +77,36 @@
                 };
               unstable = import inputs.unstable { inherit system; config = { allowUnfree = true; }; };
               old = import inputs.old { inherit system; config = { allowUnfree = true; }; };
-              gtk-materia-custom = prev.pkgs.callPackage ./pkgs/materia-custom.nix { };
+              gtk-custom = prev.pkgs.callPackage ./pkgs/qogir-custom.nix {
+                theme-name = "Custom";
+                color-changes = (let colors = import ./globals/colors.nix { }; in rec {
+                  alt_dark_sidebar_fg = "#${colors.fg}";
+                  base_color = "#${colors.bg}";
+                  bg_color = "#${colors.bg}";
+                  dark_sidebar_bg = "#${colors.dbg}";
+                  dark_sidebar_fg = "#${colors.fg}";
+                  dark_sidebar_icon_bg = dark_sidebar_bg;
+                  dark_sidebar_icon_fg = dark_sidebar_fg;
+                  header_bg_backdrop = dark_sidebar_bg;
+                  destructive_color = error_color;
+                  destructive_fg_color = error_fg_color;
+                  drop_target_color = "#${colors.dbg}";
+                  error_color = "mix($bg_color, ${colors.c9},  %20)";
+                  error_fg_color = "#${colors.fg}";
+                  fg_color = "#${colors.c7}";
+                  header_bg = "#${colors.dbg}";
+                  osd_bg_color = "#${colors.bg}";
+                  osd_fg_color = "#${colors.fg}";
+                  panel_bg = "#${colors.bg}";
+                  selected_bg_color = "#${colors.ddfg}";
+                  selected_fg_color = "#${colors.lbg}";
+                  success_color = "mix($bg_color, ${colors.c10}, %20)";
+                  suggested_fg_color = selected_fg_color;
+                  text_color = "#${colors.fg}";
+                  warning_color = "mix($bg_color, ${colors.c11}, %20)";
+                  warning_fg_color = "#${colors.fg}";
+                });
+              };
             })
         ];
 
@@ -97,6 +126,13 @@
       {
         formatter = forAllPkgs (pkgs: pkgs.nixpkgs-fmt);
         nixosConfigurations = {
+          isox86 = nixosSystem {
+            system = "x86_64-linux";
+            modules = [ default_nixpkgs ] ++ [
+              ./hosts/iso
+              "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-base.nix"
+            ];
+          };
           snowstorm = nixosSystem {
             system = "x86_64-linux";
             modules = [ default_nixpkgs ] ++ [
@@ -131,5 +167,6 @@
         snowstorm = self.nixosConfigurations.snowstorm.config.system.build.toplevel;
         snowflake = self.nixosConfigurations.snowflake.config.system.build.toplevel;
         snowball = self.nixosConfigurations.snowball.config.system.build.toplevel;
+        isox86 = self.nixosConfigurations.isox86.config.system.build.isoImage;
       };
 }

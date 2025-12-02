@@ -1,61 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
     ./users
     ./core
-    # ./modules/display-manager/greetd
   ];
-
-  zramSwap = {
-    enable = true;
-    memoryPercent = 33;
-    algorithm = "lz4";
-  };
-
-  services.logind = {
-    lidSwitch = "hibernate";
-    lidSwitchDocked = "ignore";
-    lidSwitchExternalPower = "ignore";
-  };
-
-  boot = {
-    initrd.systemd.enable = true;
-    plymouth = {
-      enable = true;
-    };
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-      };
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        efiInstallAsRemovable = false;
-        configurationLimit = 5;
-        enableCryptodisk = true;
-      };
-    };
-    supportedFilesystems = { "ntfs" = true; };
-  };
-
-  time.timeZone = "Europe/Berlin";
-
-  i18n.defaultLocale = "de_DE.UTF-8";
-
-  services.xserver = {
-    xkb.options = "caps:escape";
-  };
-  console.useXkbConfig = true;
-
-  networking.extraHosts = ''
-    127.0.0.1 mail.stegamail.de
-  '';
-
-  # environment.extraInit = ''
-  # 	export GI_TYPELIB_PATH="/run/current-system/sw/lib/girepository-1.0"
-  # 	export AWM_LIB_PATH="${pkgs.awesome-git}/share/awesome/lib/"
-  # '';
   system.stateVersion = "24.05";
 } 

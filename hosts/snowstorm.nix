@@ -13,6 +13,7 @@
     ../modules/wayland/sway.nix
     # ../modules/wayland/hyprland.nix
     ../modules/wayland/niri.nix
+    ./common-real.nix
   ];
 
   # services.uni.jupyter.enable = true;

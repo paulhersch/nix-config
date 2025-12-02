@@ -4,18 +4,17 @@ let
   basic = import ./basic.nix { pkgs = pkgs; };
   guiutils = import ./guiutils.nix { pkgs = pkgs; };
   cliutils = import ./cliutils.nix { pkgs = pkgs; };
-  pythonpackages = import ./python.nix { pkgs = pkgs; };
+  # pythonpackages = import ./python.nix { pkgs = pkgs; };
 in
 {
   imports = [ ./fonts.nix ];
   environment.systemPackages = with pkgs; [
     pfetch
     # mullvad-vpn
-    papirus-icon-theme
-    gtk-materia-custom
+    # papirus-icon-theme
+    # gtk-materia-custom
     # (pkgs.callPackage ../../pkgs/satk.nix {})
   ]
-  ++ pythonpackages
   ++ basic
   ++ media
   ++ guiutils
