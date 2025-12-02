@@ -16,8 +16,8 @@
     size = 24;
   };
   theme = {
-    name = "Materia-custom";
-    package = pkgs.gtk-materia-custom;
+    name = "Custom";
+    package = pkgs.gtk-custom;
   };
   gtk2 = {
     configLocation = "/home/paul/.gtkrc-2.0";

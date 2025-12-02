@@ -45,9 +45,10 @@ let
       }
     }
     ]
-'';
+  '';
 
-in {
+in
+{
   services.pulseaudio.enable = false;
   environment.etc = {
     "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''

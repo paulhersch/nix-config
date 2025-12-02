@@ -99,11 +99,6 @@ in
       # debuggers
       gdb
 
-      # annoying ass work software
-      # citrix_workspace
-      # instead i ask the ppl provisioning boxes to give me a static IP + RDP
-      # and then i use remmina to access them, citrix simply doesnt fucking
-      # connect to anything without giving me any clues about whats going on
       # remmina
     ];
   };
@@ -127,6 +122,7 @@ in
         };
       };
       sessionVariables = {
+        # this should be available on all my machines
         ZK_NOTEBOOK_DIR = "$HOME/Dokumente/Uni/zk";
       };
     };
@@ -243,7 +239,7 @@ in
           nodejs
           tree-sitter
           readline # for hererocks
-          (luajit.withPackages(p: with p; [luarocks])) # for hererocks
+          (luajit.withPackages (p: with p; [ luarocks ])) # for hererocks
           # molten-nvim
           imagemagickBig
           ueberzugpp
@@ -265,7 +261,7 @@ in
           ccls
         ];
       };
-      autorandr = import ./autorandrhm.nix { };
+      # autorandr = import ./autorandrhm.nix { };
       # not on X any more
       direnv = {
         enable = true;

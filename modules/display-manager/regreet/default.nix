@@ -18,7 +18,7 @@
         cursor_theme_name = "phinger-cursors-dark";
         font_name = "Aporetic Serif Medium 11";
         icon_theme_name = "Papirus-Light";
-        theme_name = "Materia-custom";
+        theme_name = "Custom";
       };
     };
   };

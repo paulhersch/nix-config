@@ -11,6 +11,7 @@
     # ../modules/wayland/river.nix
     # ../modules/wayland/niri.nix
     ../modules/display-manager/regreet
+    ./common-real.nix
   ];
   networking.hostName = "snowflake";
 

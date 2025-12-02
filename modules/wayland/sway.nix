@@ -57,7 +57,7 @@
       ];
     };
   };
-  
+
   # qt.enable = true;
 
   xdg = {
