@@ -10,6 +10,7 @@
     material-design-icons
     twitter-color-emoji
     arkpandora_ttf
+    times-newer-roman
     unscii
   ] ++ (with pkgs.nerd-fonts; [
     symbols-only

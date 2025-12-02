@@ -155,10 +155,11 @@ in
         settings = [
           { include = "~/.config/kanshi.conf"; }
         ];
-        systemdTarget = if config.programs.niri.enable then "niri.service" else
-        (
-          "sway-session.target" # river also executes that i think
-        );
+        # systemdTarget = if config.programs.niri.enable then "niri.service" else
+        # (if config.programs.sway.enable then "sway-session.target" else
+        # "graphical-session.target"
+        # );
+        systemdTarget = "graphical-session.target";
       };
       gammastep = {
         enable = true;
@@ -243,7 +244,7 @@ in
           nodejs
           tree-sitter
           readline # for hererocks
-          (luajit.withPackages(p: with p; [luarocks])) # for hererocks
+          (luajit.withPackages (p: with p; [ luarocks ])) # for hererocks
           # molten-nvim
           imagemagickBig
           ueberzugpp
