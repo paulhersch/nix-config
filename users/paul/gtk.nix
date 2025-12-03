@@ -16,7 +16,7 @@
     size = 24;
   };
   theme = {
-    name = "Custom";
+    name = "Custom-Light";
     package = pkgs.gtk-custom;
   };
   gtk2 = {

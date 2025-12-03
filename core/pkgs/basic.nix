@@ -2,7 +2,7 @@
 with pkgs; [
   libreoffice-still
   signal-desktop
-  tdesktop #telegram
+  telegram-desktop
   librewolf
   zathura
   thunderbird

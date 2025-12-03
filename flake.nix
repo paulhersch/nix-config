@@ -4,11 +4,11 @@
   inputs = {
     # for torzu, got taken down
     old.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     libastal.url = "github:Aylur/astal";
@@ -28,7 +28,7 @@
           # inputs.neovim-nightly.overlays.default
           # copied this from ft2k, i guess this delays the eval of system until the attribute is set or smth
           (final: prev:
-            let inherit (final) system; in {
+            let system = prev.pkgs.stdenv.hostPlatform.system; in {
               astal = inputs.libastal.packages.${system}.default;
               quickshell = inputs.quickshell.packages.${system}.default;
               # inputs.libastal.packages.${default}.default;
@@ -55,7 +55,7 @@
                   version = "0.1.0";
                   nativeBuildInputs = with prev.pkgs; [
                     gobject-introspection
-                    wrapGAppsHook
+                    wrapGAppsHook3
                   ];
                   unpackPhase = "true";
                   buildInputs = with prev.pkgs; [
@@ -79,6 +79,7 @@
               old = import inputs.old { inherit system; config = { allowUnfree = true; }; };
               gtk-custom = prev.pkgs.callPackage ./pkgs/qogir-custom.nix {
                 theme-name = "Custom";
+                color-variant = "light";
                 color-changes = (let colors = import ./globals/colors.nix { }; in rec {
                   alt_dark_sidebar_fg = "#${colors.fg}";
                   base_color = "#${colors.bg}";

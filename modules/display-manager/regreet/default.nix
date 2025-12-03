@@ -1,11 +1,35 @@
-{ lib, config, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
   services.greetd.enable = true;
   services.xserver.displayManager.startx.enable = config.services.xserver.enable; # only enable startx if x exists
   programs.regreet = {
     enable = true;
-    cageArgs = [ "-m" "last" ];
+    cageArgs = [
+      "-m"
+      "last"
+    ];
+    cursorTheme = {
+      name = "phinger-cursors-dark";
+      package = pkgs.phinger-cursors;
+    };
+    font = {
+      name = "Aporetic Serif Medium";
+      size = 11;
+      package = pkgs.aporetic;
+    };
+    iconTheme = {
+      name = "Papirus-Light";
+      package = pkgs.papirus-icon-theme;
+    };
+    theme = {
+      name = "Custom-Light";
+      package = pkgs.gtk-custom;
+    };
     settings = {
       background = {
         path = builtins.path {
@@ -13,12 +37,6 @@
           name = "regreet-wallpaper";
         };
         fit = "Cover";
-      };
-      GTK = lib.mkForce {
-        cursor_theme_name = "phinger-cursors-dark";
-        font_name = "Aporetic Serif Medium 11";
-        icon_theme_name = "Papirus-Light";
-        theme_name = "Custom";
       };
     };
   };

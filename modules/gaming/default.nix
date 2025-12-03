@@ -11,7 +11,7 @@ let
 in
 {
   environment.systemPackages = unstablepkgs ++ stablepkgs ++ (with pkgs; [
-    ryujinx
+    ryubing
     old.torzu
     pcsx2
     bottles

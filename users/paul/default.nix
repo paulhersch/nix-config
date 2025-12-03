@@ -115,7 +115,7 @@ in
         ".config/alacritty/alacritty.toml".text = import ./confs/alacritty.nix { inherit theme; };
         ".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
         ".config/fontconfig/conf.d/99-alias-main.conf".text = import ./confs/fontconf.nix { };
-        ".zshenv".text = "";
+        # ".zshenv".text = "";
         ".config/river/bordercolors" = {
           text = import ./confs/river/borders.nix { inherit theme; };
           executable = true;
@@ -252,7 +252,7 @@ in
           texlab
           ltex-ls
           haskell-language-server
-          sumneko-lua-language-server
+          lua-language-server
           omnisharp-roslyn
           quick-lint-js
           nodePackages.typescript-language-server

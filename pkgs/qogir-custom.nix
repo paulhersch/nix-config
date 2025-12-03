@@ -9,6 +9,7 @@
 , sassc
 , stdenv
 , color-changes ? { } # refer to: https://github.com/vinceliuice/Qogir-theme/blob/master/HACKING
+, color-variant ? ""
 , theme-name ? "Qogir"
 , ...
 }:
@@ -60,7 +61,7 @@ EOF
 
     mkdir -p $out/share/themes
     ./parse-sass.sh
-    ./install.sh -l -c light -n ${theme-name} -d $out/share/themes
+    ./install.sh -l -c ${color-variant} -n ${theme-name} -d $out/share/themes
 
     mkdir -p $out/share/doc/qogir-theme
     cp -a src/firefox $out/share/doc/qogir-theme

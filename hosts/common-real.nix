@@ -8,10 +8,10 @@
     algorithm = "lz4";
   };
 
-  services.logind = {
-    lidSwitch = "hibernate";
-    lidSwitchDocked = "ignore";
-    lidSwitchExternalPower = "ignore";
+  services.logind.settings.Login = {
+    # HandleLidSwitch = "hibernate";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
   };
 
   boot = {
