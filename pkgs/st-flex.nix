@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
     owner = "bakkeby";
     repo = "st-flexipatch";
     rev = "f87d3de2cfce8729ec0934a81231691c9290095b";
-    hash = "sha256-cZcoBkgcG+MXVSmjupdmhEQv7j54rANbmMso6XnatEw=";
+    hash = "sha256-Qyudw6gZfpammJwtiew3ueMWy1xKxF1WRC/Xl9votWA=";
   };
 
   configFile = lib.optionalString (conf != null)

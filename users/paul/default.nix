@@ -43,31 +43,31 @@ in
       firefox
       steam-run
       element-desktop
-      (pkgs.callPackage ../../pkgs/st-flex.nix {
-        addPatches = [
-          "anysize"
-          "xresources"
-          "boxdraw"
-          "bold is not bright"
-          "csi 22 23"
-          "columns"
-          "font2"
-          "hidecursor"
-          "ligatures"
-          "netwmicon"
-          "sixel"
-          "scrollback"
-          "scrollback mouse"
-          "scrollback mouse altscreen"
-          "sync"
-          "themed cursor"
-          "undercurl"
-          "wide glyphs"
-          "vertcenter"
-        ];
-        conf = import ./confs/config.def.h.nix { };
-        harfbuzzFeatures = [ "dlig" ];
-      })
+      # (pkgs.callPackage ../../pkgs/st-flex.nix {
+      #   addPatches = [
+      #     "anysize"
+      #     "xresources"
+      #     "boxdraw"
+      #     "bold is not bright"
+      #     "csi 22 23"
+      #     "columns"
+      #     "font2"
+      #     "hidecursor"
+      #     "ligatures"
+      #     "netwmicon"
+      #     "sixel"
+      #     "scrollback"
+      #     "scrollback mouse"
+      #     "scrollback mouse altscreen"
+      #     "sync"
+      #     "themed cursor"
+      #     "undercurl"
+      #     "wide glyphs"
+      #     "vertcenter"
+      #   ];
+      #   conf = import ./confs/config.def.h.nix { };
+      #   harfbuzzFeatures = [ "dlig" ];
+      # })
 
       luaPackages.lua
       ghc

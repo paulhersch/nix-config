@@ -13,6 +13,10 @@
     };
     libastal.url = "github:Aylur/astal";
     quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -80,33 +84,35 @@
               gtk-custom = prev.pkgs.callPackage ./pkgs/qogir-custom.nix {
                 theme-name = "Custom";
                 color-variant = "light";
-                color-changes = (let colors = import ./globals/colors.nix { }; in rec {
-                  alt_dark_sidebar_fg = "#${colors.fg}";
-                  base_color = "#${colors.bg}";
-                  bg_color = "#${colors.bg}";
-                  dark_sidebar_bg = "#${colors.dbg}";
-                  dark_sidebar_fg = "#${colors.fg}";
-                  dark_sidebar_icon_bg = dark_sidebar_bg;
-                  dark_sidebar_icon_fg = dark_sidebar_fg;
-                  header_bg_backdrop = dark_sidebar_bg;
-                  destructive_color = error_color;
-                  destructive_fg_color = error_fg_color;
-                  drop_target_color = "#${colors.dbg}";
-                  error_color = "mix($bg_color, ${colors.c9},  %20)";
-                  error_fg_color = "#${colors.fg}";
-                  fg_color = "#${colors.c7}";
-                  header_bg = "#${colors.dbg}";
-                  osd_bg_color = "#${colors.bg}";
-                  osd_fg_color = "#${colors.fg}";
-                  panel_bg = "#${colors.bg}";
-                  selected_bg_color = "#${colors.ddfg}";
-                  selected_fg_color = "#${colors.lbg}";
-                  success_color = "mix($bg_color, ${colors.c10}, %20)";
-                  suggested_fg_color = selected_fg_color;
-                  text_color = "#${colors.fg}";
-                  warning_color = "mix($bg_color, ${colors.c11}, %20)";
-                  warning_fg_color = "#${colors.fg}";
-                });
+                color-changes = (
+                  let colors = import ./globals/colors.nix { }; in rec {
+                    alt_dark_sidebar_fg = "#${colors.fg}";
+                    base_color = "#${colors.bg}";
+                    bg_color = "#${colors.bg}";
+                    dark_sidebar_bg = "#${colors.dbg}";
+                    dark_sidebar_fg = "#${colors.fg}";
+                    dark_sidebar_icon_bg = dark_sidebar_bg;
+                    dark_sidebar_icon_fg = dark_sidebar_fg;
+                    header_bg_backdrop = dark_sidebar_bg;
+                    destructive_color = error_color;
+                    destructive_fg_color = error_fg_color;
+                    drop_target_color = "#${colors.dbg}";
+                    error_color = "mix($bg_color, ${colors.c9},  %20)";
+                    error_fg_color = "#${colors.fg}";
+                    fg_color = "#${colors.c7}";
+                    header_bg = "#${colors.dbg}";
+                    osd_bg_color = "#${colors.bg}";
+                    osd_fg_color = "#${colors.fg}";
+                    panel_bg = "#${colors.bg}";
+                    selected_bg_color = "#${colors.ddfg}";
+                    selected_fg_color = "#${colors.lbg}";
+                    success_color = "mix($bg_color, ${colors.c10}, %20)";
+                    suggested_fg_color = selected_fg_color;
+                    text_color = "#${colors.fg}";
+                    warning_color = "mix($bg_color, ${colors.c11}, %20)";
+                    warning_fg_color = "#${colors.fg}";
+                  }
+                );
               };
             })
         ];
@@ -164,9 +170,22 @@
               ./nixsettings.nix
             ];
           };
+          snowfox = nixosSystem {
+            system = "x86_64-linux";
+            modules = [ default_nixpkgs ] ++ [
+              ./configuration.nix
+              ./hosts/snowfox.nix
+              ./nixsettings.nix
+              ./modules/uni
+              inputs.lanzaboote.nixosModules.lanzaboote
+              home-manager.nixosModules.home-manager
+              { }
+            ];
+          };
         };
         snowstorm = self.nixosConfigurations.snowstorm.config.system.build.toplevel;
         snowflake = self.nixosConfigurations.snowflake.config.system.build.toplevel;
+        snowfox = self.nixosConfigurations.snowfox.config.system.build.toplevel;
         snowball = self.nixosConfigurations.snowball.config.system.build.toplevel;
         isox86 = self.nixosConfigurations.isox86.config.system.build.isoImage;
       };

@@ -13,6 +13,7 @@
     HandleLidSwitchDocked = "ignore";
     HandleLidSwitchExternalPower = "ignore";
   };
+  services.syncthing.openDefaultPorts = true;
 
   boot = {
     initrd.systemd.enable = true;
@@ -23,16 +24,10 @@
       efi = {
         canTouchEfiVariables = true;
       };
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        efiInstallAsRemovable = false;
-        configurationLimit = 5;
-        enableCryptodisk = true;
-      };
     };
-    supportedFilesystems = { "ntfs" = true; };
+    supportedFilesystems = {
+      "ntfs" = true;
+    };
   };
 
   time.timeZone = "Europe/Berlin";
