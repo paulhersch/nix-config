@@ -1,26 +1,32 @@
-{ config
-, lib
-, pkgs
-, stdenv
-, home-manager
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  stdenv,
+  home-manager,
+  ...
 }:
 let
   theme = import ../../globals/colors.nix { };
-  py_pkgs = (pkgs.python3.withPackages (p: with p; [
-    pandas
-    numpy
-    python-lsp-server
-    python-lsp-ruff
-    python-lsp-black
-    pylsp-mypy
-    rope
-    pymilter
-  ]));
+  py_pkgs = (
+    pkgs.python3.withPackages (
+      p: with p; [
+        pandas
+        numpy
+        python-lsp-server
+        python-lsp-ruff
+        python-lsp-black
+        pylsp-mypy
+        rope
+        pymilter
+      ]
+    )
+  );
 in
 {
   imports = [
     #./services/mopidy.nix
+    ./gtk.nix
   ];
   users.users.paul = {
     createHome = true;
@@ -37,7 +43,7 @@ in
       "wheel" # for cups
       "dialout" # ESP32 dev
     ];
-    packages = with pkgs;[
+    packages = with pkgs; [
       qmk
       chromium
       firefox
@@ -103,17 +109,21 @@ in
     ];
   };
   home-manager.users.paul = {
-    home = { stateVersion = "22.05"; };
+    home = {
+      stateVersion = "25.11";
+    };
     nixpkgs.config.allowUnfree = true;
 
-    gtk = import ./gtk.nix { inherit pkgs; };
     xresources.extraConfig = import ./confs/xresources.nix { inherit theme; };
 
     home = {
       file = {
         # ".config/wezterm/wezterm.lua".text = import ./confs/wez.nix { inherit theme; };
         ".config/alacritty/alacritty.toml".text = import ./confs/alacritty.nix { inherit theme; };
-        ".config/sway/config".text = import ./confs/sway/config.nix { inherit pkgs; inherit theme; };
+        ".config/sway/config".text = import ./confs/sway/config.nix {
+          inherit pkgs;
+          inherit theme;
+        };
         ".config/fontconfig/conf.d/99-alias-main.conf".text = import ./confs/fontconf.nix { };
         # ".zshenv".text = "";
         ".config/river/bordercolors" = {
@@ -215,27 +225,29 @@ in
         package = pkgs.neovim-unwrapped;
         vimAlias = true;
         withNodeJs = true; # :(
-        extraLuaPackages = p: with p; [
-          luarocks
-          # molten-nvim
-          magick
-        ];
-        extraPython3Packages = ps: with ps; [
-          # molten-nvim
-          cairosvg
-          jupyter-client
-          kaleido
-          nbformat
-          pillow
-          plotly
-          pnglatex
-          pynvim
-          pyperclip
-          requests
-          websocket-client
-          jupytext
-          pylatexenc
-        ];
+        extraLuaPackages =
+          p: with p; [
+            luarocks
+            # molten-nvim
+            magick
+          ];
+        extraPython3Packages =
+          ps: with ps; [
+            # molten-nvim
+            cairosvg
+            jupyter-client
+            kaleido
+            nbformat
+            pillow
+            plotly
+            pnglatex
+            pynvim
+            pyperclip
+            requests
+            websocket-client
+            jupytext
+            pylatexenc
+          ];
         extraPackages = with pkgs; [
           nodejs
           tree-sitter
@@ -272,7 +284,7 @@ in
       zsh.enable = true;
       zathura = {
         enable = true;
-        extraConfig = with theme;''
+        extraConfig = with theme; ''
           set recolor
           set recolor-lightcolor "#${bg}"
           set recolor-darkcolor "#${fg}"
