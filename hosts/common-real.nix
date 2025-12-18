@@ -39,7 +39,9 @@
   };
   console.useXkbConfig = true;
 
+  # add fixed IPs for machines@home
   networking.extraHosts = ''
-    127.0.0.1 mail.stegamail.de
+    192.168.178.48 snowfox
+    192.168.178.54 snowstorm
   '';
 }

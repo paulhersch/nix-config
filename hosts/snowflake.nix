@@ -1,15 +1,23 @@
-{ config
-, lib
-, pkgs
-, modulesPath
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
 }:
 
 {
   services = {
     uni.jupyter.enable = true;
     xserver.xkb.layout = "de";
+    nix-serve = {
+      enable = true;
+      package = pkgs.nix-serve-ng;
+      openFirewall = true;
+      secretKeyFile = "/etc/nix/serve-secret";
+    };
   };
+
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../modules/wayland/sway.nix
