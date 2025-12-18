@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, modulesPath
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
 }:
 
 {
@@ -188,6 +189,12 @@
   swapDevices = [ ];
 
   services = {
+    nix-serve = {
+      enable = true;
+      package = pkgs.nix-serve-ng;
+      openFirewall = true;
+      secretKeyFile = "/etc/nix/serve-secret";
+    };
     auto-cpufreq = {
       enable = true;
     };
