@@ -13,7 +13,8 @@ let
     		fi
     	'';
 in
-with theme; ''
+with theme;
+''
   # IMPORTANT
   # bodge fucking xdg portals because the startup mechanic doesnt do this properly for some fucking reason
   exec_always "sleep 3; wayland-xdg-fix" #see modules/wayland/common.nix
@@ -189,14 +190,16 @@ with theme; ''
 
   ### Autoexec ###
 
-  exec_always "P_ID=$(pgrep polkit-gnome-au); [[ -z \"$P_ID\" ]] && ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+  exec_always "P_ID=$(pgrep polkit-gnome-au); [[ -z $P_ID ]] && ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
 
   exec ${pkgs.autotiling-rs}/bin/autotiling-rs
   exec ${pkgs.blueman}/bin/blueman-applet
   # tends to crash a lot
   exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
-  exec_always pkill .gammastep-wrap && ${pkgs.gammastep}/bin/gammastep -P -O 5100
+  exec ${pkgs.gammastep}/bin/gammastep -P -O 5100
+
   exec swayidle -w \
   	timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-  	timeout 800 'swaylock -f -c 000000'
+  	timeout 800 'swaylock' \
+    after-resume 'swaylock'
 ''

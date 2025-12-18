@@ -60,6 +60,9 @@
       fileSystems = [ "/" ];
       interval = "weekly";
     };
+    fprintd = {
+      enable = true;
+    };
   };
 
   boot.initrd = {
@@ -101,6 +104,21 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "ondemand";
+    powertop = {
+      enable = true;
+    };
+  };
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+    };
   };
 }
