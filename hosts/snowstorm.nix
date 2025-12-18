@@ -163,7 +163,18 @@
     videoDrivers = [ "nvidia" ];
   };
 
-  boot.loader.efi.efiSysMountPoint = "/boot/EFI";
+  boot.loader = {
+    efi.efiSysMountPoint = "/boot/EFI";
+
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+      efiInstallAsRemovable = false;
+      configurationLimit = 5;
+      enableCryptodisk = true;
+    };
+  };
   boot.kernelPackages = pkgs.linuxPackages;
   hardware = {
     # xone.enable = true;

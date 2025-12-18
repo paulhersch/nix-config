@@ -1,22 +1,21 @@
-{
-  lib,
-  fetchFromGitHub,
-  gtk-engine-murrine,
-  jdupes,
-  gdk-pixbuf,
-  # pixbuf engine for Gtk2
-  gnome-themes-extra,
-  # adwaita engine for Gtk2
-  librsvg,
-  # pixbuf loader for svg
-  which,
-  sassc,
-  stdenv,
-  color-changes ? { },
-  # refer to: https://github.com/vinceliuice/Qogir-theme/blob/master/HACKING
-  color-variant ? "",
-  theme-name ? "Qogir",
-  ...
+{ lib
+, fetchFromGitHub
+, gtk-engine-murrine
+, jdupes
+, gdk-pixbuf
+, # pixbuf engine for Gtk2
+  gnome-themes-extra
+, # adwaita engine for Gtk2
+  librsvg
+, # pixbuf loader for svg
+  which
+, sassc
+, stdenv
+, color-changes ? { }
+, # refer to: https://github.com/vinceliuice/Qogir-theme/blob/master/HACKING
+  color-variant ? ""
+, theme-name ? "Qogir"
+, ...
 }:
 
 stdenv.mkDerivation {
@@ -47,11 +46,13 @@ stdenv.mkDerivation {
   installPhase =
     let
       replacements = builtins.concatStringsSep "\n" (
-        lib.attrsets.mapAttrsToList (
-          # construct sed instructions to change lines in scss
-          # match beginning of the word that is to be replaced and add in the color
-          name: color: ("sed -i '/^\\\$${name}:/c\\\$${name}: ${color};' ./src/_sass/_colors.scss")
-        ) color-changes
+        lib.attrsets.mapAttrsToList
+          (
+            # construct sed instructions to change lines in scss
+            # match beginning of the word that is to be replaced and add in the color
+            name: color: ("sed -i '/^\\\$${name}:/c\\\$${name}: ${color};' ./src/_sass/_colors.scss")
+          )
+          color-changes
       );
     in
     ''

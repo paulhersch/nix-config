@@ -24,14 +24,6 @@
       efi = {
         canTouchEfiVariables = true;
       };
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        efiInstallAsRemovable = false;
-        configurationLimit = 5;
-        enableCryptodisk = true;
-      };
     };
     supportedFilesystems = {
       "ntfs" = true;
