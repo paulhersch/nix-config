@@ -17,9 +17,17 @@
   ];
 
   # services.uni.jupyter.enable = true;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usbhid"
+  ];
   boot.initrd.kernelModules = [ "nvidia" ];
-  boot.kernelModules = [ "kvm-intel" "nvidia-uvm" ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "nvidia-uvm"
+  ];
   boot.extraModulePackages = [ config.hardware.nvidia.package ];
 
   services.udev.packages = [ pkgs.via ];
@@ -79,12 +87,14 @@
       }))
     ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/0a97ed09-58ce-4ab6-91d7-d7bdcb046d69";
-      fsType = "btrfs";
-      options = [ "subvol=nixos" "compress=zstd" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/0a97ed09-58ce-4ab6-91d7-d7bdcb046d69";
+    fsType = "btrfs";
+    options = [
+      "subvol=nixos"
+      "compress=zstd"
+    ];
+  };
 
   services.btrfs.autoScrub = {
     enable = true;
@@ -92,75 +102,99 @@
     interval = "weekly";
   };
 
-  fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/0a97ed09-58ce-4ab6-91d7-d7bdcb046d69";
-      fsType = "btrfs";
-      options = [ "subvol=home" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/0a97ed09-58ce-4ab6-91d7-d7bdcb046d69";
+    fsType = "btrfs";
+    options = [ "subvol=home" ];
+  };
 
-  fileSystems."/home/paul/Dokumente" =
-    {
-      device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
-      fsType = "btrfs";
-      options = [ "subvol=dokumente" "compress=zstd:1" "relatime" ];
-    };
+  fileSystems."/home/paul/Dokumente" = {
+    device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
+    fsType = "btrfs";
+    options = [
+      "subvol=dokumente"
+      "compress=zstd:1"
+      "relatime"
+    ];
+  };
 
-  fileSystems."/home/paul/Musik" =
-    {
-      device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
-      fsType = "btrfs";
-      options = [ "subvol=musik" "compress=zstd:1" "relatime" ];
-    };
+  fileSystems."/home/paul/Musik" = {
+    device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
+    fsType = "btrfs";
+    options = [
+      "subvol=musik"
+      "compress=zstd:1"
+      "relatime"
+    ];
+  };
 
-  fileSystems."/home/paul/Bilder" =
-    {
-      device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
-      fsType = "btrfs";
-      options = [ "subvol=bilder" "compress=zstd:1" "relatime" ];
-    };
+  fileSystems."/home/paul/Bilder" = {
+    device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
+    fsType = "btrfs";
+    options = [
+      "subvol=bilder"
+      "compress=zstd:1"
+      "relatime"
+    ];
+  };
 
-  fileSystems."/home/paul/Downloads" =
-    {
-      device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
-      fsType = "btrfs";
-      options = [ "subvol=downloads" "compress=zstd:1" "relatime" ];
-    };
+  fileSystems."/home/paul/Downloads" = {
+    device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
+    fsType = "btrfs";
+    options = [
+      "subvol=downloads"
+      "compress=zstd:1"
+      "relatime"
+    ];
+  };
 
-  fileSystems."/home/paul/Videos" =
-    {
-      device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
-      fsType = "btrfs";
-      options = [ "subvol=videos" "compress=zstd:1" "relatime" ];
-    };
+  fileSystems."/home/paul/Videos" = {
+    device = "/dev/disk/by-uuid/e4b576ea-4882-4ec8-bb27-c1cd7f304c2d";
+    fsType = "btrfs";
+    options = [
+      "subvol=videos"
+      "compress=zstd:1"
+      "relatime"
+    ];
+  };
 
-  fileSystems."/home/paul/.SteamLib" =
-    {
-      device = "/dev/disk/by-label/steamlibrary";
-      fsType = "btrfs";
-      options = [ "subvol=SteamLibrary" "compress=zstd:1" "relatime" ];
-    };
+  fileSystems."/home/paul/.SteamLib" = {
+    device = "/dev/disk/by-label/steamlibrary";
+    fsType = "btrfs";
+    options = [
+      "subvol=SteamLibrary"
+      "compress=zstd:1"
+      "relatime"
+    ];
+  };
 
-  fileSystems."/home/paul/.Games" =
-    {
-      device = "/dev/disk/by-label/steamlibrary";
-      fsType = "btrfs";
-      options = [ "subvol=Games" "compress=zstd:1" "relatime" ];
-    };
+  fileSystems."/home/paul/.Games" = {
+    device = "/dev/disk/by-label/steamlibrary";
+    fsType = "btrfs";
+    options = [
+      "subvol=Games"
+      "compress=zstd:1"
+      "relatime"
+    ];
+  };
 
-  fileSystems."/boot/EFI" =
-    {
-      device = "/dev/disk/by-uuid/04C1-533A";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/EFI" = {
+    device = "/dev/disk/by-uuid/04C1-533A";
+    fsType = "vfat";
+  };
 
   # i shouldn't have to blacklist the module in theory
   # boot.kernelParams = [ "module_blacklist=i915" ]; # "pci=noaer" ];
   swapDevices = [ ];
 
-  services.xserver = {
-    xkb.layout = "eu";
-    videoDrivers = [ "nvidia" ];
+  services = {
+    auto-cpufreq = {
+      enable = true;
+    };
+    xserver = {
+      xkb.layout = "eu";
+      videoDrivers = [ "nvidia" ];
+    };
   };
 
   boot.loader = {
