@@ -13,6 +13,7 @@
     HandleLidSwitchDocked = "ignore";
     HandleLidSwitchExternalPower = "ignore";
   };
+  services.syncthing.openDefaultPorts = true;
 
   boot = {
     initrd.systemd.enable = true;
@@ -32,7 +33,9 @@
         enableCryptodisk = true;
       };
     };
-    supportedFilesystems = { "ntfs" = true; };
+    supportedFilesystems = {
+      "ntfs" = true;
+    };
   };
 
   time.timeZone = "Europe/Berlin";
