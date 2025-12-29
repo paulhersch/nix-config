@@ -195,9 +195,9 @@
       openFirewall = true;
       secretKeyFile = "/etc/nix/serve-secret";
     };
-    auto-cpufreq = {
-      enable = true;
-    };
+    # auto-cpufreq = {
+    #   enable = true;
+    # };
     xserver = {
       xkb.layout = "eu";
       videoDrivers = [ "nvidia" ];

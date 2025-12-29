@@ -93,17 +93,17 @@ with theme;
   bindsym $mod+Shift+$right move right
 
   ### Workspaces: ###
-  set $switch_ws exec --no-startup-id ${pkgs.i3-wk-switch}/bin/i3-wk-switch
+  # set $switch_ws exec --no-startup-id ${pkgs.i3-wk-switch}/bin/i3-wk-switch
   # Switch to workspace
-  bindsym $mod+1 $switch_ws 1
-  bindsym $mod+2 $switch_ws 2
-  bindsym $mod+3 $switch_ws 3
-  bindsym $mod+4 $switch_ws 4
-  bindsym $mod+5 $switch_ws 5
-  bindsym $mod+6 $switch_ws 6
-  bindsym $mod+7 $switch_ws 7
-  bindsym $mod+8 $switch_ws 8
-  bindsym $mod+9 $switch_ws 9
+  bindsym $mod+1 workspace 1
+  bindsym $mod+2 workspace 2
+  bindsym $mod+3 workspace 3
+  bindsym $mod+4 workspace 4
+  bindsym $mod+5 workspace 5
+  bindsym $mod+6 workspace 6
+  bindsym $mod+7 workspace 7
+  bindsym $mod+8 workspace 8
+  bindsym $mod+9 workspace 9
   # Move focused container to workspace
   bindsym $mod+Shift+1 move container to workspace number 1
   bindsym $mod+Shift+2 move container to workspace number 2
@@ -187,6 +187,7 @@ with theme;
 
   include "include.d/shared/*"
   include "include.d/$(cat /etc/hostname)/*"
+  include "/etc/sway/config.d/*"
 
   ### Autoexec ###
 
