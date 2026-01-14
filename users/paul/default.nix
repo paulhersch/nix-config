@@ -1,9 +1,10 @@
-{ config
-, lib
-, pkgs
-, stdenv
-, home-manager
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  stdenv,
+  home-manager,
+  ...
 }:
 let
   theme = import ../../globals/colors.nix { };
@@ -160,10 +161,6 @@ in
         settings = [
           { include = "~/.config/kanshi.conf"; }
         ];
-        # systemdTarget = if config.programs.niri.enable then "niri.service" else
-        # (if config.programs.sway.enable then "sway-session.target" else
-        # "graphical-session.target"
-        # );
         systemdTarget = "graphical-session.target";
       };
       gammastep = {
@@ -175,11 +172,11 @@ in
         longitude = 12.0;
         temperature = {
           day = 5200;
-          night = 4700;
+          night = 4900;
         };
         settings.general = {
           "brightness-day" = 1.0;
-          "brightness-night" = 0.8;
+          "brightness-night" = 1.0;
         };
         tray = true;
       };

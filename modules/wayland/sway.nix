@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -43,7 +48,7 @@
         grim
         inotify-tools
         kanshi
-        libastal-lua
+        # libastal-lua
         quickshell
         networkmanagerapplet
         slurp
@@ -72,7 +77,10 @@
         enable = true;
       };
       config.sway = {
-        default = lib.mkForce [ "wlr" "gtk" ];
+        default = lib.mkForce [
+          "wlr"
+          "gtk"
+        ];
       };
     };
   };

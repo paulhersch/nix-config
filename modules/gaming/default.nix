@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   unstablepkgs = with pkgs.unstable; [
@@ -10,15 +15,18 @@ let
   ];
 in
 {
-  environment.systemPackages = unstablepkgs ++ stablepkgs ++ (with pkgs; [
-    ryubing
-    old.torzu
-    pcsx2
-    bottles
-    lutris
-    wine
-    winetricks
-  ]);
+  environment.systemPackages =
+    unstablepkgs
+    ++ stablepkgs
+    ++ (with pkgs; [
+      ryubing
+      old.torzu
+      pcsx2
+      bottles
+      lutris
+      wine
+      winetricks
+    ]);
 
   programs = {
     obs-studio = {
@@ -53,15 +61,21 @@ in
     };
   };
   hardware = {
-    openrazer = {
-      enable = true;
-      users = [ "paul" "luise" ];
-    };
+    # openrazer = {
+    #   enable = true;
+    #   users = [ "paul" "luise" ];
+    # };
     graphics = {
-      extraPackages = with pkgs; [ libva libva-utils ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [ libva libva-utils ];
+      extraPackages = with pkgs; [
+        libva
+        libva-utils
+      ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [
+        libva
+        libva-utils
+      ];
       enable32Bit = true;
     };
   };
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+  # powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 }

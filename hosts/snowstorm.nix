@@ -13,7 +13,7 @@
     # ../modules/x11/awesome.nix
     ../modules/wayland/sway.nix
     # ../modules/wayland/hyprland.nix
-    ../modules/wayland/niri.nix
+    # ../modules/wayland/niri.nix
     ./common-real.nix
   ];
 
@@ -22,7 +22,7 @@
     "xhci_pci"
     "ahci"
     "nvme"
-    "usbhid"
+    # "usbhid"
   ];
   boot.initrd.kernelModules = [ "nvidia" ];
   boot.kernelModules = [
@@ -94,6 +94,7 @@
     options = [
       "subvol=nixos"
       "compress=zstd"
+      "space_cache=v2" # dmesg kept yelling about space_cache=v1
     ];
   };
 
@@ -106,7 +107,10 @@
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/0a97ed09-58ce-4ab6-91d7-d7bdcb046d69";
     fsType = "btrfs";
-    options = [ "subvol=home" ];
+    options = [
+      "subvol=home"
+      "space_cache=v2"
+    ];
   };
 
   fileSystems."/home/paul/Dokumente" = {
@@ -116,6 +120,7 @@
       "subvol=dokumente"
       "compress=zstd:1"
       "relatime"
+      "space_cache=v2"
     ];
   };
 
@@ -126,6 +131,7 @@
       "subvol=musik"
       "compress=zstd:1"
       "relatime"
+      "space_cache=v2"
     ];
   };
 
@@ -136,6 +142,7 @@
       "subvol=bilder"
       "compress=zstd:1"
       "relatime"
+      "space_cache=v2"
     ];
   };
 
@@ -146,6 +153,7 @@
       "subvol=downloads"
       "compress=zstd:1"
       "relatime"
+      "space_cache=v2"
     ];
   };
 
@@ -156,6 +164,7 @@
       "subvol=videos"
       "compress=zstd:1"
       "relatime"
+      "space_cache=v2"
     ];
   };
 
@@ -166,6 +175,7 @@
       "subvol=SteamLibrary"
       "compress=zstd:1"
       "relatime"
+      "space_cache=v2"
     ];
   };
 
@@ -176,6 +186,7 @@
       "subvol=Games"
       "compress=zstd:1"
       "relatime"
+      "space_cache=v2"
     ];
   };
 
@@ -206,22 +217,24 @@
 
   boot.loader = {
     efi.efiSysMountPoint = "/boot/EFI";
-
-    grub = {
+    systemd-boot = {
       enable = true;
-      device = "nodev";
-      efiSupport = true;
-      efiInstallAsRemovable = false;
-      configurationLimit = 5;
-      enableCryptodisk = true;
+      edk2-uefi-shell.enable = true;
     };
+    # i dont really care about my bootloader any more tbh
+    # grub = {
+    #   enable = true;
+    #   device = "nodev";
+    #   efiSupport = true;
+    #   efiInstallAsRemovable = false;
+    #   configurationLimit = 5;
+    #   enableCryptodisk = true;
+    # };
   };
   boot.kernelPackages = pkgs.linuxPackages;
   hardware = {
-    # xone.enable = true;
-    nvidia-container-toolkit.enable = true;
+    # nvidia-container-toolkit.enable = true;
     nvidia = {
-      # forceFullCompositionPipeline = true;
       modesetting.enable = true;
       open = true;
       nvidiaSettings = true;
@@ -243,5 +256,6 @@
       ];
     };
   };
+  # powerManagement.powertop.enable = true;
   networking.hostName = "snowstorm";
 }

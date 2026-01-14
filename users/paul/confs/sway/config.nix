@@ -198,9 +198,4 @@ with theme;
   # tends to crash a lot
   exec_always ${pkgs.unstable.networkmanagerapplet}/bin/nm-applet --indicator
   exec ${pkgs.gammastep}/bin/gammastep -P -O 5100
-
-  exec swayidle -w \
-  	timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-  	timeout 800 'swaylock' \
-    after-resume 'swaylock'
 ''
