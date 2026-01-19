@@ -3,13 +3,15 @@
 {
   nix = {
     settings = {
+      fallback = true;
+      connect-timeout = 3;
       #cachix 👍
       substituters = [
         "http://snowstorm:5000?priority=1"
         "http://snowfox:5000?priority=1"
-        "https://cache.nixos.org?priority=10"
-        "https://fortuneteller2k.cachix.org?priority=5"
-        "https://nix-community.cachix.org?priority=5"
+        "https://cache.nixos.org?priority=3"
+        "https://fortuneteller2k.cachix.org?priority=2"
+        "https://nix-community.cachix.org?priority=2"
       ];
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="

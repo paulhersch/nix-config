@@ -216,10 +216,15 @@
   };
 
   boot.loader = {
-    efi.efiSysMountPoint = "/boot/EFI";
+    efi = {
+      efiSysMountPoint = "/boot/EFI";
+      canTouchEfiVariables = true;
+    };
     systemd-boot = {
       enable = true;
       edk2-uefi-shell.enable = true;
+      memtest86.enable = true;
+      configurationLimit = 3;
     };
     # i dont really care about my bootloader any more tbh
     # grub = {
