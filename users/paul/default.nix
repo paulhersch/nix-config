@@ -242,16 +242,16 @@ in
             requests
             websocket-client
             jupytext
-            pylatexenc
           ];
         extraPackages = with pkgs; [
           nodejs
           tree-sitter
-          readline # for hererocks
+          # readline # for hererocks
           (luajit.withPackages (p: with p; [ luarocks ])) # for hererocks
           # molten-nvim
           imagemagickBig
-          ueberzugpp
+          # ueberzugpp
+          python3Packages.pylatexenc
           # telescope
           ripgrep
           fd
