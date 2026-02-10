@@ -61,10 +61,10 @@ in
     };
   };
   hardware = {
-    # openrazer = {
-    #   enable = true;
-    #   users = [ "paul" "luise" ];
-    # };
+    openrazer = {
+      enable = true;
+      users = [ "paul" ];
+    };
     graphics = {
       extraPackages = with pkgs; [
         libva

@@ -86,7 +86,7 @@ in
       anydesk
       pdfpc
       pandoc
-      # drawio
+      ollama-vulkan
 
       # finally, no Java :))))
       # keeping this in here in case i need to do the cringe again
