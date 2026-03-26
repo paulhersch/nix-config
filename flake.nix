@@ -13,8 +13,8 @@
     };
     quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
     somewm = {
-      # url = "github:trip-zip/somewm";
-      url = "/home/paul/Dokumente/Projekte/somewm";
+      url = "github:trip-zip/somewm";
+      # url = "/home/paul/Dokumente/Projekte/somewm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
