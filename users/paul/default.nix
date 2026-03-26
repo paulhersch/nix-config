@@ -87,6 +87,7 @@ in
       pdfpc
       pandoc
       ollama-vulkan
+      wireguard-tools
 
       # finally, no Java :))))
       # keeping this in here in case i need to do the cringe again
