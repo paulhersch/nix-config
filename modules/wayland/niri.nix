@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
 
   imports = [
     ../wayland/xwayland-satellite.nix
@@ -39,21 +40,12 @@
         xdg-desktop-portal-gnome
       ];
       config.niri = {
-        default = [ "gtk" "gnome" ];
+        default = [
+          "gtk"
+          "gnome"
+        ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
     };
   };
-
-  # systemd.user.services."quickshell-daemon" = {
-  #   description = "Niri's quickshell background process";
-  #   serviceConfig = {
-  #     ExecStart = "${pkgs.quickshell}/bin/qs";
-  #     Restart = "on-failure";
-  #     RestartSec = 5;
-  #   };
-  #   wantedBy = [ "niri.service" ];
-  #   after = [ "niri.service" ];
-  #   partOf = [ "graphical-session.target" ];
-  # };
 }

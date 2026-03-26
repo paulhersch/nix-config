@@ -316,6 +316,7 @@
         "nixpkgs": "nixpkgs_2",
         "old": "old",
         "quickshell": "quickshell",
+        "somewm": "somewm",
         "unstable": "unstable"
       }
     },
@@ -338,6 +339,23 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "somewm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772371896,
+        "narHash": "sha256-3DIVeETWQJB6GufFzzqSgMgsx865/Ojk/XHgGKjd3Wg=",
+        "path": "/home/paul/Dokumente/Projekte/somewm",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/paul/Dokumente/Projekte/somewm",
+        "type": "path"
       }
     },
     "treefmt-nix": {

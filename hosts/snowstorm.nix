@@ -12,24 +12,31 @@
     ../modules/display-manager/regreet
     # ../modules/x11/awesome.nix
     ../modules/wayland/sway.nix
+    # ../modules/wayland/somewm.nix
     # ../modules/wayland/hyprland.nix
     # ../modules/wayland/niri.nix
     ./common-real.nix
   ];
 
   # services.uni.jupyter.enable = true;
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "nvme"
-    # "usbhid"
-  ];
-  boot.initrd.kernelModules = [ "nvidia" ];
-  boot.kernelModules = [
-    "kvm-intel"
-    "nvidia-uvm"
-  ];
-  boot.extraModulePackages = [ config.hardware.nvidia.package ];
+  boot = {
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "ahci"
+      "nvme"
+      # "usbhid"
+    ];
+    kernelParams = [
+      "amd_pstate=active"
+      "nvidia-drm.modeset=1"
+    ];
+    initrd.kernelModules = [ "nvidia" ];
+    kernelModules = [
+      "nvidia-uvm"
+      "kvm-amd"
+    ];
+    extraModulePackages = [ config.hardware.nvidia.package ];
+  };
 
   services.udev.packages = [ pkgs.via ];
 
@@ -195,8 +202,6 @@
     fsType = "vfat";
   };
 
-  # i shouldn't have to blacklist the module in theory
-  # boot.kernelParams = [ "module_blacklist=i915" ]; # "pci=noaer" ];
   swapDevices = [ ];
 
   services = {
@@ -206,9 +211,6 @@
       openFirewall = true;
       secretKeyFile = "/etc/nix/serve-secret";
     };
-    # auto-cpufreq = {
-    #   enable = true;
-    # };
     xserver = {
       xkb.layout = "eu";
       videoDrivers = [ "nvidia" ];
@@ -226,17 +228,10 @@
       memtest86.enable = true;
       configurationLimit = 3;
     };
-    # i dont really care about my bootloader any more tbh
-    # grub = {
-    #   enable = true;
-    #   device = "nodev";
-    #   efiSupport = true;
-    #   efiInstallAsRemovable = false;
-    #   configurationLimit = 5;
-    #   enableCryptodisk = true;
-    # };
   };
+
   boot.kernelPackages = pkgs.linuxPackages;
+
   hardware = {
     # nvidia-container-toolkit.enable = true;
     nvidia = {
@@ -252,7 +247,10 @@
       enable = true;
       package = pkgs.bluez;
     };
-    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.amd = {
+      updateMicrocode = lib.mkDefault true;
+      # sev.enable = true;
+    };
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -261,6 +259,11 @@
       ];
     };
   };
-  # powerManagement.powertop.enable = true;
+
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "schedutil";
+  };
+
   networking.hostName = "snowstorm";
 }

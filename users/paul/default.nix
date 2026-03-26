@@ -18,7 +18,7 @@ let
         python-lsp-black
         pylsp-mypy
         rope
-        pymilter
+        bcrypt
       ]
     )
   );
