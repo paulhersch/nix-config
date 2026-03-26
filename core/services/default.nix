@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -18,7 +23,15 @@
     };
     printing = {
       enable = true;
-      drivers = with pkgs; [ gutenprint gutenprintBin hplip samsung-unified-linux-driver splix brlaser cups-toshiba-estudio ];
+      drivers = with pkgs; [
+        gutenprint
+        gutenprintBin
+        hplip
+        samsung-unified-linux-driver
+        splix
+        brlaser
+        cups-toshiba-estudio
+      ];
     };
     xserver.modules = with pkgs; [ xf86_input_wacom ];
   };
@@ -39,4 +52,7 @@
       enableOnBoot = false;
     };
   };
+
+  networking.firewall.allowedUDPPorts = [ 51820 ];
+  networking.firewall.checkReversePath = "loose";
 }
