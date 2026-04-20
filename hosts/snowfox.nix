@@ -13,9 +13,13 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../modules/wayland/sway.nix
+    ../modules/wayland/somewm.nix
     ../modules/display-manager/regreet
     ./common-real.nix
   ];
+
+  # noita
+  programs.steam.enable = true;
 
   networking.hostName = "snowfox";
   boot.initrd.availableKernelModules = [
