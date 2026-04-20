@@ -19,6 +19,7 @@ let
         pylsp-mypy
         rope
         bcrypt
+        pikepdf
       ]
     )
   );
