@@ -49,6 +49,7 @@
     in
     [
       pkgs.via
+      pkgs.hydrobuddy-qt6
       # https://github.com/NixOS/nixpkgs/pull/365769/commits/baeba6e0bd558185f475b5a02f007bfa06b25df1
       (stdenvNoCC.mkDerivation (finalAttrs: {
         pname = "noita_entangled_worlds";

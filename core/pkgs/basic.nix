@@ -1,5 +1,6 @@
 { pkgs, ... }:
-with pkgs; [
+with pkgs;
+[
   libreoffice-still
   signal-desktop
   telegram-desktop
@@ -7,8 +8,8 @@ with pkgs; [
   zathura
   thunderbird
   pdfarranger
-  unstable.discord-ptb
-  vesktop
+  # unstable.discord-ptb
+  discord
   keepassxc
   xournalpp
 ]

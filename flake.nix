@@ -63,6 +63,7 @@
                 allowUnfree = true;
               };
             };
+            hydrobuddy-qt6 = prev.pkgs.callPackage ./pkgs/hydrobuddy.nix { };
             gtk-custom = prev.pkgs.callPackage ./pkgs/qogir-custom.nix {
               theme-name = "Custom";
               color-variant = "light";
