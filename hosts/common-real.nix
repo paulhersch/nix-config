@@ -39,9 +39,4 @@
   };
   console.useXkbConfig = true;
 
-  # add fixed IPs for machines@home
-  networking.extraHosts = ''
-    192.168.178.48 snowfox
-    192.168.178.54 snowstorm
-  '';
 }
