@@ -36,7 +36,7 @@
     # keep-derivations = true
     extraOptions = ''
       keep-outputs = true
-      connect-timeout = 2000
+      connect-timeout = 2
     '';
   };
   services.angrr = {

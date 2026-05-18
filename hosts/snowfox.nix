@@ -13,42 +13,10 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../modules/wayland/sway.nix
-    ../modules/wayland/somewm.nix
+    # ../modules/wayland/somewm.nix
+    ../modules/wayland/niri.nix
     ../modules/display-manager/regreet
     ./common-real.nix
-  ];
-
-  # noita
-  programs.steam.enable = true;
-
-  networking.hostName = "snowfox";
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-
-  security.tpm2 = {
-    enable = true;
-    pkcs11.enable = true;
-  };
-  services.logind.settings.Login.HandleLidSwitch = "suspend";
-
-  boot = {
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/var/lib/sbctl";
-    };
-    loader.systemd-boot.enable = false;
-  };
-
-  environment.systemPackages = with pkgs; [
-    sbctl
   ];
 
   fileSystems."/" = {
@@ -57,7 +25,55 @@
     options = [ "subvol=nixos" ];
   };
 
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/EB4A-AD57";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
+
+  swapDevices = [ ];
+
+  boot = {
+    initrd = {
+      luks.devices."root" = {
+        device = "/dev/disk/by-uuid/a1b31149-1077-4ea7-907d-045a912f1f3b";
+        preLVM = true;
+      };
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
+    };
+    kernelModules = [ "kvm-intel" ];
+    kernelParams = [ ];
+    extraModulePackages = [ ];
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
+    loader.systemd-boot.enable = false;
+  };
+
+  security.tpm2 = {
+    enable = true;
+    pkcs11.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
+
+  networking.hostName = "snowfox";
+
   services = {
+    logind.settings.Login.HandleLidSwitch = "suspend";
     nix-serve = {
       enable = true;
       package = pkgs.nix-serve-ng;
@@ -74,24 +90,6 @@
       enable = true;
     };
   };
-
-  boot.initrd = {
-    luks.devices."root" = {
-      device = "/dev/disk/by-uuid/a1b31149-1077-4ea7-907d-045a912f1f3b";
-      preLVM = true;
-    };
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/EB4A-AD57";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
-  };
-
-  swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
@@ -131,4 +129,6 @@
       };
     };
   };
+  # noita
+  programs.steam.enable = true;
 }

@@ -81,6 +81,10 @@ in
       haskellPackages.tidal
       rustup
       gcc
+      valgrind
+      gdb
+      man-pages
+      glibcInfo
       gnumake
       cargo
       texlive.combined.scheme-full

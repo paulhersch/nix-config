@@ -31,6 +31,7 @@
     tofi
     wev
     wl-clipboard
+    wlogout
   ];
 
   xdg = {
