@@ -68,9 +68,10 @@ in
     };
     pulse.enable = true;
     wireplumber.enable = true;
-    configPackages = [
-      (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/virtual-5.1.conf" virtual-surround-conf)
-    ];
+    # somehow plugin isn't found, need to look for a fix
+    # configPackages = [
+    #  (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/virtual-5.1.conf" virtual-surround-conf)
+    # ];
     extraLv2Packages = with pkgs; [
       swh_lv2
       lsp-plugins

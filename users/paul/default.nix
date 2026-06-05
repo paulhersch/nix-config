@@ -118,7 +118,7 @@ in
   };
   home-manager.users.paul = {
     home = {
-      stateVersion = "25.11";
+      stateVersion = "26.05";
     };
     nixpkgs.config.allowUnfree = true;
 
@@ -227,7 +227,9 @@ in
       neovim = {
         enable = true;
         package = pkgs.neovim-unwrapped;
+        sideloadInitLua = true;
         vimAlias = true;
+        withPython3 = true;
         withNodeJs = true; # :(
         extraLuaPackages =
           p: with p; [
@@ -271,8 +273,8 @@ in
           lua-language-server
           omnisharp-roslyn
           quick-lint-js
-          nodePackages.typescript-language-server
-          nodePackages.bash-language-server
+          typescript-language-server
+          bash-language-server
           shellcheck
           nil
           ccls
@@ -354,7 +356,7 @@ in
             style = "beam";
             blink = "yes";
           };
-          colors = with theme; {
+          colors-dark = with theme; {
             foreground = "${fg}";
             background = "${bg}";
             selection-background = "${llbg}";

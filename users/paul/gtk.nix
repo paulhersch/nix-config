@@ -2,7 +2,7 @@
 
 {
 
-  home-manager.users.paul = {
+  home-manager.users.paul = rec {
     home.pointerCursor = {
       name = "phinger-cursors-dark";
       package = pkgs.phinger-cursors;
@@ -24,6 +24,7 @@
         name = "Custom-Light";
         package = pkgs.gtk-custom;
       };
+      gtk4.theme = gtk.theme;
       gtk2 = {
         configLocation = "/home/paul/.gtkrc-2.0";
         extraConfig = ''
