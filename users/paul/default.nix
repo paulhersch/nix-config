@@ -11,15 +11,17 @@ let
   py_pkgs = (
     pkgs.python3.withPackages (
       p: with p; [
-        pandas
-        numpy
-        python-lsp-server
-        python-lsp-ruff
-        python-lsp-black
-        pylsp-mypy
-        rope
         bcrypt
+        matplotlib
+        numpy
+        pandas
         pikepdf
+        pylsp-mypy
+        python-lsp-black
+        python-lsp-ruff
+        python-lsp-server
+        rope
+        scipy
       ]
     )
   );

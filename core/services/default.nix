@@ -16,7 +16,7 @@
     blueman.enable = true;
     gvfs = {
       enable = true;
-      package = lib.mkForce pkgs.gnome.gvfs;
+      package = lib.mkForce pkgs.gnome.gvfs; # important for file managers
     };
     gnome = {
       gnome-keyring.enable = pkgs.lib.mkForce false;

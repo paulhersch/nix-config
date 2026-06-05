@@ -42,8 +42,10 @@
     };
   };
   programs.ssh = {
-    # askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
-    enableAskPassword = false;
+    askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
+    # askPassword = "/nix/store/vk1hjdiilqb2lv8aw6v52djc8372l062-pinentry-gtk2-1.3.2/bin/pinentry-gtk-2";
+    enableAskPassword = true;
+    startAgent = true;
   };
   boot.initrd.services.udev.rules = ''
     KERNEL=="ttyUSB*", GROUP="dialout"

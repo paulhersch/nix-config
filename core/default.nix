@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 
 {
   imports = [
@@ -10,11 +15,11 @@
   # nixpkgs.config.allowUnfree = true;
 
   # GPG + pinentry
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-gtk2;
-  };
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  #   pinentryPackage = pkgs.pinentry-gtk2;
+  # };
   programs.virt-manager = {
     enable = true;
   };
