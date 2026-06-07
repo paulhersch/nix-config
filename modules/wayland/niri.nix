@@ -41,10 +41,10 @@
         xdg-desktop-portal-gnome
       ];
       config.niri = {
-        default = [
-          "gtk"
-          "gnome"
-        ];
+        # default = [
+        #   "gtk"
+        #   "gnome"
+        # ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
     };
