@@ -11,7 +11,7 @@
       indicator = true;
     };
     niri.enable = true;
-    xwayland-satellite.enable = true;
+    xwayland-satellite.enable = false; # niri handles integration
   };
 
   environment.systemPackages = with pkgs; [
@@ -27,11 +27,12 @@
     quickshell
     networkmanagerapplet
     swaylock
-    swww
+    awww
     tofi
     wev
     wl-clipboard
     wlogout
+    xwayland-satellite
   ];
 
   xdg = {

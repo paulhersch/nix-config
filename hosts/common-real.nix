@@ -27,6 +27,7 @@
     };
     supportedFilesystems = {
       "ntfs" = true;
+      "exfat" = true;
     };
   };
 

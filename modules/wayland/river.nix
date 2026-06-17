@@ -20,7 +20,7 @@
       networkmanagerapplet
       river-luatile
       slurp
-      swww
+      awww
       waybar
       wl-clipboard
       wlr-randr
@@ -39,7 +39,10 @@
         enable = true;
       };
       config.river = {
-        default = [ "wlr" "gtk" ];
+        default = [
+          "wlr"
+          "gtk"
+        ];
       };
     };
   };

@@ -34,7 +34,7 @@ in
     kanshi
     networkmanagerapplet
     slurp
-    swww
+    awww
     wl-clipboard
     wlr-randr
     somewm-withlibs

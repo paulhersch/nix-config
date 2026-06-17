@@ -14,7 +14,7 @@
     ../modules/wayland/sway.nix
     # ../modules/wayland/somewm.nix
     # ../modules/wayland/hyprland.nix
-    # ../modules/wayland/niri.nix
+    ../modules/wayland/niri.nix
     ./common-real.nix
   ];
 
@@ -233,6 +233,34 @@
 
   boot.kernelPackages = pkgs.linuxPackages;
 
+  # application setting for niri on nvidia
+  environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json" =
+    {
+      text = ''
+        {
+          "rules": [
+            {
+              "pattern": {
+                "feature": "procname",
+                "matches": "niri"
+              },
+              "profile": "Limit Free Buffer Pool On Wayland Compositors"
+            }
+          ],
+          "profiles": [
+            {
+              "name": "Limit Free Buffer Pool On Wayland Compositors",
+              "settings": [
+                {
+                  "key": "GLVidHeapReuseRatio",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        }
+      '';
+    };
   hardware = {
     # nvidia-container-toolkit.enable = true;
     nvidia = {

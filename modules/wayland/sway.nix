@@ -54,7 +54,7 @@
         slurp
         swayidle
         swaylock
-        swww
+        awww
         tofi
         wev
         wl-clipboard
