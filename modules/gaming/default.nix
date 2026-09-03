@@ -61,6 +61,7 @@ in
     };
   };
   hardware = {
+    # xone.enable = true;
     openrazer = {
       enable = true;
       users = [ "paul" ];
