@@ -33,6 +33,7 @@
     wl-clipboard
     wlogout
     xwayland-satellite
+    polkit_gnome
   ];
 
   xdg = {

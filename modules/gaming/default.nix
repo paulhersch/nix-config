@@ -22,10 +22,11 @@ in
       ryubing
       old.torzu
       pcsx2
-      bottles
-      lutris
+      # bottles
+      # lutris
       wine
       winetricks
+      obs-cmd
     ]);
 
   programs = {

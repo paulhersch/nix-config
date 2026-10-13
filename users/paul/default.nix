@@ -78,6 +78,7 @@ in
       #   harfbuzzFeatures = [ "dlig" ];
       # })
 
+      ripgrep
       luaPackages.lua
       ghc
       haskellPackages.tidal
@@ -263,7 +264,6 @@ in
           # ueberzugpp
           python3Packages.pylatexenc
           # telescope
-          ripgrep
           fd
           zk
           # language servers
