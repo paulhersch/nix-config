@@ -246,7 +246,7 @@ in
             kaleido
             nbformat
             pillow
-            plotly
+            # plotly
             pnglatex
             pynvim
             pyperclip
